@@ -1,0 +1,1382 @@
+<extend name="index:index" />
+
+<block name="rewritecss">
+<link rel="stylesheet" href="__PUBLIC__/Home/user/jumei_usercenter.css"
+        type="text/css" media="screen" charset="utf-8">
+ <link rel="stylesheet" href="__PUBLIC__/Home/user/jumei_onsale_layer.min.css">
+<link rel="stylesheet" href="__PUBLIC__/Home/user/jumei_lightbox.min.css">
+
+        <style>
+.collst a{
+    background:white;
+   
+    margin-left:5px;
+    margin-right:5px;
+    border:solid 1px gray;
+    text-align:center;
+    color:black;
+
+}
+.collst a:hover{
+    border:solid 1px #fec7d6;
+    background:url(__PUBLIC__/Home/user/page_hoverbg.jpg) 0 0 repeat-x;
+    text-decoration: none;
+}
+.profile .avatar {
+    padding-left: 60px;
+}
+.avatar p {
+    margin-bottom: 15px;
+}
+.avatar .view {
+    margin-left: 60px;
+}
+.view span {
+    background-position: center;
+    background-size: cover;
+    vertical-align: bottom;
+    display: inline-block;
+    margin-right: 10px;
+    *zoom: 1;
+}
+.view img {
+    display: block;
+}
+.file img {
+    visibility: hidden;
+}
+
+</style>
+
+</block>
+<block name="bar1">
+
+</block>
+<block name="index.js">
+
+</block>
+<block name="con">
+        <div style="display: none;" id="cboxOverlay">
+        </div>
+        <div style="padding-bottom: 50px; padding-right: 50px; display: none;"
+        class="" id="colorbox">
+            <div id="cboxWrapper">
+                <div>
+                    <div style="float: left;" id="cboxTopLeft">
+                    </div>
+                    <div style="float: left;" id="cboxTopCenter">
+                    </div>
+                    <div style="float: left;" id="cboxTopRight">
+                    </div>
+                </div>
+                <div style="clear:left">
+                    <div style="float: left;" id="cboxMiddleLeft">
+                    </div>
+                    <div style="float: left;" id="cboxContent">
+                        <div class="" id="cboxLoadedContent" style="width: 0px; height: 0px; overflow: hidden;">
+                        </div>
+                        <div class="" id="cboxLoadingOverlay">
+                        </div>
+                        <div class="" id="cboxLoadingGraphic">
+                        </div>
+                        <div class="" id="cboxTitle">
+                        </div>
+                        <div class="" id="cboxCurrent">
+                        </div>
+                        <div class="" id="cboxNext">
+                        </div>
+                        <div class="" id="cboxPrevious">
+                        </div>
+                        <div class="" id="cboxSlideshow">
+                        </div>
+                        <div class="" id="cboxClose">
+                        </div>
+                    </div>
+                    <div style="float: left;" id="cboxMiddleRight">
+                    </div>
+                </div>
+                <div style="clear:left">
+                    <div style="float: left;" id="cboxBottomLeft">
+                    </div>
+                    <div style="float: left;" id="cboxBottomCenter">
+                    </div>
+                    <div style="float: left;" id="cboxBottomRight">
+                    </div>
+                </div>
+            </div>
+            <div style="position:absolute; width:9999px; visibility:hidden; display:none">
+            </div>
+        </div>
+       
+     
+        <div class="profile">
+            
+            
+            <div class="nav">
+                <div class="notice">
+                    <a href="{:U('Home/User/index',array('id'=>$info['id'],'cname'=>'pic'))}" target="_blank" style="border-bottom: 0;padding:0;">
+                        <img src="{$info['pic'] | default='__PUBLIC__/Uploads/avatar_nonesign.jpg'}" alt="JM151EPPA3128">
+                    </a>
+                    <p class="nickname">
+                        <a style="padding-left:0;line-height: 1.8;color:#ed145b" href="{:U('Home/User/index',array('id'=>$info['id'],'cname'=>'settings'))}" target="_blank"><?php echo preg_replace('/^(\d{3})\d{4}(\d{4})$/',"JM$1EPPA$2",$_SESSION['phone']);?></a>
+                    </p>
+                    <p>
+                        <a style="padding-left:0;line-height: normal;" href="http://i.jumei.com/i/membership"
+                        target="_blank">
+                            普通会员
+                        </a>
+                    </p>
+                    <p class="uid">
+                        用户ID: {$info['id']}
+                    </p>
+                    <!--<p>可提现余额：{$balance}元</p>
+                    <p>不可提现余额：{$balance_no_withdraw}元</p>-->
+                </div>
+                <h2>
+                    <b>
+                    </b>
+                    我的聚美优品
+                </h2>
+                <a href="{:U('Home/User/index',array('id'=>$info['id'],'cname'=>'order'))}" cname="order" <if condition="$_GET['cname'] eq 'order'">class="list selected"<else/>class="list"</if>>
+                    <b>
+                    </b>
+                    我的订单
+                </a>
+                <a href="{:U('Home/User/index',array('id'=>$info['id'],'cname'=>'coll'))}"  cname="coll" <if condition="$_GET['cname'] eq 'coll'">class="fav selected"<else/>class="fav"</if>>
+                    <b>
+                    </b>
+                    我的收藏
+                </a>
+                <a href="{:U('Home/User/index',array('id'=>$info['id'],'cname'=>'grade'))}" cname="grade" <if condition="$_GET['cname'] eq 'grade'">class="member selected"<else/>class="member"</if>>
+                    <b>
+                    </b>
+                    我的会员等级
+                </a>
+               
+                
+               
+                <h2>
+                    <b>
+                    </b>
+                    管理个人账户
+                </h2>
+                <a href="{:U('Home/User/index',array('id'=>$info['id'],'cname'=>'settings'))}" cname='settings' <if condition="$_GET['cname'] eq 'settings'">class="settings selected"<else/>class="settings"</if>>
+                    <b>
+                    </b>
+                    设置账户信息
+                </a>
+                <a href="{:U('Home/User/index',array('id'=>$info['id'],'cname'=>'repass'))}" cname='repass' <if condition="$_GET['cname'] eq 'repass'">class="password selected"<else/>class="password"</if>>
+                    <b>
+                    </b>
+                    修改密码
+                </a>
+                <a href="{:U('Home/User/index',array('id'=>$info['id'],'cname'=>'pic'))}"  cname='pic' <if condition="$_GET['cname'] eq 'pic'">class="bind selected"<else/>class="bind"</if>>
+                    <b>
+                    </b>
+                   设置头像
+                </a>
+                <a href="#" class="addr">
+                    <b>
+                    </b>
+                    管理收货地址
+                </a>
+                <a href="#" class="share">
+                    <b>
+                    </b>
+                    绑定站外分享
+                </a>
+                <h2>
+                    <b>
+                    </b>
+                    售后服务
+                </h2>
+                <a href="#" class="rmapre">
+                    <b>
+                    </b>
+                    我的售后咨询
+                </a>
+                <a href="#" class="rmalist">
+                    <b>
+                    </b>
+                    我的退货
+                </a>
+                <h2>
+                    <b>
+                    </b>
+                    聚美惊喜
+                </h2>
+                <a href="#" class="lucky">
+                    <b>
+                    </b>
+                    我的喜从盒来
+                </a>
+                <a href="#" class="gift">
+                    <b>
+                    </b>
+                    兑换VIP卡
+                </a>
+            </div>
+            <style>
+                .profile .nav .giftcard b { background-image: url( http://f1.jmstatic.com/static_account/dist/20151013_5/images/gift_card/giftcard_menu_icon.png)
+                }
+            </style>
+            <ul>
+                    <li <if condition="$_GET['cname'] eq 'order'"><else/>style="display:none"</if>>
+                        <h1>
+              
+                我的订单
+            </h1>
+                        <div class="content">
+                <div class="safety_notice">
+                    <img src="__PUBLIC__/Home/picture/auth_tip_icon.png">
+                    <p>
+                        聚美与商家不会以
+                        <span class="red">
+                            订单异常
+                        </span>
+                        、
+                        <span class="red">
+                            系统升级
+                        </span>
+                        等为由，要求您点击任何链接进行退款、重新付款、额外付款操作。谨防受骗！
+                    </p>
+                </div>
+                <!-- <div class="banner" style="margin-bottom: 10px;">
+                <a href="http://hd.jumei.com/act/6-478-3201-gift_20141210.html" target="_blank">
+                <img src="__PUBLIC__/Home/picture/comment_banner.jpg" alt="">
+                </a>
+                </div>
+                -->
+                <div class="filter">
+                    <a href="/i/order/list" class="curr">
+                        全部订单
+                    </a>
+                    <a href="/i/order/list/1">
+                        等待付款
+                    </a>
+                    <a href="/i/order/list/2">
+                        已付款
+                    </a>
+                    <!-- <a href="/i/order/list/4">交易完成</a>
+                    <a href="/i/order/list/pre">预售订单</a> -->
+                </div>
+                <table id="order-list" class="order_table">
+                    <!-- total 769px -->
+                    <tr class="order_list_title" style="border-bottom:1px solid #dbd6d0">
+                        <th style="width: 191px">
+                            订单信息
+                        </th>
+                        <th style="width: 80px">
+                            订购商品
+                        </th>
+                        <th style="width: 40px">
+                            件数
+                        </th>
+                        <th style="width: 80px">
+                            单价
+                        </th>
+                        <th style="width: 70px">
+                            商品操作
+                        </th>
+                        <th style="width: 120px">
+                            订单状态
+                        </th>
+                        <th style="width: 90px">
+                            订单操作
+                        </th>
+                    </tr>
+                   
+                <foreach name="orders" item="vo">
+                    
+                    <foreach name="listinfo[$vo['id']]" item="info" key='i'>
+                    <php>$a=count($listinfo[$vo['id']])-1;
+                    
+                    </php>
+                    <tr>
+                       
+                        <td rowspan="{listinfo[$vo['id']] | count}" class="order_info_td" <if condition="$i gt 0">style="visibility:hidden;border-top:none;border-bottom:none"<elseif condition="$i eq $a" /> <else />style="border-bottom:none"</if>>
+                            <p>
+                                订单号: {$vo[buynumber]}
+                            </p>
+                            <p>
+                                交易时间：{:date('Y-m-j H:i',$vo['orderdate'])}
+                            </p>
+                            <P>
+                                商品金额: ¥{$vo['totalprice']}
+                            </P>
+                            <P>
+                                运费: ¥{$vo['shipprice']}
+                            </P>
+                            <p>
+                                由 聚美优品 发货
+                            </p>
+                        </td>
+                        
+                        <td class="item_title">
+                            <a href="http://www.jumei.com/i/deal/bj141021p303434.html" target="_blank"
+                            title="沙宣水养洗护套装">
+                                <img src="{$info['spic']}" alt="沙宣水养洗护套装" />
+                            </a>
+                        </td>
+                        <td>
+                            {$info['gnum']}
+                        </td>
+                        <td>
+                            ¥{$info['price']}
+                        </td>
+                        <td>
+                            <p>
+                                <a href="/i/order/comment/?order_id=169127886&d=bj141021p303434&p=303434"
+                                target="_blank" style="color: #ed145b;">
+                                    收货并评价
+                                </a>
+                            </p>
+                            <p>
+                                <a href="http://mall.jumei.com/product_303434.html?from=order_list_table_op"
+                                target="_blank" style="color: #ed145b;">
+                                    再次购买
+                                </a>
+                            </p>
+                        </td>
+                        <td rowspan="{listinfo[$vo['id']] | count}"<if condition="($i gt 0)">style="visibility:hidden;border-top:none;border-bottom:none"<elseif condition="$i eq $a" /> <else />style="border-bottom:none"</if>>
+                            <p class="p_status_green_wraper">
+                                <strong class="status_green">
+                                    已发货
+                                </strong>
+                            </p>
+                            <div class="package_info">
+                                <p>
+                                    <a logistic_track_no="1119351628799" logistic_id="66" logistic_track_no_2nd=""
+                                    logistic_id_2nd="" shipping_system_id="1570" delivery_time="1413973693"
+                                    order_type="0" shipping_no="87095031" order_id="169127886" style="color: #ed145b;">
+                                        查看物流详情
+                                    </a>
+                                </p>
+                            </div>
+                            <!--判断海淘自营订单包裹状态显示-->
+                        </td>
+                        <td rowspan="{listinfo[$vo['id']] | count}" <if condition="$i gt 0">style="visibility:hidden;border-top:none;border-bottom:none"<elseif condition="$i eq $a" /> <else />style="border-bottom:none"</if>>
+                            <p>
+                                <a href="/i/order/detail/?order_id=169127886&shipping_no=87095031" style="color: #ed145b;">
+                                    查看详情
+                                </a>
+                            </p>
+                            <p>
+                                <a href="/i/RMA/service_add/?order_id=169127886" style="color: #ed145b;">
+                                    售后服务
+                                </a>
+                            </p>
+                        </td>
+                    </tr>
+                
+                  
+                   </foreach>
+                    <tr class="separator" style="border:1px solid #dbd6d0">
+                        <td colspan="7">
+                        </td>
+                    </tr>
+                </foreach>
+                </table>
+                
+            </div>
+
+                    </li>
+                    <li set="settings" <if condition="$_GET['cname'] eq 'settings'"><else/>style="display:none"</if>>
+                        <h1>
+                            设置账户信息
+                        </h1>
+                        <div class="content">
+                            <form id="settings-form" method="post" action="{:U('Home/User/update')}">
+                                <input name="id" id="jm_form_hash" value="{$id}" type="hidden">
+                                
+                                <div class="input_container">
+                                    <label for="settings-username">
+                                        <span class="spark">
+                                            *
+                                        </span>
+                                        真实姓名
+                                    </label>
+                                    <input required="" size="30" name="username" id="settings-username" class="t_input"
+                                    value="{$info['username']}" placeholder="姓名" type="text" >
+                                    <span class="patternMismatch">
+                                        应为2位以上中文字符
+                                    </span>
+                                </div>
+                               
+                                <!-- <dl class="formlist">
+                                    <dt>
+                                        手机号(账号)
+                                    </dt>
+                                    <dd>
+                                        <input required="" size="30" name="realname" id="settings-username" class="t_input"
+                                    value="" type="text">
+                                    
+                                        <span class="hint">
+                                            已验证
+                                        </span>
+                                    </dd>
+                                </dl> -->
+                                <div class="input_container">
+                                    <label>
+                                        性别
+                                    </label>
+                                    <label class="radio">
+                                        <span class="radio_ui">
+                                            <input name="sex" id="sex_f" autocomplete="off" value="2" type="radio" <if condition="$info['sex'] eq 2"> checked <else /> </if>>
+                                            <b>
+                                            </b>
+                                        </span>
+                                        女
+                                    </label>
+                                    <label class="radio">
+                                        <span class="radio_ui">
+                                            <input  name="sex" id="sex_m" autocomplete="off"
+                                            value="1" type="radio" <if condition="$info['sex'] eq 1"> checked <else /> </if>>
+                                            <b>
+                                            </b>
+                                        </span>
+                                        男
+                                    </label>
+                                </div>
+                                <div class="input_container">
+                                    <label>
+                                        <span class="spark">
+                                            *
+                                        </span>
+                                        生日
+                                    </label>
+                                    <span class="select_ui">
+                                       <input type="text" id="et" onclick="return Calendar('et');" value="{$info['date']}" name="date" class="text" style="width:85px;"/>
+                                    </span>
+                                    <span style="display: none;" class="otherError">
+                                        请填写您的生日
+                                    </span>
+                                    <div class="act">
+                                        <span class="status_red">
+                                            准确填写生日，有机会获得更多惊喜哦！
+                                        </span>
+                                    </div>
+                                </div>
+                                <div class="input_container">
+                                    <label>
+                                        隐私
+                                    </label>
+                                    <label class="checkbox">
+                                        <span class="checkbox_ui">
+                                            <input value="1" id="hide_privacy" name="hide_privacy" type="checkbox">
+                                            <b>
+                                            </b>
+                                        </span>
+                                        不显示我的年龄
+                                    </label>
+                                    <label class="checkbox">
+                                        <span class="checkbox_ui">
+                                            <input value="1" id="show_my_products" name="show_my_products" checked="checked"
+                                            type="checkbox">
+                                            <b>
+                                            </b>
+                                        </span>
+                                        在口碑中心显示我的美妆
+                                    </label>
+                                </div>
+                                <div class="input_container selectwidth">
+                                    <label for="skin_type">
+                                        <span class="spark">
+                                            *
+                                        </span>
+                                        你的皮肤属于
+                                    </label>
+                                    <span class="select_ui">
+                                        <div class="select_arrow">
+                                        </div>
+                                        <div style="min-width: 7.5em;" class="select_text_ui">
+                                             <if condition="$info['skin_type'] eq null">请选择<else/>{$info['skin_type']}</if>
+                                        </div>
+                                        <select id="skin_type" name="skin_type">
+                                            <option value="">
+                                                请选择
+                                            </option>
+                                            <option value="油性皮肤" <if condition="$info['skin_type'] eq '油性皮肤' "> selected <else /> </if>>
+                                                油性皮肤
+                                            </option>
+                                            <option value="干性皮肤" <if condition="$info['skin_type'] eq '干性皮肤' "> selected <else /> </if>>
+                                                干性皮肤
+                                            </option>
+                                            <option value="中性皮肤" <if condition="$info['skin_type'] eq '中性皮肤' "> selected <else /> </if>>
+                                                中性皮肤
+                                            </option>
+                                            <option value="混合性皮肤" <if condition="$info['skin_type'] eq '混合性皮肤' "> selected <else /> </if>>
+                                                混合性皮肤
+                                            </option>
+                                            <option value="敏感型皮肤" <if condition="$info['skin_type'] eq '敏感型皮肤' "> selected <else /> </if>>
+                                                敏感型皮肤
+                                            </option>
+                                            <option value="敏感油性皮肤" <if condition="$info['skin_type'] eq '敏感油性皮肤' "> selected <else /> </if>>
+                                                敏感油性皮肤
+                                            </option>
+                                            <option value="敏感干性皮肤" <if condition="$info['skin_type'] eq '敏感干性皮肤' "> selected <else /> </if>>
+                                                敏感干性皮肤
+                                            </option>
+                                            <option value="敏感中性皮肤" <if condition="$info['skin_type'] eq '敏感中性皮肤' "> selected <else /> </if>>
+                                                敏感中性皮肤
+                                            </option>
+                                            <option value="敏感混合性皮肤" <if condition="$info['skin_type'] eq '敏感混合性皮肤' "> selected <else /> </if>>
+                                                敏感混合性皮肤
+                                            </option>
+                                        </select>
+                                    </span>
+                                    <span style="display: none;" class="valueMissing">
+                                        请填写你的皮肤类型
+                                    </span>
+                                </div>
+                                <div class="input_container selectwidth">
+                                    <label for="hair_type">
+                                        <span class="spark">
+                                            *
+                                        </span>
+                                        你的发质属于
+                                    </label>
+                                    <span class="select_ui">
+                                        <div class="select_arrow">
+                                        </div>
+                                        <div style="min-width: 5.5em;" class="select_text_ui">
+                                           <if condition="$info['hair_type'] eq null">请选择<else/>{$info['hair_type']}</if>
+                                        </div>
+                                        <select id="hair_type" name="hair_type">
+                                            <option value="">
+                                                 请选择
+                                            </option>
+                                            <option value="油性发质" <if condition="$info['hair_type'] eq '油性发质' "> selected <else /> </if>>
+                                                油性发质
+                                            </option>
+                                            <option value="干性发质" <if condition="$info['hair_type'] eq '干性发质' "> selected <else /> </if>>
+                                                干性发质
+                                            </option>
+                                            <option value="中性发质" <if condition="$info['hair_type'] eq '中性发质' "> selected <else /> </if>>
+                                                中性发质
+                                            </option>
+                                            <option value="混合性发质" <if condition="$info['hair_type'] eq '混合性发质' "> selected <else /> </if>>
+                                                混合性发质
+                                            </option>
+                                            <option value="受损发质" <if condition="$info['hair_type'] eq '受损发质' "> selected <else /> </if>>
+                                                受损发质
+                                            </option>
+                                            <option value="头屑发质" <if condition="$info['hair_type'] eq '头屑发质' "> selected <else /> </if>>
+                                                头屑发质
+                                            </option>
+                                            <option value="无生气发质" <if condition="$info['hair_type'] eq '无生气发质' "> selected <else /> </if>>
+                                                无生气发质
+                                            </option>
+                                            <option value="脱落发质" <if condition="$info['hair_type'] eq '脱落发质' "> selected <else /> </if>>
+                                                脱落发质
+                                            </option>
+                                        </select>
+                                    </span>
+                                    <span style="display: none;" class="valueMissing">
+                                        请填写你的发质类型
+                                    </span>
+                                </div>
+                                <div class="input_container selectwidth">
+                                    <label for="purchasing_power">
+                                        <span class="spark">
+                                            *
+                                        </span>
+                                        美容品年消费
+                                    </label>
+                                    <span class="select_ui">
+                                        <div class="select_arrow">
+                                        </div>
+                                        <div style="min-width: 6.5em;" class="select_text_ui">
+                                             <if condition="$info['purchasing_power'] eq null">请选择<else/>{$info['purchasing_power']}</if>
+                                        </div>
+                                        <select id="purchasing_power" name="purchasing_power">
+                                            <option value="">
+                                                 请选择
+                                            </option>
+                                            <option value="0-500" <if condition="$info['purchasing_power'] eq '0-500' "> selected <else /> </if>>
+                                                0-500
+                                            </option>
+                                            <option  value="500-1000" <if condition="$info['purchasing_power'] eq '500-1000' "> selected <else /> </if>>
+                                                500-1000
+                                            </option>
+                                            <option value="1000-2999" <if condition="$info['purchasing_power'] eq '1000-2999' "> selected <else /> </if>>
+                                                1000-2999
+                                            </option>
+                                            <option value="3000-4999" <if condition="$info['purchasing_power'] eq '3000-4999' "> selected <else /> </if>>
+                                                3000-4999
+                                            </option>
+                                            <option value="5000-6999" <if condition="$info['purchasing_power'] eq '5000-6999' "> selected <else /> </if>>
+                                                5000-6999
+                                            </option>
+                                            <option value="7000-10000" <if condition="$info['purchasing_power'] eq '7000-10000' "> selected <else /> </if>>
+                                                7000-10000
+                                            </option>
+                                            <option value="20000-30000" <if condition="$info['purchasing_power'] eq '20000-30000' "> selected <else /> </if>>
+                                                20000-30000
+                                            </option>
+                                            <option value="30000以上" <if condition="$info['purchasing_power'] eq '30000以上' "> selected <else /> </if>>
+                                                30000以上
+                                            </option>
+                                        </select>
+                                    </span>
+                                    <span style="display: none;" class="valueMissing">
+                                        请填写您的美容品年消费
+                                    </span>
+                                </div>
+                                <div class="input_container">
+                                    <label for="comment">
+                                        美丽宣言
+                                    </label>
+                                    <textarea rows="8" cols="50" id="comment" name="comment">{$info['comment']}</textarea>
+                                    <p class="comment_tip">
+                                        您已输入
+                                        <span class="dg dg1">
+                                            0
+                                        </span>
+                                        个字符，
+                                        <span class="tip_text2">
+                                            还能输入
+                                        </span>
+                                        <span class="dg dg2">
+                                            200
+                                        </span>
+                                        个字符
+                                    </p>
+                                    <div style="margin-left: 130px;margin-top: 8px;color: #ed145b;">
+                                        美丽宣言为个人设置信息,小美不会为您自动填写哦!
+                                    </div>
+                                </div>
+                                <div class="act">
+                                    <input value="保存修改" name="commit" id="settings-submit" type="submit">
+                                </div>
+                            </form>
+                        </div>
+                    </li>
+                    <li set="repass" <if condition="$_GET['cname'] eq 'repass'"><else/>style="display:none"</if>>
+                        <h1>修改密码</h1>
+                        <div class="content">
+                            <div class="container">
+                                <div  class="content">
+                                    <form   action="{:U('Home/User/update')}"
+                                    method="post" id="setform">
+
+                                        <div >
+                                           <input type="hidden" name="id" value="{:session('id')}">
+                                            <div  class="input_container">
+                                                <label for="old_password">
+                                                    <span class="spark">
+                                                        *
+                                                    </span>
+                                                    <span >
+                                                        原密码
+                                                    </span>
+                                                </label>
+                                                <input type="password"  autocomplete="off" id="old_password"
+                                                class="" name="old_password" placeholder="">
+                                                <div  style="display:block;" class="invalid validWrapper">
+                                                    <span  class="hint valid" style="display:block">
+                                                    <span>
+                                                          请输入您的登录密码
+                                                    </span>
+                                                    </span>
+                                                    
+                                                    <div class="clear">
+                                                    </div>
+                                                    <span class="customError" style="display:none;margin-left:130px;margin-top:10px;">
+                                                          请输入您的登录密码
+                                                    </span>
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                        <div  class="input_container">
+                                            <label for="password">
+                                                <span  class="spark">
+                                                    *
+                                                </span>
+                                                <span >
+                                                    新密码
+                                                </span>
+                                            </label>
+                                            <input type="password" autocomplete="off" id="password"
+                                            class="" name="password" placeholder="">
+                                            <div style="display:block;" class="invalid validWrapper">
+                                                <span  class="hint valid" style="display:block">
+                                                    <span >
+                                                        6-16 个字符，需使用字母、数字或符号组合
+                                                    </span>
+                                                </span>
+                                                <span  style="display:none;margin-left:130px;margin-top:10px;" class="customError">密码格式不正确</span>
+                                                <div  class="clear">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div  class="input_container">
+                                            <label  for="password_confirm">
+                                                <span  class="spark">
+                                                    *
+                                                </span>
+                                                <span >
+                                                    重复新密码
+                                                </span>
+                                            </label>
+                                            <input type="password"  autocomplete="off" id="password_confirm"
+                                            class="" name="password_confirm" placeholder="">
+                                            <div  style="display:block;" class="invalid validWrapper">
+                                                <span  class="hint valid" style="display:block">
+                                                    <span >
+                                                        请再次输入密码
+                                                    </span>
+                                                </span>
+                                                <span  style="display:none;margin-left:130px;margin-top:10px;" class="customError">请再次输入密码</span>
+                                                <div  class="clear">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div  class="input_container">
+                                            <label  for="hash_code">
+                                                <span  class="spark">
+                                                    *
+                                                </span>
+                                                <span >
+                                                    验证码
+                                                </span>
+                                            </label>
+                                            <input type="text"  autocomplete="off" id="hash_code"
+                                            class="" name="vcode" placeholder="">
+                                            <a  class="pic_verify_code">
+                                                <img class="v_code" src="{:U('Home/Public/createVcode')}" onclick="this.src=this.src+'?a'" width="140px" height='30px'>
+                                                <span id="change" style="color:#ed145b;">
+                                                    换一张
+                                                </span>
+                                            </a>
+                                            <div  style="display:block;" class="invalid validWrapper">
+                                                <span  class="hint valid" style="display:block">
+                                                    <span>
+                                                        按右图输入验证码，不区分大小写
+                                                    </span>
+                                                </span>
+                                                <span  style="display:none;margin-left:130px;margin-top:10px;" class="customError">请输入验证码</span>
+                                                <div  class="clear">
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div  class="act">
+                                            <input type="submit"  name="commit" class="formbutton"
+                                            id="settings-submit" value="提交">
+                                        </div>
+                                    </form>
+                                </div>
+                            </div>
+                        </div>
+                    </li>
+                    <li set='pic'  <if condition="$_GET['cname'] eq 'pic'"><else/>style="display:none"</if>>
+                        <h1>个人头像</h1>
+                        <iframe src="{:U('Home/Tpic/index')}" frameborder="0" width="790" height="800" scrolling="no"></iframe>                      
+                    </li>
+                    <li set='coll'  <if condition="$_GET['cname'] eq 'coll'"><else/>style="display:none"</if>>
+                        <h1>我的收藏</h1>
+                        <div class="content myfav">
+                                <div class="notice_content">
+                                    收藏心仪的产品或品牌，方便你随时找到它们，也有助于根据你的收藏给你更加贴心的推荐
+                                </div>
+                                <div class="filter">
+                                    <a class="curr" href="http://i.jumei.com/i/product/fav_products">
+                                        我收藏的产品
+                                    </a>
+                                    <a href="http://i.jumei.com/i/product/fav_brands">
+                                        我收藏的品牌
+                                    </a>
+                                </div>
+                                <div id="fav_product_list">
+                                    <!--收藏列表-->
+                                    <div class="fav_product_container faved" style="min-height:800px">
+                                        <div class="fav_product_head">
+                                            <span class="fph_tit">
+                                                <if condition="$count eq null">
+                                                    你还没有收藏产品
+                                                <else/>
+                                                您共收藏了
+                                                <label class="pink">
+                                                    {$count}
+                                                </label>
+                                                个产品
+                                                </if>
+                                            </span>
+
+                                            <div class="head_page"> 
+                                                
+                                                <div style="float:left; display:inline;margin-right:5px;">
+                                                    <span class="pink">
+                                                         　　第{$nowPage}
+                                                    </span>
+                                                    /{$totalPages}页
+                                                    <span style="float:left;" class="collst">{$pages}</span>
+                                                    
+                                                </div>
+                                                
+                                            </div>
+                                        </div>
+                                        <div class="fav_product_list" style="min-height:780px">
+                                            <ul>
+                                                <foreach name="colgoods" item="vo">
+                                                <li class="fav_mall" style="border: 3px solid rgb(255, 255, 255);" gid="{$vo['id']}">
+                                                    <a target="_blank" class="img_wrap" href="{:U('Home/Details/index',array('cate'=>$vo['id']))}">
+                                                        <img src="{$vo.spic}" style="width:200px">
+                                                        <!--已下架-->
+                                                    </a>
+                                                    <p class="pro_tit">
+                                                        <a target="_blank" href="{:U('Home/Details/index',array('cate'=>$vo['id']))}"
+                                                        title="吉列(Gillette)锋隐超顺动力刀片(4刀头)">
+                                                           {$vo['title']}
+                                                        </a>
+                                                    </p>
+                                                    <a target="_blank" href="http://mall.jumei.com/product_987495.html?from=fav_product"
+                                                    class="pro_price ">
+                                                        <strong style="color:#ED145B">
+                                                            <span>
+                                                                ¥
+                                                            </span>
+                                                            {$vo['price']}
+                                                        </strong>
+                                                        <label>
+                                                            商城在售
+                                                        </label>
+                                                    </a>
+                                                    <p class="p_like" style="display: none;">
+                                                        <a class="btnlike liked">
+                                                            <span class="ilike_text">
+                                                                已收藏
+                                                            </span>
+                                                            <span style="color: #999;">
+                                                                (
+                                                                <span class="ilike_num">
+                                                                    443
+                                                                </span>
+                                                                )
+                                                            </span>
+                                                        </a>
+                                                        <a pid="987495" href="javascript:;" class="btnunlike">
+                                                            取消收藏
+                                                        </a>
+                                                    </p>
+                                                </li>
+                                                </foreach>
+                                            </ul>
+                                            <div class="clear">
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                        </div>
+                    </li>
+                    <li <if condition="$_GET['cname'] eq 'grade'"><else/>style="display:none"</if>>
+                            <h1>我的会员等级</h1>
+                            <div class="content">
+                                <div class="insider_content" style="position:relative;">
+                                    <a href="/i/account/avatar" style="display:block;float:left"><img src="{$uinfo['pic']|default="__PUBLIC__/Home/Comment/images/liyugang.png"}" width="100px" height="100px"></a>
+                                    <div class="insider_name" style="float:left;margin-left:10px;">{$uinfo['username']|default=$uinfo['phone']}</div>
+                                    <div class="insider_member;" style="line-height:26px;font-size:16px;font-weight:bold;position:absolute;top:30px;left:110px;color:#EC1A5B">{$uinfo['grade']|default="普通会员"}</div>
+                                                <!-- 普通会员不显示 -->
+                                       
+                                            <div class="insider_useful" style="padding-top:40px;position:absolute;top:45px;left:110px;"> 升级到钻石会员，可享受<span class="insider_leftover">钻石会员卡、全场包邮、线下活动邀请、美卡纸质版杂志</span>等7项等级特权</div>
+                                </div>
+
+                                <div class="insider_mostly insider_space" style="background:#fff;">
+                                    <div class="insider_title">升级进度</div>
+                                    <div class="insider_content">
+                                        <div class="insider_left">
+                                                                                                                                                                                                    
+                                                                                        <div class="insider_left_con">
+                                                        <div class="insider_keep"><span class="insider_arrowleft"></span>升级到黄金会员</div>
+                                                        <div class="insider_keep_con">
+                                                        只需在聚美优品购物
+                                                                <span class="bold">4500元</span>，且保持累计退货款金额不超过累计购物金额的<span
+                                                                    class="bold">10.00%</span>，即可在11月继续享受白金会员                                    优惠
+                                                                                        </div>
+                                                        <div class="insider_keep_con">
+                                                            - 每个日历月累计购买超过<span class="bold">100</span>元                          </div>
+                                                                                        <div class="insider_keep_con">- 历史退货商品价值比例小于
+                                                                <span class="pink">10.00                                            %</span><span class="insider_complete"></span>                                </div>
+                                                                                </div>
+                                                
+                                                                        <div class="insider_left_con">
+                                                        <div class="insider_keep">
+                                                            <span class="insider_arrowtop"></span>
+                                                            升级到钻石会员                            </div>
+                                                        <div class="insider_keep_con">
+                                                        只需继续在聚美优品购物<span class="bold">8469                                            元</span>,
+                                                        且保持累计退货款金额不超过累计购物金额的<span class="bold">10.00%</span>，
+                                                        即可拥有钻石会员资格
+                                                                                        </div>
+                                                    </div>
+                                                                                
+                                                                <div class="insider_vessel">
+                                                    <span class="insider_leftTop"></span>
+                                                    <span class="insider_rightTop"></span>
+                                                    <span class="insider_leftBottom"></span>
+                                                    <span class="insider_rightBottom"></span>
+                                                            <span style="display:inline-block;">升级到钻石会员                                    后立享以下9大特权：</span>
+                                                    <ul class="insider_sort">
+                                                                                        <li>全场包邮</li>
+                                                                                        <li>满100返10元现金券</li>
+                                                                                        <li>钻石专享换购</li>
+                                                                                        <li>钻石专享喜从盒来</li>
+                                                                                        <li>钻石专享会员卡</li>
+                                                                                        <li>生日特权礼包</li>
+                                                                                        <li>聚美线下活动邀请</li>
+                                                                                        <li>体验试用产品优先权</li>
+                                                                                        <li>喜从盒来订购专属</li>
+                                                                                </ul>
+                                                </div>
+                                                        </div>
+                                        <div class="insider_right">
+                                            <div class="insider_addUp">累计购物</div>
+                                            <div class="insider_price">¥{$uinfo['sum']|default="0"}</div>
+                                            <div class="insider_useful">
+                                                付款生效30天后金额计入<br/>
+                                                您的累计购物额度（不包括快递/红包/现金券/退货相应金额）
+                                            </div>
+                                        </div>
+                                    </div>
+                                </div>
+                                
+                                <div class="insider_mostly insider_space" style="background:#fdfdfe;">
+                                <div class="insider_title">会员特权</div>
+                                <div class="insider_privilege">
+                                    <ul class="insider_priUl">
+                                        <li>
+                                            <span class="insider_corn insider_corn2"></span>
+                                            <span class="insider_addUp">满就返</span>
+                                            <span class="insider_keep_con">
+                                                <span class="insider_member">单个订单内每满100元即返10元现金券（无启用金额；买越多，返越多）</span>
+                                            </span>
+                                        </li>
+                                        <li>
+                                            <span class="insider_corn insider_corn3"></span>
+                                            <span class="insider_addUp">换购特惠</span>
+                                            <span class="insider_keep_con">参加不定时推出的黄金/白金会员特惠换购产品</span>
+                                        </li>
+                                        <li>
+                                            <span class="insider_corn insider_corn4"></span>
+                                            <span class="insider_addUp">喜从盒来</span>
+                                            <span class="insider_keep_con">享受“喜从盒来”专属（仅供黄金/白金/钻石会员抢购）|   升级到 “钻石会员” 后：<br>钻石会员专享“喜从盒来”订阅特权（即将推出）</span>
+                                        </li>
+                                        <li>
+                                            <span class="insider_corn insider_corn5"></span>
+                                            <span class="insider_addUp">体验部分试用产品</span>
+                                            <span class="insider_keep_con">优先体验专属黄金/白金会员的试用产品  |  升级到 “钻石会员” 后：<br>优先其他等级会员体验所有的试用产品</span>
+                                        </li>
+                                        <li style="border: none;">
+                                            <span class="insider_corn insider_corn9"></span>
+                                            <span class="insider_addUp">短信订阅</span>
+                                            <span class="insider_keep_con">最多可订阅20种商品的短信提醒</span>
+                                        </li>
+                                    </ul>
+                                </div>
+                            </div>
+
+                                <div class="insider_mostly insider_space" style="background:#fdfdfe;">
+                                    <div class="insider_title">会员升降级规则</div>
+                                    <div class="insider_privilege">
+                                        <ul class="insider_priUl">
+                                            <li>
+                                                <div class="insider_addUp">有哪些会员等级？</div>
+                                                <div class="insider_explain">聚美优品目前设有普通会员、黄金会员、白金会员、钻石会员四个等级。</div>
+                                            </li>
+                                            <li>
+                                                <div class="insider_addUp">会员等级的标准是什么？</div>
+                                                <div class="insider_explain" style="padding-top:5px;">
+                                                    普通会员：注册聚美优品即可获得；<br>
+                                                    黄金会员：累计在聚美优品有效消费（注，下同）399元即可获得；<br>
+                                                    白金会员：累计在聚美优品有效消费1299元即可获得。<br>
+                                                    钻石会员：累计在聚美优品有效消费9999元即可获得。 <br>
+                                                    注：快递费、红包、现金券、退货费，不包括在累计购物金额中。由于聚美优品承诺30天无条件退货，订单付款成功（货到付款为发货后）30天后才会被计入累计购物额中。
+                                                </div>
+                                            </li>
+                                            <li style="border:none;">
+                                                <div class="insider_addUp">不同的会员等级都有什么优惠？</div>
+                                                <div class="insider_explain">
+                                                    <table class="insider_tier">
+                                                        <tr>
+                                                            <td width="20%">普通会员</td>
+                                                            <td width="23%">黄金会员</td>
+                                                            <td width="23%">白金会员</td>
+                                                            <td width="34%">钻石会员</td>
+                                                        </tr>
+                                                        <tr>
+                                                            <td>- 享受聚美优品每日超值优惠产品；</td>
+                                                            <td>
+                                                                - 满100返5元现金券（无启用金额；买越多，返越多）<br>
+                                                                - 黄金会员专享优惠专场<br>
+                                                                - 黄金会员专享换购特惠<br>
+                                                                - 优先体验部分试用产品<br>
+                                                                - 喜从盒来订购专属<br>
+                                                                - 最多短信订阅10种商品
+                                                            </td>
+                                                            <td>
+                                                                - 满100返10元现金券（无启用金额；买越多，返越多）<br>
+                                                                - 白金会员专享优惠专场<br>
+                                                                - 白金会员专享换购特惠<br>
+                                                                - 优先体验部分试用产品<br>
+                                                                - 喜从盒来订购专属<br>
+                                                                - 最多短信订阅20种商品
+                                                            </td>
+                                                            <td>
+                                                                - 全场包邮（除海淘直邮，海淘直邮只减5元运费）<br>
+                                                                - 满100返10元现金券（无启用金额；买越多，返越多）<br>
+                                                                - 钻石会员专享优惠专场<br>
+                                                                - 钻石会员专享换购特惠<br>
+                                                                - 优先体验所有试用产品<br>
+                                                                - 喜从盒来订购专属<br>
+                                                                - 实体聚美优品钻石会员卡<br>
+                                                                - 生日特权礼包<br>
+                                                                - 聚美优品线下活动邀请<br>
+                                                                - 最多短信订阅50种商品
+                                                            </td>
+                                                        </tr>
+                                                    </table>
+                                                </div>
+                                            </li>
+                                            <li style="border:none;">
+                                                <div class="insider_addUp">会员的保级/降级规则</div>
+                                                <div class="insider_explain">
+                                                    <div style="padding-top:5px;">
+                                                        普通会员：<br>
+
+                                                        <p class="rule_section">- 成为普通会员，终身有效</p>
+                                                    </div>
+                                                    <div style="padding-top:5px;">
+                                                        黄金会员：<br>
+
+                                                        <p class="rule_section">
+                                                            - 保级：每个自然月在聚美购物一次 <br>
+                                                            - 降级：当月未在聚美购物，下月1日由黄金会员降级为普通会员
+                                                        </p>
+                                                    </div>
+                                                    <div style="padding-top:5px;">
+                                                        白金会员：<br>
+
+                                                        <p class="rule_section">
+                                                            - 保级：每个自然月保持购物100元，且累计退货款金额不超过累计购物金额的10%<br>
+                                                            - 降级：当月未在聚美购物满100元，下月1日由白金会员降级为黄金会员；当累计退货款金额超过累计购物金额10%，次日将会由白金会员降级为黄金会员
+                                                        </p>
+                                                    </div>
+                                                    <div style="padding-top:5px;">
+                                                        钻石会员：<br>
+
+                                                        <p class="rule_section">
+                                                            - 保级：每个自然月保持购物500元，且累计退货款金额不超过累计购物金额的10%<br>
+                                                            - 降级：当月未在聚美购物满500元，下月1日由钻石会员降级为白金会员；当累计退货款金额超过累计购物金额10%，次日将会由钻石会员降级为白金会员
+                                                        </p>
+                                                    </div>
+                                                </div>
+                                            </li>
+                                        </ul>
+                                        <a class="btn_mid_pink insider_button" href="/help/member_level" target="_blank">查看更多会员常见问题</a>
+                                    </div>
+                                </div>
+                            </div>
+                            </div> 
+                    </li>    
+            <ul>
+            <script src="__PUBLIC__/Home/user/showdate.js" ></script>
+            
+
+            <style>
+                .selectwidth .select_text_ui { width: 90px; } .comment_tip { position:
+                absolute; right: 0; margin-right: 130px; } .comment_tip .dg{ font-family:
+                Georgia,Constantia; font-size: 18px } .jmRed { color: #ed145b; } .redboder
+                { border-color: red !important; }
+            </style>
+        </div>
+        <div class="clear">
+        </div>
+       
+       <script type="text/javascript">
+            $(function(){
+                    var REALPASS=false;
+                    function reallength(str){
+                        return str.replace(/[^\x00-\xff]/g, "^^").length;
+                    }
+                    $('#settings-username').blur(function(){
+                        
+                       var username=$('#settings-username').val();
+                      
+                       var reg=/^[\u4e00-\u9fa5\uF900-\uFA2D]+$/;
+
+                       if(!(reg.test(username) && reallength(username)> 2)){
+                           $('.patternMismatch').css('display','inline-block');
+                           REALPASS=false;
+                       }else{
+                             $('.patternMismatch').hide();
+                             REALPASS=true;
+                       }
+
+                   })
+
+                    $('#skin_type').change(function(){
+                       
+
+                        var skinval=$(this).val();
+                        if(skinval){
+                             $(this).prev().html(skinval);
+                         }else{
+                             $(this).prev().html('请选择');
+                         } 
+                       
+                         $('#skin_type').parents('.select_ui').next().css('display','none');
+
+                    })
+                     $('#hair_type').change(function(){
+                       
+                        var hairval=$(this).val();
+                        if(hairval){
+                             $(this).prev().html(hairval);
+                         }else{
+                             $(this).prev().html('请选择');
+                         }
+                       
+                        $('#hair_type').parents('.select_ui').next().css('display','none');
+                    })
+                     $('#purchasing_power').change(function(){
+                        
+                        var pp=$(this).val();
+                        if(pp){
+                            $(this).prev().html(pp);
+                        }else{
+                             $(this).prev().html('请选择');
+                        }
+                       
+                         $('#purchasing_power').parents('.select_ui').next().css('display','none');
+                    })
+                     var $comment = $('#comment');
+                    $comment.bind('keyup invalid', function(){
+                        refreshCommentTip($comment);    
+                    });
+                    function refreshCommentTip($textarea){
+                        var commentLength = reallength($textarea.val());
+                        
+                        $('.comment_tip .dg1').html(commentLength);
+                        if (commentLength <= 200) { 
+                            $('.tip_text2').html('还能输入');
+                            $('.comment_tip .dg2').html(200-commentLength).removeClass('jmRed');
+                            $textarea.removeClass('redboder');
+                            $textarea[0].setCustomValidity('');
+                        } else {
+                            $('.tip_text2').html('超出');
+                            $('.comment_tip .dg2').html(commentLength-200).addClass('jmRed');
+                            $textarea.addClass('redboder');
+                            $textarea[0].setCustomValidity('长度超出');
+                        }
+        
+
+                    }
+                   $('#et').click(function(){
+                        if($(this).val()){
+                            $(this).parents('.select_ui').next().css('display','none');
+                        }
+
+                    })
+                    $('#settings-form').submit(function(){
+                         $('input').trigger('blur');
+                            var date=$('#et').val();
+                           var skin=$('#skin_type').val();
+                           var hair=$('#hair_type').val();
+                           var pur=$('#purchasing_power').val();
+                           
+                           if(skin && hair &&  pur && date && REALPASS){
+                                return true;
+                           }
+                           if(!skin){
+                              $('#skin_type').parents('.select_ui').next().css('display','inline-block');  
+                           }else{
+                                $('#skin_type').parents('.select_ui').next().css('display','none');
+                           }
+                           if(!hair){
+                             $('#hair_type').parents('.select_ui').next().css('display','inline-block');
+                           }else{
+                             $('#hair_type').parents('.select_ui').next().css('display','none');
+                           }
+                           if(!pur){
+                             $('#purchasing_power').parents('.select_ui').next().css('display','inline-block');
+                           }else{
+                             $('#purchasing_power').parents('.select_ui').next().css('display','none');
+                           }
+
+                           if(!date){
+                             $('#et').parents('.select_ui').next().css('display','inline-block');
+                           }else{
+                             $('#et').parents('.select_ui').next().css('display','none');
+                           }
+
+                            return false;
+                            
+                     })
+                var CPASS = false;
+                var CREPASS = false;
+                var OPASS = false;
+                var CODE=false;
+                //密码修改
+                $('#change').click(function(){
+
+                    $('.v_code').trigger('click');
+                })
+               
+                $('#old_password').blur(function(){
+                   
+                    var id={:I('get.id')};
+                    var oldp=$(this).val();
+
+                    var that=$(this);
+                        if(!oldp){
+
+                            that.next().find('.valid').css('display','none');
+                            that.next().find('.customError').css('display','inline-block');
+                           
+                        }else{
+                            that.next().find('.valid').css('display','block');
+                            that.next().find('.customError').css('display','none');
+                            
+                        }
+                        $.ajax({ 
+                            url:'{:U('Home/User/checkpass')}',
+                            data:{password:oldp,id:id},
+                            type:'POST',
+                            async: false,
+                            success: function(data){
+                               
+                                if(data==0){
+                                    that.next().find('.valid').css('display','none');
+                                    that.next().find('.customError').css('display','inline-block');
+                                    OPASS=false;
+                                }else{
+                                    that.next().find('.valid').css('display','block');
+                                    that.next().find('.customError').css('display','none');
+                                    OPASS=true;
+                                }
+                            }    
+                        })
+
+                })
+                $('#password').blur(function(){
+                    //获取密码的值
+                    var pass = $(this).val();
+                    //声明正则
+                    var reg = /^\S{6,16}$/;
+                     that=$(this);
+                    //检测失败的话
+                    if(!reg.test(pass)){
+                        that.next().find('.valid').css('display','none');
+                        that.next().find('.customError').css('display','inline-block');
+                        CPASS = false;
+                    }else{
+                        that.next().find('.valid').css('display','block');
+                        that.next().find('.customError').css('display','none');
+                        CPASS = true;
+                    }
+                })
+
+                $('#password_confirm').blur(function(){
+                        //获取确认密码的值
+                        var rePass = $(this).val();
+                        //获取密码的值
+                        var pass = $('#password').val();
+                        var that=$(this);
+                        if(rePass != pass){
+                            that.next().find('.valid').css('display','none');
+                            that.next().find('.customError').css('display','inline-block').html('两次密码不一致');
+                            CREPASS = false
+                        }else{
+                            that.next().find('.valid').css('display','block');
+                            that.next().find('.customError').css('display','none');
+                            CREPASS = true;
+                        }
+                })
+
+                $('#hash_code').focus(function(){
+                    $(this).next().next().find('.valid').css('display','block');
+                    $(this).next().next().find('.customError').css('display','none');
+                })
+                $('input').focus(function(){
+                    $(this).next().find('.valid').css('display','block');
+                    $(this).next().find('.customError').css('display','none');
+                })
+                $('#setform').submit(function(){
+                    
+                    var code = $('#hash_code').val();
+                    var that=$('#hash_code');
+                    $.ajax({
+                        url:"{:U('Home/User/checkVerify')}",
+                        data:{code:code},
+                        type:'post',
+                        async:false,//设置同步
+                        success:function(data){
+                            
+                                //如果用户名不可用
+                                if(data==0){
+                                    var str = "验证码错误，请从新输入";
+                                    that.next().next().find('.valid').css('display','none');
+                                    that.next().next().find('.customError').css('display','inline-block').html(str);
+                                    $('.v_code').trigger('click');
+                                    CODE=false;
+                                }else{
+                                    that.next().next().find('.valid').css('display','block');
+                                    that.next().next().find('.customError').css('display','none');
+                                    CODE=true;
+                           
+                                }
+                        }
+                     })
+
+                    $('input').trigger('blur');
+
+                    if(CPASS && CREPASS && OPASS && CODE){
+                        
+                        return true;
+                        
+                    }
+
+                    //阻止默认行为
+                    return false;    
+
+                })
+            //收藏
+            $('.fav_mall').hover(function(){
+                $(this).css('border','3px solid rgb(251,208,223)');
+                $(this).find('.p_like').css('display','block');
+            },function(){
+                $(this).find('.p_like').css('display','none');
+                $(this).css('border','3px solid rgb(255,255,255)')
+
+            })
+           
+            //取消收藏
+            $('.btnunlike').click(function(){
+               var that=$(this);
+               var gid=that.parents('.fav_mall').attr('gid');
+                $.ajax({
+                        type: "POST",
+                        url: "{:U('Home/Collect/delete')}",
+                        data: {
+                            gid: gid
+                        },
+                        success: function(data) {
+                            if (data) {
+
+                              that.parents('.fav_mall').remove();
+                            }
+                        }
+                    })
+            })
+
+      
+                
+        })
+           
+       </script>
+       
+
+       
+    
+</block>

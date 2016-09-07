@@ -1,0 +1,639 @@
+<extend name="Comment/index" />
+<block name="link">
+<title>我的闺房 - 聚美优品口碑中心</title>
+<meta name="keywords" content="">
+<meta name="description" content="">
+ 
+<meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1">
+<link rel="stylesheet" href="__PUBLIC__/Home/comment/css/main.css">
+<link rel="stylesheet" href="__PUBLIC__/Home/comment/css/index.css" type="text/css">
+<!--[if (gte IE 9)|!(IE)]><!--> 
+<link rel="stylesheet" href="__PUBLIC__/Home/comment/css/mod_btn.css" type="text/css">
+<script type="text/javascript" src="__PUBLIC__/Admin/jquery-1.8.3.min.js"></script>
+<script type="text/javascript">
+// 	$(function(){
+// 	$.ajax({
+// 		url: "{:U('Home/Comment/house')}",
+// 		type: 'POST',
+// 		dataType: 'json',
+// 		data: {},
+// 		success:function(data){
+// 			alert(222);
+// 		},
+// 	})
+	
+	
+	
+// })
+</script>
+
+<!-- <script type="text/javascript" src="__PUBLIC__/Home/comment/js/mine.js"></script> -->
+
+</block>
+<!--<![endif]-->
+<!--[if lte IE 8]>
+<link rel="stylesheet" href="http://p7.jmstatic.com/product_report/newKoubei/css/1/mod_btn_ie.css" type="text/css" />
+<![endif]-->
+<!--[if IE 6]>
+<script src="http://p7.jmstatic.com/product_report/newKoubei/js/js/2/DD_belatedPNG_0.0.8a-min.js" type="text/javascript"></script>
+<![endif]-->
+
+
+<script charset="utf-8" src="__PUBLIC__/Home/comment/js/v.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Home/comment/js/h.js"></script><script type="text/javascript" async src="__PUBLIC__/Home/comment/js/ga.js"></script>
+<script src="__PUBLIC__/Home/comment/js/sea.js" type="text/javascript"></script>
+
+<script type="text/javascript">
+	with(window) {
+		GA_ACCOUNT = "UA-10208510-1";
+	}
+	window._gaq = window._gaq || [];
+	_gaq.push(['_setAccount', GA_ACCOUNT]);
+	_gaq.push(['_addOrganic', 'baidu', 'word']);
+	_gaq.push(['_addOrganic', 'm.baidu', 'word']);
+	_gaq.push(['_addOrganic', 'wap.baidu', 'word']);
+	_gaq.push(['_addOrganic', 'baidu', 'wd']);
+	_gaq.push(['_addOrganic', 'baidu', 'kw']);
+	_gaq.push(['_addOrganic', 'baidu', 'q1']);
+	_gaq.push(['_addOrganic', 'baidu', 'q2']);
+	_gaq.push(['_addOrganic', 'baidu', 'q3']);
+	_gaq.push(['_addOrganic', 'baidu', 'q4']);
+	_gaq.push(['_addOrganic', 'baidu', 'q5']);
+	_gaq.push(['_addOrganic', 'baidu', 'q6']);
+	_gaq.push(['_addOrganic', 'so.com', 'q']);
+	_gaq.push(['_addOrganic', 'image.baidu', 'word']);
+	_gaq.push(['_addOrganic', 'soso', 'w']);
+	_gaq.push(['_addOrganic', 'vnet', 'kw']);
+	_gaq.push(['_addOrganic', 'sogou', 'query']);
+	_gaq.push(['_addOrganic', 'youdao', 'q']);
+	_gaq.push(['_addIgnoredOrganic', 'jumei.com']);
+	_gaq.push(['_addIgnoredOrganic', 'www.jumei.com']);
+	_gaq.push(['_addIgnoredOrganic', 'jumei']);
+	_gaq.push(['_addIgnoredOrganic', '聚美']);
+	_gaq.push(['_addIgnoredOrganic', '聚美优品']);
+	_gaq.push(['_addIgnoredOrganic', 'tuanmei.net']);
+	_gaq.push(['_addIgnoredOrganic', 'www.tuanmei.net']);
+	_gaq.push(['_addIgnoredOrganic', 'tuanmei']);
+	_gaq.push(['_addIgnoredOrganic', '团美']);
+	_gaq.push(['_addIgnoredRef', 'jumei']);
+	_gaq.push(['_addIgnoredRef', 'tuanmei']);
+	_gaq.push(['_setDomainName', '.jumei.com']);
+	_gaq.push(['_setAllowHash', false]);
+	_gaq.push(['_setAllowAnchor', true]);
+function onImgError(img,imgW,headimg){
+	var noImgSrc;
+	if(headimg){
+		noImgSrc = 'http://p0.jmstatic.com/product_report/default/avatar/avatar_small.png';
+	}else{
+		imgW = imgW || Math.max(img.offsetWidth, img.offsetWidth);
+		noImgSrc = imgW > 160 ?　"http://p7.jmstatic.com/product_report/newKoubei/img/images/2/noimg350x350.png" : imgW > 100 ?　"http://p7.jmstatic.com/product_report/newKoubei/img/images/2/noimg160x160.png" : imgW > 60 ?　"http://p7.jmstatic.com/product_report/newKoubei/img/images/2/noimg100x100.png" : "http://p7.jmstatic.com/product_report/newKoubei/img/images/2/noimg60x60.png"
+	}
+	img.src = noImgSrc;
+	img.onerror = null;
+}
+(function(w){
+	function c(k){
+		var v = document.cookie.match(new RegExp("\\b" + k + "=([^;]*)(;|$)"));
+		w[k] = v ? decodeURIComponent(v[1]) : null;
+	}
+	c("uid");
+	c("nickname");
+})(this);
+var siteurl = 'http://www.jumei.com/',
+	koubei_number = '1050,000',
+	product_number = '120,000',
+	tid = null;
+Function.prototype.bind = function() {
+	var fn = this, args = Array.prototype.slice.call(arguments), object = args.shift();
+	return function() {
+		return fn.apply(object, args.concat(Array.prototype.slice.call(arguments)));
+	};
+};
+seajs.config({
+	alias : {
+<!--       'jQuery' : '--><!--',-->
+                'jQuery' : 'http://p7.jmstatic.com/product_report/newKoubei/js/js/4/jquery-1.9.1.min.js',
+		'Ajaxpage' : 'http://p7.jmstatic.com/product_report/newKoubei/js/js/12/Ajaxpage.js',
+		'dialog' : 'http://p7.jmstatic.com/product_report/newKoubei/js/js/4/dialog.js',
+		'face' : 'http://p7.jmstatic.com/product_report/newKoubei/js/js/6/face.js',
+		'free' : 'http://p7.jmstatic.com/product_report/newKoubei/js/js/11/free.js',
+		'inputVariant' : 'http://p7.jmstatic.com/product_report/newKoubei/js/js/7/inputVariant.js',
+		'insertOnCursor' : 'http://p7.jmstatic.com/product_report/newKoubei/js/js/7/insertOnCursor.js',
+		'jquery.lazyload.mini' : 'http://p7.jmstatic.com/product_report/newKoubei/js/js/2/jquery.lazyload.mini.js',
+		'jquery.masonry.min' : 'http://p7.jmstatic.com/product_report/newKoubei/js/js/7/jquery.masonry.min.js',
+		'jQuery.rating' : 'http://p7.jmstatic.com/product_report/newKoubei/js/js/2/jQuery.rating.js',
+		'jQuery.Tips' : 'http://p7.jmstatic.com/product_report/newKoubei/js/js/12/jQuery.Tips.js',
+		'jquery.ui.autoTips' : 'http://p7.jmstatic.com/product_report/newKoubei/js/js/1/jquery.ui.autoTips.js',
+		'jquery.ui.position' : 'http://p7.jmstatic.com/product_report/newKoubei/js/js/1/jquery.ui.position.js',
+		'kb_index' : 'http://p7.jmstatic.com/product_report/newKoubei/js/js/10/kb_index.js',
+		'kbChart' : 'http://p7.jmstatic.com/product_report/newKoubei/js/js/3/kbChart.js',
+		'module1' : 'http://p7.jmstatic.com/product_report/newKoubei/js/js/18/module1.js',
+		'profile' : 'http://p7.jmstatic.com/product_report/newKoubei/js/js/25/profile.js',
+		'product' : 'http://p7.jmstatic.com/product_report/newKoubei/js/js/8/product.js',
+		'brand' : 'http://p7.jmstatic.com/product_report/newKoubei/js/js/11/brand.js',
+		'slideShow' : 'http://p7.jmstatic.com/product_report/newKoubei/js/js/2/slideShow.js',
+		'tab' : 'http://p7.jmstatic.com/product_report/newKoubei/js/js/7/tab.js',
+		'urlParm' : 'http://p7.jmstatic.com/product_report/newKoubei/js/js/3/urlParm.js',
+		'viewthread_img' : 'http://p7.jmstatic.com/product_report/newKoubei/js/js/4/viewthread_img.js',
+		'Zeroclipboard' : 'http://p7.jmstatic.com/product_report/newKoubei/js/js/1/Zeroclipboard.js',
+		'zh_CN' : 'http://p7.jmstatic.com/product_report/newKoubei/js/js/2/zh_CN.js',
+		'kindeditor' : '/js/editor/kindeditor.js',
+		'plugin-base' : 'http://p7.jmstatic.com/product_report/newKoubei/js/js/1/plugin-base.js',
+		'plugin-text' : 'http://p7.jmstatic.com/product_report/newKoubei/js/js/1/plugin-text.js',
+		'luckybox-box' : 'http://p7.jmstatic.com/product_report/newKoubei/js/js/luckybox/8/luckybox.js',
+		'initEditor' : 'http://p7.jmstatic.com/product_report/newKoubei/js/js/31/initEditor.js',
+        'kb-search' : 'http://p7.jmstatic.com/product_report/newKoubei/js/js/how/1/tailor_str.js'
+	},
+	debug : false
+});
+
+
+</script>
+
+</head>
+
+<body id="back_to_toper"><div id="pagemasker" style="display: none; position: absolute; z-index: 3000; width: 1308px; height: 4930px; opacity: 0.8; top: 0px; left: 0px; background-color: rgb(255, 255, 255); background-position: initial initial; background-repeat: initial initial;"></div><div style="display: none; position: fixed; z-index: -9999; left: 333px; top: 65.5px;" id="dialog"></div>
+
+<div style="position: absolute; font-size: 75px; font-weight: bolder; z-index: 999999; color: red;"></div>
+	<div class="header">
+		<form action="" method="post">
+	<input type="hidden" value="{$uid}" name="uid">
+	  fvgfdgfgdhh
+	  </form>
+		<div class="site_nav" style="height:30px;">
+			<div class="main">
+				<div class="r">
+
+<script type="text/javascript">
+
+var htmlCon = ( nickname ? 
+		('欢迎您 <span>{$info['phone']}</span><a href="{:U('Home/Login/loginout')}">【退出】</a>'+
+		'<a href="http://cart.jumei.com/i/cart/show/">购物车</a>'+
+		'<a href="{1}i/order/list">订单查询</a><div class="my_jumei"><a href="{1}i/account/settings">我的聚美优品<i></i></a>'+
+		'<ul>'+
+		'<li><a href="{1}i/order/list">我的订单</a></li>'+
+		'<li><a href="{1}i/membership/show_promocards">我的现金券</a></li>'+
+		'<li><a href="{1}i/membership/show_red_envelope">我的红包</a></li>'+
+		'<li><a href="{1}i/account/balance">我的余额</a></li>'+
+		'<li><a href="{1}i/account/balance_record">我的提现退款</a></li>'+
+		'<li><a href="{1}i/product/fav_products">我的收藏</a></li>'+
+		'<li><a href="{1}i/wishdeal/onsale">我的心愿单</a></li>'+
+		'<li><a href="{1}i/membership">会员中心</a></li>'+
+		'<li><a href="{1}i/membership/gift_card">兑换礼品卡</a></li>'+
+		'</ul></div>').replace(/\{0\}/,nickname) 
+		: '<a href="{1}i/cart/show/">购物车</a><a href="{Home/Login/login}">登录</a><a href="{1}i/account/signup">注册</a>').replace(/\{1\}/g,'http://www.jumei.com/');
+document.writeln(htmlCon);
+</script>欢迎您 <span>{$info['phone']}</span><a href="{:U('Home/Login/loginout')}">【退出】</a><a href="http://cart.jumei.com/i/cart/show/">购物车</a><a href="http://www.jumei.com/i/order/list">订单查询</a><div class="my_jumei"><a href="http://www.jumei.com/i/account/settings">我的聚美优品<i></i></a><ul><li><a href="http://www.jumei.com/i/order/list">我的订单</a></li><li><a href="http://www.jumei.com/i/membership/show_promocards">我的现金券</a></li><li><a href="http://www.jumei.com/i/membership/show_red_envelope">我的红包</a></li><li><a href="http://www.jumei.com/i/account/balance">我的余额</a></li><li><a href="http://www.jumei.com/i/account/balance_record">我的提现退款</a></li><li><a href="http://www.jumei.com/i/product/fav_products">我的收藏</a></li><li><a href="http://www.jumei.com/i/wishdeal/onsale">我的心愿单</a></li><li><a href="http://www.jumei.com/i/membership">会员中心</a></li><li><a href="http://www.jumei.com/i/membership/gift_card">兑换礼品卡</a></li></ul></div>
+
+				</div>
+				<a class="logo_small" href="http://www.jumei.com/?from=koubei" target="_blank"></a>
+				<span>
+										<a href="http://www.jumei.com/?from=koubei">今日团购</a><a href="http://mall.jumei.com/?from=koubei">美妆商城</a><a href="http://pop.jumei.com/?from=koubei">名品特卖</a><a href="http://www.jumei.com/activity_guarantee.html?from=koubei">正品保证</a>
+									</span>
+			</div>
+		</div>
+		<div class="logo"><a href="http://koubei.jumei.com/" title="聚美优品口碑中心">化妆品点评网</a></div>
+		<div class="nav_wrap">
+			<div class="main">
+				<a href="{:U('Home/Comment/index')}" rel="nofollow">首页</a>
+				<div class="nav_item">
+                                    <a href="http://koubei.jumei.com/brand_recommends.html"><i></i>美妆大全</a>
+					<div class="child_nav">
+						<i></i>
+						<a href="http://koubei.jumei.com/brand_recommends.html">口碑推荐</a>
+						<a href="http://koubei.jumei.com/product_brands.html">按品牌</a>
+						<a href="http://koubei.jumei.com/product_categories.html">按分类</a>
+						<a href="http://koubei.jumei.com/product_functions.html">按功效</a>
+					</div>
+				</div>
+				<div class="nav_item">
+					<a href="http://koubei.jumei.com/reports.html" rel="nofollow"><i></i>口碑SHOW</a>
+					<div class="child_nav">
+						<i></i>
+						<a href="http://koubei.jumei.com/reports_1.html#category=1" rel="nofollow">护肤</a>
+						<a href="http://koubei.jumei.com/reports_3.html#category=3" rel="nofollow">彩妆</a>
+						<a href="http://koubei.jumei.com/reports_34.html#category=34" rel="nofollow">香水</a>
+						<a href="http://koubei.jumei.com/reports_77.html#category=77" rel="nofollow">美妆工具</a>
+						<a href="http://koubei.jumei.com/reports_21.html#category=21" rel="nofollow">全身护理</a>
+					</div>
+				</div>
+				<a href="http://jianding.jumei.com/?from=koubei" target="_blank">鉴定中心</a>
+				<div class="nav_item">
+					<a href="http://koubei.jumei.com/free" rel="nofollow"><i></i>FREE派</a>
+					<div class="child_nav">
+						<i></i>
+						<a href="http://koubei.jumei.com/fresh" rel="nofollow">达人尝鲜会</a>
+						<a href="http://koubei.jumei.com/wxfree" rel="nofollow">微信Free派</a>
+					</div>
+				</div>
+				<a href="http://koubei.jumei.com/luckybox.html" rel="nofollow">喜从盒来</a>
+				<a href="./我的闺房 - 聚美优品口碑中心_files/我的闺房 - 聚美优品口碑中心.htm" class="lnk_cur" rel="nofollow">我的闺房</a>
+				
+				<form action="http://koubei.jumei.com/products_1-0-0-0.html" type="post" class="nav_search">
+					<input type="text" x-webkit-speech="" lang="zh-CN" id="kb_head_search" name="keyword" placeholder="">
+					<button type="submit"></button>
+				</form>
+			</div>
+		</div>
+        	</div>
+<block name="con">
+<div class="main">
+	<div class="breadcrumb_nav">
+		<a href="{:U('Home/Comment/index')}" rel="nofollow">口碑中心首页</a> &gt; 我的闺房
+	</div>
+	<div class="container">
+		<div class="l_radius"></div>
+		<div class="r_radius"></div>
+		<div class="lb_radius"></div>
+		<div class="rb_radius"></div>
+		<div class="myhome_nav">
+    <ul>
+        <li class="face_wrap"><img src="{$info['city']|default="__PUBLIC__/Home/Comment/images/liyugang.png"} " width="150" height="150"></li>
+        <li class="myhome_cur">
+            <a href="./我的闺房 - 聚美优品口碑中心_files/我的闺房 - 聚美优品口碑中心.htm" class="my_home"><i></i>我的闺房</a>
+        </li>
+         
+        <li>
+            <a href="http://koubei.jumei.com/user/dianping" class="my_dianping"><i></i>我的点评</a><div class="nav_new_icon"></div>
+        </li>
+                <li>
+            <a href="http://koubei.jumei.com/user/reports" class="my_koubei"><i></i>我的口碑</a>
+        </li>
+        <li>
+            <a href="http://koubei.jumei.com/user/draftbox" class="my_draft"><i></i>我的草稿箱</a>
+        </li>
+        <li>
+        <a href="http://koubei.jumei.com/user/products" class="my_beauty"><i></i>美妆库</a>
+        </li>
+        <li>
+            <a href="http://koubei.jumei.com/user/attention" class="my_attention"><i> </i>关注（0）</a>
+        </li>
+        <li>
+            <a href="http://koubei.jumei.com/user/fans" class="my_fans"><i></i>粉丝（0）</a>
+        </li>
+        <li>
+            <a href="http://koubei.jumei.com/user/like" class="my_like"><i></i>喜欢（0）</a></li>
+        <li>
+            <a href="http://koubei.jumei.com/user/reply" class="my_reply"><i></i>回复</a>
+        </li>
+        <li>
+            <a href="http://koubei.jumei.com/user/msg" class="my_msg"><i></i>系统消息</a>
+        </li>
+        <li>
+            <a href="http://koubei.jumei.com/user/active" class="my_active"><i></i>试用活动</a>
+        </li>
+        <li>
+           <a href="http://koubei.jumei.com/user/photos" class="my_photo"><i></i>相册（0）</a>
+        </li>
+    </ul>
+</div>
+		<div class="myhome_center my_home_main">
+			<ul class="reports_num" id="reports_num">
+				<li class="u_nick">
+    <div class="pfInfoName">{$info['phone']}</div>
+		                 <img src="__PUBLIC__/Home/images/v_1.gif" class="vip_icon" title="黄金会员">
+    </li>
+<li>您是黄金会员 !
+</li>
+
+<li><a href="http://koubei.jumei.com/user/Uc9fbf2c5ed206c8c" class="song_font">个人主页&gt;&gt;</a></li>
+			</ul>
+                        <div class="my_home_main_info">
+            
+            <div class="myhome_countinfo">
+                <ul class="user_atten clearfix ">
+                    <li><a href="http://koubei.jumei.com/user/attention"><strong>0</strong><span>关注</span></a>
+                    </li>
+                    <li><a href="http://koubei.jumei.com/user/fans"><strong>0</strong><span>粉丝</span></a>
+                    </li>
+                    <li class="no_bor"><a href="http://koubei.jumei.com/user/like"><strong id="like_count">0</strong><span>喜欢</span></a>
+                    </li>
+                </ul>
+            </div>
+            </div>			<div id="all_center">
+				<div id="recent_wrap">
+	<h4 class="recent_tit">未写口碑报告的美妆</h4>
+	<div style="width:750px;height:3px;background:#EEEEEE;margin-bottom:5px;"></div>
+	<div class="recent_wrap">
+		<ul class="recent_list" style="width:700px;height:250px;">
+			<foreach name="orgoods" item="vo">
+            	<li>
+            		<a href="{:U('Home/Details/index',array('id'=>$orgoods[$key]['id']))}" target="_blank" title="{$vo.title}">
+						<img onerror="onImgError(this,160)" src="{$vo.spic}" alt="{$vo.title}">
+            		</a>
+              		<a href="{:U('Home/Details/index',array('id'=>$orgoods[$key]['id']))}" class="pro_tit" style="font-size:11px;font-family:'微软雅黑" id="bt">{$vo.title}</a>
+					<div class="write_reviews">
+						<a class="btn_main_s" href="{:U('Home/Comment/add',array('id'=>$orgoods[$key]['id'],'title'=>$orgoods[$key]['title'],'uid'=>$uid))}" target="_blank"><span>去写口碑报告</span></a>
+					</div>
+				</li>
+            </foreach>
+            	
+        </ul>
+	</div>
+	<a href="http://koubei.jumei.com/user/products#filter=write#page=1" class="more_recent"><i></i></a>	
+	<div class="myhome_tab">
+		<a href="./我的闺房 - 聚美优品口碑中心_files/我的闺房 - 聚美优品口碑中心.htm" class="tab_cur" style="background:url(__PUBLIC__/Home/Comment/images/index.png) no-repeat 0px -347px">我的收藏</a>
+		
+	</div>
+
+</div>
+<div id="filter_wrap">
+	<div class="null_info mt30" style="height:250px;background:#fff url(__PUBLIC__/Home/Comment/images/null_info.png) no-repeat scroll center 14px">
+		<div class="fav_product_list" >
+            <ul>
+            	<foreach name="detail" item="vo" >
+                <li class="fav_deal" style="border: 3px solid rgb(255, 255, 255);width:150px;height:auto;float:left;margin-right:10px;">
+                    <a target="_blank" class="img_wrap" href="{:U('Home/Details/index',array('id'=>$detail[$key]['gid']))}" style="display:block;width:150px;height:150px;">
+                    	<img src="{$vo.spic}" height="100%" style="margin:10px auto">
+                    </a>
+					<p class="pro_tit" style="margin-top:10px">
+                       <a target="_blank" href="{:U('Home/Details/index',array('id'=>$detail[$key]['gid']))}" title="{$vo.title}" style="font-size:11px;font-family:'微软雅黑">
+                            <em style="color:#ff6643" id="discount">{$vo.discount}折</em>{$vo.title}                                
+                        </a>
+                    </p>
+                        <a target="_blank" href="{:U('Home/Details/index',array('id'=>$detail[$key]['gid']))}" class="pro_price" style="display:block;margin-top:10px 0px;font-size:11px;font-family:'微软雅黑">
+                            <strong><span>¥{$vo.price}</span></strong><del>￥{$vo.cprice}</del>
+                        </a>
+                </li>
+                </foreach>
+            </ul>
+			<a target="_blank" class="r" href="{:U('Home/Collect/index',array('id'=>$uid,'cname'=>'coll'))}">更多收藏</a>
+            <div class="clear"></div>
+        </div>
+        <script type="text/javascript">
+        $(function(){
+        	$('.fav_product_list ul li').mouseover(function(){
+        		$(this).css('border','3px solid rgb(251,208,223)');
+        	})
+        	$('.fav_product_list ul li').mouseout(function(){
+        		$(this).css('border','3px solid rgb(255,255,255)');
+        	})
+        	var dis = $('#discount').html();
+        	if(dis){
+        		$('.null_info').css('background','');
+        	}
+        	var kbk = $('#bt').html();
+        	if(!kbk){
+        		$('.recent_list').css({background:'url(__PUBLIC__/Home/Comment/images/null_info.png) no-repeat #fff scroll center 14px'});
+        	}
+
+        })
+        </script>
+
+</div>
+<div class="comments_tit"><a href="http://koubei.jumei.com/reports.html" class="r" target="_blank">看看更多精彩口碑</a><b>看看其他MM在分享什么？</b>
+	<ul id="ul_product_reports" class="product_reports">
+			<foreach name="coms" item="vo" >	
+				<li style="height:250px;overflow:hidden">
+					<div class="arrow"></div>
+					<a target="_blank" class="avatar" href="http://koubei.jumei.com/user/Uec7a0f36983e3ca5"> <img alt="{$vo.username|default= $vo.phone}" src="{$coms['pic']|default="__PUBLIC__/Home/Comment/images/liyugang.png"}"></a>
+					<span class="user_name" style="font-family:'微软雅黑';font-size:11px;"></span>
+					<span class="re_valuable"></span>
+					
+					<div class="report">
+						<div class="user_info">
+							<span class="user_name" style="font-family:'微软雅黑';font-size:11px;"></span>
+							<span class="user_attr" style="font-family:'微软雅黑';font-size:10px;">{$info['skin_type']},{$info['hair_type']}</span>
+		
+							<!-- <div class="service_rating">
+								<div class="rating">
+									<div style="width:80px;" class="value"></div>
+								</div>
+							</div> -->
+						</div>
+						<div class="report_content" style="height:180px;overflow:hidden;margin-bottom:10px">
+							<a target="_blank" class="tit" href="{:U('Home/Reply/index',array('uid'=>$coms[$key]['uid'],'gid'=>$coms[$key]['gid']))}">{$vo.title}</a>
+							
+							<div class="thumbImgList" style="margin-bottom:10px;">
+								
+								<for start="0" end="3">
+									<for start="0" end="1" name="j">
+										<a target="_blank" href="http://koubei.jumei.com/review_U8cb2dd314148a40a.html"><img src="{$sh[$i][$j]}" onerror="onImgError(this,100)"></a>
+									</for>
+								</for>
+							</div>
+                            
+							<div class="desc">
+								 {$vo.content}
+							</div>
+							<!-- <div class="gray_f1 pt10">
+								6天前 126 阅读 <em>|</em>1回复 <em>|</em>0有用
+							</div> -->
+							
+						</div>
+		
+					</div>
+				</li>
+			</foreach>
+
+	</ul>
+	</div></div>
+
+
+<ul class="cl">
+	<li class="loading" style="display: none;"><img src="__PUBLIC__/Home/images/loading.gif" alt=""><span>正在加载，请稍候...</span>
+	</li>
+</ul>
+<div id="pageSplit" class="pageSplit" style="display: none;"></div>
+
+			</div>
+		</div>
+        
+	</div>
+</div>
+<script type="text/javascript">var flag = '0';</script>
+<script type="text/html" id="recommend_dialog_tpl">
+    <%for(var key in filterList){var item = filterList[key]%>
+    <li>
+        <a target="_blank" href="<%=item.url%>" class="head_img"><img src="<%=item.headImg%>" onerror="onImgError(this,160)"></a>
+        <div class="info">
+            <a target="_blank" href="<%=item.url%>"><%=item.username%></a><br/>
+            <input class="styled" type="checkbox" value="<%=item.uid%>" checked="">
+        </div>
+    </li>
+    <%}%>
+    
+</script>
+
+
+<script type="text/javascript">
+    flag = '0';
+	seajs.use(['jQuery', 'plugin-text'], function() {
+		seajs.use(['module1','dialog', 'jquery.cookie','inputVariant'], function(module1) {
+			module1.module_all_center();
+            		});
+	});
+</script>
+<!--[if IE 6]>
+<script>
+    DD_belatedPNG.fix('#draftGuide');
+</script>
+<![endif]-->
+
+</block>
+<div id="footer">
+    <div id="footer_container">
+        <div id="footer_textarea">
+            <div class="footer_con" id="footer_credit">
+                <a href="http://hd.jumei.com/act/6-478-2232-guarantee.html?from=footer" class="foot_link mostmall" target="_blank" rel="nofollow">
+                    <span class="corn"></span><span class="con"><b>最大美妆电商</b></span>四千万用户信赖
+                </a>
+                <a href="http://hd.jumei.com/act/6-478-2232-guarantee.html?from=footer#jumei_ipo" class="foot_link quality" target="_blank" rel="nofollow">
+                    <span class="corn"></span><span class="con"><b>成功在美上市</b></span>股票代码NYSE:JMEI
+                </a>
+                <a href="http://hd.jumei.com/act/6-478-2232-guarantee.html?from=footer#brand_con" class="foot_link back" rel="nofollow" target="_blank">
+                    <span class="corn"></span><span class="con"><b>品牌防伪码</b></span>支持品牌官网验真
+                </a>
+                <a href="http://hd.jumei.com/act/6-478-2232-guarantee.html?from=footer#unconditionally_backtrack" class="foot_link depot" target="_blank" rel="nofollow">
+                    <span class="corn"></span><span class="con"><b>30天无理由退货</b></span>只要不满意无理由退货
+                </a>
+                <a href="http://hd.jumei.com/act/6-478-2232-guarantee.html?from=footer#user_confide" class="foot_link consignment" target="_blank" rel="nofollow">
+                    <span class="corn"></span><span class="con"><b>百万用户口碑</b></span>帮你只选对的,不选贵的
+                </a>
+                <a href="http://hd.jumei.com/act/6-478-2232-guarantee.html?from=footer#bold_consignment" class="foot_link packaging" target="_blank" rel="nofollow">
+                    <span class="corn"></span><span class="con"><b>订单闪电发货</b></span>1.5小时订单急速出库
+                </a>
+                <a href="http://hd.jumei.com/act/6-478-2232-guarantee.html?from=footer#star_commend" class="foot_link confide" target="_blank" rel="nofollow">
+                    <span class="corn"></span><span class="con"><b>大牌明星热荐</b></span>打造精致明星脸
+                </a>
+            </div>
+            </div>
+            <div class="footer_top_sen">
+                <div class="footer_con" id="footer_links">
+                    <ul class="linksa png">
+                        <li class="links">服务保障</li>
+                        <li><a href="http://www.jumei.com/act/6-478-2232-guarantee.html?from=footer#brand_con" target="_blank" rel="nofollow">品牌真品防伪码</a></li>
+                        <li><a href="http://www.jumei.com/act/6-478-2232-guarantee.html?from=footer" target="_blank" rel="nofollow">100%正品保证</a></li>
+                        <li><a href="http://www.jumei.com/act/6-478-2232-guarantee.html?from=footer#unconditionally_backtrack" target="_blank" rel="nofollow">30天无条件退货</a></li>
+                        <li><a href="http://www.jumei.com/help/faq?from=footer" target="_blank" rel="nofollow">7×24小时客服服务</a></li>
+                        <li><span class="footer_zcemail">总裁邮箱ceo@jumei.com</span></li>
+                    </ul>
+
+                    <ul class="linksb png">
+                        <li class="links">使用帮助</li>
+                        <li><a href="http://www.jumei.com/help/guidebook?from=footer" target="_blank" rel="nofollow">新手指南</a></li>
+                        <li><a href="http://www.jumei.com/help/faq?from=footer" target="_blank" rel="nofollow">常见问题</a></li>
+                        <li><a href="http://www.jumei.com/help/main?from=footer" target="_blank" rel="nofollow">帮助中心</a></li>
+                        <li><a href="http://www.jumei.com/i/help/user_terms?from=footer" target="_blank" rel="nofollow">用户协议</a></li>
+                        <li><a href="http://www.jumei.com/activity_qiye_tuangou.html?from=footer" target="_blank" rel="nofollow">企业用户团购</a></li>
+                    </ul>
+
+                    <ul class="linksc png">
+                        <li class="links">支付方式</li>
+                        <li><a href="http://www.jumei.com/help/pay_cod?from=footer" target="_blank" rel="nofollow">货到付款</a></li>
+                        <li><a href="http://www.jumei.com/help/pay_online?from=footer" target="_blank" rel="nofollow">在线支付</a></li>
+                        <li><a href="http://www.jumei.com/help/pay_balance?from=footer" target="_blank" rel="nofollow">余额支付</a></li>
+                        <li><a href="http://www.jumei.com/help/pay_promocards?from=footer" target="_blank" rel="nofollow">现金券支付</a></li>
+                    </ul>
+
+                    <ul class="linksd png">
+                        <li class="links">配送方式</li>
+                        <li><a href="http://www.jumei.com/help/two_for_freeshipping?from=footer" target="_blank" rel="nofollow">包邮政策</a></li>
+                        <li><a href="http://www.jumei.com/help/delivery_state?from=footer" target="_blank" rel="nofollow">配送说明</a></li>
+                        <li><a href="http://www.jumei.com/help/delivery_fee?from=footer" target="_blank" rel="nofollow">运费说明</a></li>
+                        <li><a href="http://www.jumei.com/help/check_goods?from=footer" target="_blank" rel="nofollow">验货签收</a></li>
+                    </ul>
+
+                    <ul class="linkse png">
+                        <li class="links">售后服务</li>
+                        <li><a href="http://hd.jumei.com/act/6-478-2232-guarantee.html?from=footer" target="_blank" rel="nofollow">正品承诺</a></li>
+                        <li><a href="http://www.jumei.com/help/faq?from=footer" target="_blank" rel="nofollow">售后咨询</a></li>
+                        <li><a href="http://www.jumei.com/help/refund_policies?from=footer" target="_blank" rel="nofollow">退货政策</a></li>
+                        <li><a href="http://www.jumei.com/help/refund_handle?from=footer" target="_blank" rel="nofollow">退货办理</a></li>
+                    </ul>
+
+                        <span class="links_er_box">
+                            <ul class="linksf">
+                                <li class="links">手机聚美</li>
+                                <li><span class="link_bottom_pic"></span></li>
+                                <li>下载移动客户端</li>
+                            </ul>
+                            <ul class="linksg">
+                                <li class="links">聚美微信</li>
+                                <li><span class="link_bottom_pic"></span></li>
+                                <li>聚美官方微信</li>
+                            </ul>
+                        </span>
+                </div>
+            </div>
+            <div class="footer_dy" id="footer_dy">
+                <div class="play_box"><span class="play"></span></div>
+            </div>
+            <div class="footer_center">
+                <div class="footer_con" id="footer_link">
+                    <a href="http://www.jumei.com/about/about_us?from=footer" target="_blank" rel="nofollow">关于聚美优品</a>
+                    <a href="http://jumei.investorroom.com/?from=footer" target="_blank" rel="nofollow">INVESTOR RELATIONS</a>
+                    <a href="http://hd.jumei.com/act/9-478-2448-pop_invite_business_page.html?site=cd&from=footer" target="_blank" rel="nofollow">商家入驻</a>
+                    <a href="http://www.jumei.com/help/get_update?from=footer" target="_blank" rel="nofollow">获取更新</a>
+                    <a href="http://jumeizhaopin.hirede.com/?from=footer" target="_blank" rel="nofollow">加入聚美</a>
+                    <a href="http://www.jumei.com/i/market/cooperation?from=footer" target="_blank" rel="nofollow">品牌合作专区</a>
+                    <a href="http://cps.jumei.com/?from=footer" target="_blank" rel="nofollow">网站联盟</a>
+                    <a href="http://www.jumei.com/about/news_center?from=footer" target="_blank" rel="nofollow">媒体报道</a>
+                    <a href="http://www.jumei.com/about/business?from=footer" target="_blank" rel="nofollow">商务合作</a>
+                </div>
+            </div>
+
+            <div id="footer_copyright">
+                <div class="footer_con">
+                    <p class="footer_copy_con">
+                        COPYRIGHT © 2010-2015 北京创锐文化传媒有限公司 JUMEI.COM 保留一切权利。
+                        客服热线：400-123-8888
+                        <br>
+                        京公网安备 11010102001226 | <a href="http://www.miibeian.gov.cn/state/outPortal/loginPortal.action" target="_blank" rel="nofollow">京ICP证111033号</a> | 食品流通许可证 SP1101051110165515（1-1）
+                        | <a href="http://p2.jmstatic.com/activity/2013_chuangrui.jpeg" target="_blank" rel="nofollow">营业执照</a>
+                    </p>
+                    <p>
+                        <a href="javascript:void(0)" class="footer_copy_logo logo01" rel="nofollow"></a>
+                        <a href="https://www.itrust.org.cn/yz/pjwx.asp?wm=1693268180" target="_blank" class="footer_copy_logo logo02" rel="nofollow"></a>
+                        <a href="javascript:void(0)" class="footer_copy_logo logo03" rel="nofollow"></a>
+                        <a href="javascript:void(0)" class="footer_copy_logo logo04" rel="nofollow"></a>
+                        <a href="https://ss.knet.cn/verifyseal.dll?sn=e12070911010031011307708&ct=df&pa=453163" target="_blank" class="footer_copy_logo logo05" rel="nofollow"></a>
+                    </p>
+
+                    <script>function change_urlknet(eleId){var str= document.getElementById(eleId).href;var str1 =str.substring(0,(str.length-6));str1+=RndNum(6);document.getElementById(eleId).href=str1;}function RndNum(k){var rnd="";for (var i=0;i<k;i++){rnd+=Math.floor(Math.random()*10);}return rnd;}</script>
+
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+
+<div class="back_to_top" style="display: none;">
+	<a rel="sidebar" title="我的闺房 - 聚美优品口碑中心" href="http://koubei.jumei.com/">收藏</a>
+    <!--<a href="http://www.diaochapai.com/survey/7cf54637-c5f8-4882-907c-d62a91ab7a77" class="qa_silder" target="_blank">有奖调研</a>-->
+	<a href="http://koubei.jumei.com/i/productreport/myhome#" class="to_top_btn">TOP</a>
+</div>
+
+<script type="text/javascript">
+
+//ga
+
+var ga = document.createElement('script'); ga.type = 'text/javascript'; ga.async = true;
+ga.src = ('https:' == document.location.protocol ? 'https://ssl' : 'http://www') + '.google-analytics.com/ga.js';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(ga, s);
+_gaq.push(['_trackPageview']);
+
+//baidu tongji
+
+var baidu_tongji = document.createElement('script'); baidu_tongji.type = 'text/javascript';
+baidu_tongji.src = ('https:' == document.location.protocol ? 'https://' : 'http://') + 'hm.baidu.com/h.js?884477732c15fb2f2416fb892282394b';
+var s = document.getElementsByTagName('script')[0]; s.parentNode.insertBefore(baidu_tongji, s);
+
+var bd_cpro_rtid="n1n4n1m";
+
+</script>
+<!-- <script type="text/javascript" src="__PUBLIC__/Home/comment/rt.js"></script> -->
+<noscript>
+&lt;div style="display:none;"&gt;
+&lt;img height="0" width="0" style="border-style:none;" src="http://eclick.baidu.com/rt.jpg?t=noscript&amp;rtid=n1n4n1m" /&gt;
+&lt;/div&gt;
+</noscript>
+
+<div class="layer_wrap" style="position:absolute;display:none;z-index:9999"></div><div class="gwd_toolbar_control_small" gwd-subject="open" title="无比价" style="background-image:url(chrome-extension://dobbgecnokkloebjbcnjpgcopegjabpa/images/background_new.png)"></div>
+
+
+
+
+</body></html>

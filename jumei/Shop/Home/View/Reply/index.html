@@ -1,0 +1,412 @@
+<extend name="Comment/index"/>
+
+<block name="link">
+<html xmlns="http://www.w3.org/1999/xhtml"><head><meta http-equiv="Content-Type" content="text/html; charset=UTF-8"><script charset="utf-8" src="__PUBLIC__/Home/reply/js/v.js"></script>
+
+<title>【{$userinfo['username']|default=$userinfo['phone']}】{$cominfo['title']}_聚美优品</title>
+<meta name="keywords" content="">
+<meta name="description" content="【{$userinfo['username']|default=$userinfo['phone']}】{$goodsinfo['title']}怎么样的口碑点评：{ffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffffff......}">
+<link rel="canonical" href="./【{userinfo['username']|default=$userinfo['phone']}】rrrrrrrrrrrrrrrrrrrrrrrrrrrrr_聚美优品_files/【{userinfo['username']|default=$userinfo['phone']}】rrrrrrrrrrrrrrrrrrrrrrrrrrrrr_聚美优品.htm">
+<meta http-equiv="X-UA-Compatible" content="IE=8,chrome=1">
+<link rel="stylesheet" href="__PUBLIC__/Home/comment/css/main.css">
+<link rel="stylesheet" href="__PUBLIC__/Home/reply/css/index.css" type="text/css">
+<!--[if IE 6]>
+<script src="http://p7.jmstatic.com/product_report/newKoubei/js/js/2/DD_belatedPNG_0.0.8a-min.js" type="text/javascript"></script>
+<![endif]-->
+<script type="text/javascript" src="__PUBLIC__/Home/reply/js/h.js"></script><script type="text/javascript" async="" src="__PUBLIC__/Home/reply/js/ga.js"></script>
+<script src="__PUBLIC__/Home/reply/js/sea.js" type="text/javascript"></script>
+</block>
+
+<block name="con">
+
+<div class="main">
+	<div class="breadcrumb_nav">
+		<a href="http://koubei.jumei.com/" rel="nofollow">口碑中心首页</a> <span> &gt; </span>
+					<a href="/products_1-9185-0-0.html">{$goodsinfo['bname']}</a> <span> &gt; </span>
+							<a href="{:U('Home/Details/index',array('id'=>$goodsinfo['id']))}">{$goodsinfo['title']}</a> <span> &gt; </span>{$cominfo['title']}
+		</div>
+	<div id="topkoubei_warp_mall" style="display:block;"></div>
+
+<script>
+try{
+	PIE.fix(".pf_active_wrap .side_tit");
+}catch(ex){}
+</script>
+<div class="pfHeaderBox ">
+	<div class="pfL_bg"></div>
+	<div class="pfR_bg"></div>
+
+	<div class="pfHeaderBoxR">
+		<div class="pfHeaderContent">
+					<a href='/user/Uc6d38cd2156b4e9b' rel="nofollow"><img class="head_img"
+				src="{$userinfo['pic']|default='__PUBLIC__/Home/Comment/images/liyugang.png'}" /></a>
+			<div class="pfInfoBox">
+			    				<div class="pfInfoName">
+    				<a href='/user/Uc6d38cd2156b4e9b' rel="nofollow">
+    				{$userinfo['username']|default=$userinfo['phone']}</a>
+				</div>
+				                <img src="__PUBLIC__/Home/reply/images/v_1.gif" class="vip_icon" title="黄金会员"/>
+                                               
+                				<div class="pfInfo"></div>
+                                <a fid="Uc6d38cd2156b4e9b" class="addBtn" state="1" oper="set" href="javascript:void(0);" rel="nofollow"></a>
+                            </div>
+
+			<div class="pfTagBox">
+				<div class="pfTagNum">
+					<a href="/user/Uc6d38cd2156b4e9b/like" class="like_num" rel="nofollow">0</a><span>喜欢</span>
+				</div>
+				<div class="pfTagNum">
+					<a
+						href="/user/Uc6d38cd2156b4e9b/fans?attention#type=attention" rel="nofollow">45</a><span>关注</span>
+				</div>
+				<div class="pfTagNum" style="margin: 0;">
+					<a
+						href="/user/Uc6d38cd2156b4e9b/fans?fans#type=fans" rel="nofollow">400</a><span>粉丝</span>
+				</div>
+			</div>
+						<div class="pfNavBox">
+							<div class="pfNav">
+					<a
+						href="/user/Uc6d38cd2156b4e9b/about" rel="nofollow">关于TA</a>
+				</div>
+				<div class="splitIcon"></div>
+				<div class="pfNav">
+					<a
+						href="/user/Uc6d38cd2156b4e9b/photolist" rel="nofollow">相册</a>
+				</div>
+				<div class="splitIcon"></div>
+				<div class="pfNav">
+					<a
+						href="/user/Uc6d38cd2156b4e9b/products" rel="nofollow">美妆库</a>
+				</div>
+				<div class="splitIcon"></div>
+				<div class="pfNav">
+					<a
+						href="/user/Uc6d38cd2156b4e9b/like" rel="nofollow">喜欢</a>
+				</div>
+								<div class="splitIcon"></div>
+				<div class="pfNav">
+					<a
+						href="/user/Uc6d38cd2156b4e9b/dianping" rel="nofollow">点评</a>
+				</div>
+								<div class="splitIcon"></div>
+				<div class="pfNav">
+					<a
+						href="/user/Uc6d38cd2156b4e9b/reports" rel="nofollow">口碑</a>
+				</div>
+				<div class="splitIcon"></div>
+				<div class="pfNav">
+					<a
+						href="/user/Uc6d38cd2156b4e9b" rel="nofollow">主页</a>
+				</div>
+								<div style="clear: both;"></div>
+			</div>
+		</div>
+		<div class="pfBottomLine"></div>
+	</div>
+</div>
+<script type="text/javascript">
+    seajs.use(['jQuery'],function(jq){
+        $(function(){
+            seajs.use(['jQuery.Tips'],function(){
+                /*instance tips*/
+                $('.user_list img').layerTips();
+                $('.next_group').click(function() {
+                    var _this = $(this), list = $(this).parent().parent().find('.user_list'), cur_group = list.filter(':visible');
+                    var index = list.index(list.filter(':visible'));
+                    if (index == list.length - 2) {
+                        cur_group.hide().next().show();
+                        _this.hide();
+                        return false;
+                    }
+                    cur_group.hide().next().show();
+                    return false;
+                });
+            });
+        });
+    });
+</script>		<div class="pf_content">
+		<a name="usefull"></a>
+		<div class="l_cen clearfix" id="box_addface0">
+			<div class="container containerAuto pf_radius_l ">
+				<div class="l_radius"></div>
+				<div class="r_radius"></div>
+				<div class="lb_radius"></div>
+				<div class="rb_radius"></div>
+				<div class="containerBgR">
+					<div class="container_modify">
+						<div class="lone_box_dashed">
+
+							<p class="first_slogn">
+					<span class="re_valuable report_ico" style="background:url(__PUBLIC__/Home/Comment/images/valuable.png)"></span>
+					<h1 class="report_t">
+								{$cominfo['title']}								</h1>
+							</p>
+							<p>类别：口碑报告 | 回复数：
+								<span>0</span> | &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span>
+									<a class="useful_btn" href="javascript:void(0)" rid="Ue52ab5b766609d8a" style="float:right;">0</a>
+								</span>
+							</p>
+						</div>
+						<div class="lone_box_dashed" style="border-bottom: none;">
+																<div class="report_l_one">
+									<a href="{:U('Home/Details/index',array('id'=>$goodsinfo['id']))}"><img onerror="onImgError(this);" src="{$goodsinfo['spic']}" alt="海太（韩国）sunkist青葡萄饮料八罐装" rel="nofollow" /></a>
+									<div class="white_scroes pr">
+										<div class="rating"><div class="value" style="width:80px;"></div></div>
+									</div>
+								</div>
+								<div class="report_l_two">
+									<p class="black">本篇口碑报告是关于以下产品的：</p>
+									<p class="bold black"><a href="/product_reviews_261289.html">{$goodsinfo['title']}</a></p>
+									<p class="mt10 pink"></p>
+									<a href="/report_list-261289.html" class="pink" rel="nofollow">{$allnum}篇口碑报告</a><br>
+									
+									<div class="love_position">
+					<a href="javascript:void(0)" class="like_btn" pid="1706055">0</a>
+									</div>
+								</div>
+					<div class="report_l_three">
+						<dl class="rp_histogram">													</dl>
+									<div class="clearfix"></div>
+								</div>
+								<div class="tags">
+																	</div>
+								<div class="lone_box_dashed long_box_content"><p><p style="text-align:center;"><br /></p>
+									{$cominfo['content']}
+
+								</div>
+								<div class="lone_box lone_share">
+									<div class="cl lone_page">
+									</div>
+									<div class="cl">
+										<a class="useful_btn" href="javascript:void(0)" rid="Ue52ab5b766609d8a" style="float:right;">0</a><em></em>
+											<!-- Baidu Button BEGIN -->
+										<span class="l show_info_btn_txt">分享口碑报告，得5元现金券！</span>
+										<span class="l show_info_btn">展开详情↓</span>
+										<div id="bdshare" class="bdshare_t bds_tools get-codes-bdshare">
+											<a class="bds_tsina"></a><a class="bds_tqq"></a><a class="bds_mogujie"></a><a class="bds_meilishuo"></a><a class="bds_renren"></a><a class="bds_qzone"></a><span class="bds_more">更多</span>
+										</div>
+										<script type="text/javascript" id="bdshare_js" data="type=tools&mini=1&uid=6433029"></script>
+										<script type="text/javascript" id="bdshell_js"></script>
+										<script type="text/javascript">
+											document.getElementById("bdshell_js").src = "http://share.baidu.com/static/js/shell_v2.js?cdnversion=" + new Date().getHours();
+										</script>
+									<!-- Baidu Button END -->
+
+									</div>
+									<div class="cl small_img_box reward_info_wrap">
+										<div class="up_arrow"></div>
+										<div>
+										分享后，如果来看这篇口碑报告的用户注册聚美优品，您将得到五元代金券奖励。同时口碑报告的作者也将得到一定奖励。<br>
+											<input type="text" id="copy_value"  value="http://koubei.jumei.com/share_Ue52ab5b766609d8a.html?r=i2610126" readonly />  <div class="copy_btn_warp"><input id="copy_btn" type="button" value="复制到剪贴板"></div>
+											</div>
+									</div>
+
+									<div class="small_img_box useful_user_list" style="display:none;">
+										<div class="up_arrow"></div>
+										<div id="useful_use_img">
+															</div>
+										<div class="clearfix"></div>
+									</div>
+
+								</div>
+								<div class="lone_box">
+									<div class="gray_block">猜你喜欢：</div>
+									<div class="gray_body" style="padding: 20px;">
+									<div class="guess_love">
+										<ul>
+											<foreach name="coms" item="vo">
+												<li>
+													<a href="">{$vo.title}</a>
+												</li>
+										</foreach>	
+										</ul>
+										<div class="clearfix"></div>
+									</div>
+																		</div>
+								</div>
+								<div class="lone_box">
+                         		<div class="gray_block" name="textarea_t" id="textarea_t"> 回复：(<span>0/10000</span>)</div>
+                         		<form name="replyForm" method="post" action="{:U('Home/Reply/insert')}">
+									<div class="gray_body">
+										<div class="replay_mask" style="display:block;position:relative;height:22px;top:0;">
+											<p> 回复：</p>
+											
+										</div>
+										<input type="hidden" name="gid" value="{$goodsinfo['id']}" /> <input type="hidden" name="uid" id="fbuid" value="{$nowuid}" /> <input type="hidden" name="cid" id="kbid" value="{$cominfo['id']}" />
+										<input type="hidden" name="comuid" id="comuid" value="{$uid}" />
+										<textarea id="reply_textarea" name="recontent"></textarea>
+										<p>
+											<span class="l text_tips_hook red" style="display: none;padding-top: 3px;">请输入内容，回复不可为空哦！</span>
+											<button id="release_replay" class="r sure_btn" style="background:url(__PUBLIC__/Home/comment/images/index.png) no-repeat -416px -375px;">发 布</button>
+										</p>
+									</div>
+                             	
+									</form>
+									<script type="text/javascript" src="__PUBLIC__/Admin/jquery-1.8.3.min.js"></script>
+									<script type="text/javascript">
+										$(function(){
+											var BUT = false;
+											var BU = false;
+											$('form[name="replyForm"]').submit(function(){
+												//脚本中触发丧失焦点事件
+												$('#reply_textarea').trigger('keyup');
+												$('#reply_textarea').trigger('blur');
+												if(BUT && BU){
+													return true;
+												}
+												//阻止默认行为
+												return false;
+											})
+											$('#reply_textarea').keyup(function() {
+													var len = $(this).val().length;
+													if(len > 5){
+														$('#release_replay').css('background','url(__PUBLIC__/Home/comment/images/index.png) no-repeat -357px -375px');
+														$('.text_tips_hook').css('display','none')
+														BUT = true;
+													}else{
+														$('#release_replay').css('background','url(__PUBLIC__/Home/comment/images/index.png) no-repeat -416px -375px');
+														$('.text_tips_hook').css('display','bolck').html('输入的太少喽,要多于5个字哦!');
+														BUT = false;
+													}
+											});
+											$('#reply_textarea').blur(function() {
+
+												var cons = $(this).val();
+												if(cons){
+													$('.text_tips_hook').css('display','none');
+													BU = true;
+												}else{
+													$('.text_tips_hook').css('display','block').html('请输入内容，回复不可为空哦！');
+													BU = false;
+												}
+											});
+										})
+									</script>
+									<div class="faces" id="faces">
+										<div class="faces_border">
+											<div class="face_top">
+												<a class="aui_close" href="javascript:;" title="关闭" style="">×</a>
+											</div>
+
+											<div class="face">
+
+											</div>
+											<i class="face_arrow"></i>
+										</div>
+									</div>
+								</div>
+
+							<div class="lone_box" id="replay_box_wrap">
+							<foreach name="replyinfo" item="vo">
+								<div class="replay_box">
+									<a target="_blank" href="/user/Uc9fbf2c5ed206c8c" class="head_img"><img onerror="onImgError(this,45,true);" src="{$nowuser['pic']|default='__PUBLIC__/Home/Comment/images/liyugang.png'}" width="45" height="45"></a>
+									
+									<div class="replay_center">
+										<p class="user_name">
+											<a target="_blank" href="/user/Uc9fbf2c5ed206c8c" uid="Uc9fbf2c5ed206c8c" class="red">{$names[$key]}</a>
+										</p>
+										<p class="replay_cont">回复 <a class="red" href="/user/Uc9fbf2c5ed206c8c">{$userinfo['username']}</a>：{$replyinfo[$key]['recontent']}</p>
+									</div>
+									
+									<div class="replay_right">
+										
+									</div>
+									<div class="clearfix"></div>
+								</div>
+								</foreach>
+								
+							</div>
+								<script type="text/javascript">
+									$(function(){
+
+									})
+								</script>
+						</div>
+						<div id="pageSplit" class="pageSplit" style="padding-top: 0; display: none;"></div>
+					</div>
+				</div>
+			</div>
+					</div>
+
+		<div class="r_cen">		
+		<div class="finalbuy"></div>
+				<div class="pf_active_wrap">
+	<div class="side_tit_warp">
+		<h3 id="hot_product" class="side_tit">最热门讨论产品</h3>
+	</div>
+	<div class="pf_content">
+		<div class="lb_radius"></div>
+		<div class="rb_radius"></div>
+		<div class="pf_lr_border pf_late_view_warp">
+			<ul>
+              	<for start="0" end="10">
+	            <li>
+	            	<a href="{:U('Home/Details/index',array('id = '.$hot[$i]['id']))}" rel="nofollow">
+	            		<img src="{$hot[$i]['spic']}" onerror="onImgError(this,60)" alt="{$hot[$i]['title']}">
+	            	</a>
+					<div class="pro_info_warp">
+						<a href="{:U('Home/Details/index',array('id = '.$hot[$i]['id']))}" class="pro_name" target="_blank">{$hot[$i]['title']}</a><br>
+					</div>
+					<div class="cl"></div>
+				</li>
+				</for> 
+                <li style="height: 20px;"><a class="r mr10"
+					style="color: #F9A3BE;" href="/products_1-0-1910-0.html" rel="nofollow">更多&gt;&gt;</a></li>
+			</ul>
+		</div>
+	</div>
+</div>
+				<div id="'same_products" class="pf_active_wrap">
+	<div class="side_tit_warp">
+		<h3 class="side_tit">同品牌口碑产品</h3>
+	</div>
+	<div class="pf_content">
+		<div class="lb_radius"></div>
+		<div class="rb_radius"></div>
+		<div class="pf_lr_border pf_late_view_warp">
+			<ul>
+                <for start="0" end="10">    
+	               	<li>
+	                	<a href="{:u('Home/Details/index',array('id'=>$same[$i]['id']))}" class="pro_img" rel="nofollow">
+	                		<img onerror="onImgError(this,60)" src="{$same[$i]['spic']}" alt="{$same[$i]['title']}">
+	                	</a>
+						<div class="pro_info_warp">
+							<a href="{:u('Home/Details/index',array('id'=>$same[$i]['id']))}" class="pro_name" target="_blank">{$same[$i]['title']}</a><br>
+						</div>
+						<div class="cl">
+						</div>
+					</li>
+				</for>
+                
+               	<li style="height: 20px;"><a class="r mr10"
+					style="color: #F9A3BE;" href="/products_1-9185-0-0.html" rel="nofollow">更多&gt;&gt;</a></li>
+			</ul>
+		</div>
+	</div>
+
+</div>
+											
+		</div>
+
+	</div>
+
+</div>
+
+
+<script type="text/javascript">
+	var product_id  = 1706055;
+	var RM_PRODUCT_INFO_URL = 'http://www.jumei.com/i/deal/ajax_product_id_deals';
+	seajs.use(['jQuery'],function(){
+		seajs.use(['profile'],function(profile){
+				profile.reportView();
+		});
+	});
+</script>
+
+
+
+</block>
+
+
+

@@ -1,0 +1,208 @@
+<extend name="Index/index" />
+<block name="con">
+<script type="text/javascript" src="__PUBLIC__/Admin/js/three/jquery.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/three/area.js"></script>
+<script type="text/javascript" src="__PUBLIC__/Admin/js/three/location.js"></script>
+
+<script type="text/javascript">
+var checkuid = 2610126;
+
+    if(checkuid != $.cookie('uid')){
+        $.getJSON('http://www.jumei.com/i/tools/diff_cookie?callback=?',{},function(){})
+    }
+</script>
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">新增收货地址</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>  
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                    <div style="width:430px;height:auto;float:right;margin-top:30px">
+                    <img src="__PUBLIC__/Images/2015-09-27_200521.jpg" width="90%">
+                    </div>
+                    <div class="content sector">
+                        <div class="col-lg-6">
+                            <label><span class="spark">*</span>当前用户名:<span class="spark" style="color:red;">{$inc[0]['username']};</span></label> 
+                            <form class="shipping_address"  role="form" action="{:U('Admin/Address/insert')}" method="post" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <label><span class="spark">*</span>收件人姓名</label>
+                                    <input name="name" type="text" class="form-control" placeholder="请填写真实有效的姓名..">
+                                </div>
+
+                                 <div class="form-group">
+                                    <label><span class="spark">*</span>身份证号</label>
+                                    <input name="card" type="text" class="form-control" placeholder="请填写真实有效的身份证号..">
+                                </div>
+
+		<input type="hidden" name="uid" class="edit" id="edit" value="{$inc[0]['uid']}" />
+
+		<div class="input_container input_address_select">
+			<label for="select_province"><span class="spark">*</span>收货地址：</label>
+                        <!-- 新的四级地区模板，2014年9月10日购物车上线后弃用，将此文件内容合并入province_city.tpl -->
+<div class="district_selector form-group">
+    <select onChange="f(this)" name="province" id="loc_province" class="form-control f-input select_province" style="width:100px;float:left;">
+        <option value="">省/直辖市</option>
+    </select>
+    <select onChange="c(this)" name="city" id="loc_city" class="form-control f-input select_city" style="width:100px;float:left;margin-left:10px;">
+        <option value="">市</option>
+    </select>
+    <select onChange="a(this)" name="area" id="loc_town" class="form-control f-input select_area" style="width:200px;float:left;margin-left:10px;">
+        <option value="">区/县</option>
+    </select>
+    <input type="hidden" name="location_id" />    
+    <input type="hidden" name="location_idd" />
+    <input type="hidden" name="location_iddd" />
+    <input type="hidden" name="sheng" />    
+    <input type="hidden" name="shi" />
+    <input type="hidden" name="xian" />
+</div>
+
+
+<style>
+.ui-district-panel {position:absolute;z-index:1000006;width:380px;height:auto;padding:15px 5px 15px 15px;list-style:none;background:#fff;border:1px solid #ccc;}
+.ui-district-panel li {float:left;width:85px;margin-right:10px;padding:4px 0;color:#666;cursor:pointer;}
+.ui-district-panel li.current {color:#ed145b;}
+.ui-district-panel li.long {width:180px;}
+</style>
+<script type="text/javascript">
+
+var _Promise = function(handler) {
+    var queue = [];
+
+    function next(i, val) {
+        setTimeout(function() {
+            while (queue.length) {
+                var arr = queue.shift()
+                if (typeof arr[i] === 'function') {
+                    // try {
+                        var chain = arr[i](val)
+                    // } catch (e) {
+                    //    return reject(e)
+                    // }
+                    if (chain && typeof chain.then === 'function') {
+                        return chain.then(resolve, reject)
+                    } else {
+                        return _Promise.resolve(chain).then(resolve, reject)
+                    }
+                }
+            }
+        }, 1);
+    }
+}
+
+function f(obj){
+    for (var i=0;i<obj.length;i++){
+    
+        if (obj.options[i].selected){
+            var a = $('input[name=sheng]').val(obj.options[i].text);
+            console.log(a);
+            // alert(obj.options[i].text);
+        }
+    }
+}
+
+function c(obj){
+    for (var i=0;i<obj.length;i++){
+    
+        if (obj.options[i].selected){
+            $('input[name=shi]').val(obj.options[i].text);
+            // alert(obj.options[i].text);
+        }
+    }
+}
+
+function a(obj){
+    for (var i=0;i<obj.length;i++){
+    
+        if (obj.options[i].selected){
+            $('input[name=xian]').val(obj.options[i].text);
+            // alert(obj.options[i].text);
+        }
+    }
+}
+
+</script>			<input type="hidden" name="structured_code" id="area" value=""/>
+		</div>
+		<div class="input_container" style="padding-top:30px;">
+			<label for="recipient_street"><span class="spark">*</span>详细地址：</label>
+			<textarea rows="3" cols="60" class="form-control t_input recipient_street" style="height:auto;resize:none;" id="recipient_street" name="detail"></textarea>
+		</div>
+		<div class="input_container" style="padding-top:10px;">
+			<label for="recipient_hp"><span class="spark">*</span>手机号码：</label>
+			<input type="tel" size="20" class="form-control t_input recipient_hp" id="recipient_hp" name="mphone" value="" maxlength="11" />
+		</div>
+		<div class="input_container" style="padding-top:10px;">
+			<label for="recipient_tel_area" style="float:left;">固定号码：</label><br><br>
+			<input type="tel" size="5" class="form-control t_input recipient_tel_area" id="recipient_tel_area" name="phone_q" value="" maxlength="4" style="width:100px;float:left;" />
+			<span class="rod" style="float:left;margin-left:10px;">-</span>
+			<input type="tel" size="10" class="form-control t_input recipient_tel_number" id="recipient_tel_number" name="phone_z" value="" maxlength="8" style="width:200px;float:left;margin-left:10px;" />
+			<span class="rod" style="float:left;margin-left:10px;">-</span>
+			<input type="tel" size="5" class="form-control t_input recipient_tel_ext" id="recipient_tel_ext" name="phone_h" value="" maxlength="8" style="width:100px;float:left;margin-left:10px;" />
+		</div>
+    
+
+                        <div class="panel-heading" style="margin-top:50px;">
+                            以保存地址:
+                        </div>
+                        <!-- /.panel-heading -->
+                        <div class="panel-body" style="width:750px;">
+                            <div class="table-responsive">
+                                <table class="table">
+                                    <thead>
+                                        <tr>
+                                            <th>#</th>
+                                            <th>收件人</th>
+                                            <th>手机</th>
+                                            <th>地址</th>
+                                        </tr>
+                                    </thead>
+                                    
+                                    <tbody>
+                                    <foreach name="inc" item="vo">
+                                        <tr>
+                                            <td>{$vo['id']}</td>
+                                            <td>{$vo['name']}</td>
+                                            <td>{$vo['mphone']}</td>
+                                            <td>{$vo['location_id']}&nbsp;&nbsp;{$vo['location_idd']}&nbsp;&nbsp;{$vo['location_iddd']}&nbsp;&nbsp;{$vo['detail']}&nbsp;&nbsp;</td>
+                                        
+                                        </foreach></tr>
+                                    </tbody>
+                                    
+                                </table>
+                            </div>
+                            <!-- /.table-responsive -->
+                        </div>
+                        <!-- /.panel-body -->
+
+
+                                <button name="commit" class="btn btn-outline btn-primary" style="margin-top:10px;">添加</button>
+                                <button class="btn btn-outline btn-danger" style="margin-top:10px;">重置</button>
+                            </form>
+                        </div>
+                        <!-- /.col-lg-6 (nested) -->
+                       
+                    </div>
+                    <!-- /.row (nested) -->
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>	 
+
+
+    <script type="text/javascript">
+		$(document).ready(function() {
+		    showLocation();
+		});
+	</script> 
+
+</block>

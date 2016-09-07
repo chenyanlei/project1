@@ -1,0 +1,3 @@
+﻿文件下载网址  =>  文件保存路径
+无法从以下标签捕获到Image链接：<img src="<%=item.product_img%>
+about:blank  =>  D:\仿站小工具\koubei.jumei.com\images\c1e4056d64124289add1edfcebfa6cdb.gif

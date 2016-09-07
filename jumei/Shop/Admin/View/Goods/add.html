@@ -1,0 +1,162 @@
+<extend name="Index/index" />
+<block name="link">
+    <style type="text/css">
+        #del:hover{text-decoration:none;opacity:0.5;background-color:red;}
+    </style>
+</block>
+<block name="con">
+    <script type="text/javascript" charset="utf-8" src="__PUBLIC__/Admin/ueditor/ueditor.config.js"></script>
+    <script type="text/javascript" charset="utf-8" src="__PUBLIC__/Admin/ueditor/ueditor.all.min.js"> </script>
+    <script type="text/javascript" charset="utf-8" src="__PUBLIC__/Admin/ueditor/lang/zh-cn/zh-cn.js"></script>
+
+
+    <div class="row">
+        <div class="col-lg-12">
+            <h1 class="page-header">商品添加</h1>
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>  
+    <div class="row">
+        <div class="col-lg-12">
+            <div class="panel panel-default">
+                <div class="panel-heading">
+                </div>
+                <div class="panel-body">
+                    <div class="row">
+                        <div class="col-lg-6">
+                            <form role="form" action="{:U('Admin/Goods/insert')}" method="post" enctype="multipart/form-data">
+                                <div class="form-group">
+                                    <label>品牌名</label>
+
+                                    <select class="form-control" name="bid" id="sel">
+                                        <option value="0">请选择</option>
+                                        <foreach name="bname" item="vo" >
+                                            <option value="{$key}">{$vo}</option>
+                                            <!-- 隐藏域传{$key} -->
+                                        </foreach>
+                                    </select>
+                                </div>
+                                <script type="text/javascript" src="__PUBLIC__/Admin/jquery-1.8.3.min.js"></script>
+                                <script type="text/javascript">
+                                    $(function(){
+                                        $('#sel').change(function(){
+                                            // alert($(this).val());
+                                        })
+                                    })
+                                </script>
+                                <div class="form-group">
+                                    <label>商品名</label>
+                                    <input name="title" type="text" class="form-control" >
+                                </div>
+                                <div class="form-group">
+                                    <label>商品价格<span style="color:red;font-family:微软雅黑;font-size:12px;"> (必须为数字)</span></label>
+                                    <input name="price" type="text" class="form-control" >
+                                </div>
+                                <div class="form-group">
+                                    <label>原价<span style="color:red;font-family:微软雅黑;font-size:12px;"> (必须为数字)</span></label>
+                                    <input name="cprice" type="text" class="form-control" >
+                                </div>
+                                <div class="form-group">
+                                    <label>商品折扣<span style="color:red;font-family:微软雅黑;font-size:12px;"> (必须为数字)</span></label>
+                                    <input name="discount" type="text" class="form-control" >
+                                </div>
+                                <div class="form-group">
+                                    <label>商品包装</label>
+                                    <input name="box" type="text" class="form-control" >
+                                </div>
+                                <div class="form-group">
+                                    <label>商品规格</label>
+                                    <input name="kg" type="text" class="form-control" >
+                                </div>
+                                <div class="form-group">
+                                    <label>商品保质期</label>
+                                    <input name="year" type="text" class="form-control" >
+                                </div>
+                                <div class="form-group">
+                                    <label>原产国家</label>
+                                    <input name="made" type="text" class="form-control" >
+                                </div>
+                                <div class="form-group">
+                                    <label>温馨提示</label>
+                                    <input name="notice" type="text" class="form-control" >
+                                </div>
+                                <div class="form-group">
+                                    <label>适合人群</label>
+                                    <input name="toface" type="text" class="form-control" >
+                                </div>
+                                <div class="form-group">
+                                    <label>商品库存</label>
+                                    <input name="store" type="text" class="form-control" >
+                                </div>
+                                <div class="form-group">
+	                                <label>是否热消</label>
+	                                <select class="form-control" name="hot">
+	                                    <option value="1">是</option>
+	                                    <option value="0">否</option>
+	                                </select>
+                                </div>
+                                <div class="form-group">
+	                                <label>是否精品</label>
+	                                <select class="form-control" name="best">
+	                                    <option value="1">是</option>
+	                                    <option value="0">否</option>
+	                                </select>
+                                </div>
+                                <div class="form-group">
+	                                <label>商品类别</label>
+	                                <select class="form-control" name="cate">
+	                                	<option value="0">请选择</option>
+	                                	<foreach name="cates" item="vo"> 	
+	                                    	<option value="{$vo['id']}">{$vo['name']}</option>
+	                                    </foreach>
+	                                </select>
+                                </div>
+                                <div class="form-group">
+                                    <label>商品详情介绍</label>
+                                    <textarea name="intro" class="form-control" ></textarea>
+                                </div>
+                                <div class="form-group">
+                                    <label>商品的头像</label>
+                                    <input type="file" name="spic"><span style="color:red;font-family:微软雅黑;font-size:12px;"> (建议上传200 * 200的图片)</span>
+                                </div>
+								<div class="form-group">
+                                    <label>功效</label><br>
+                                    <label style="color:#666;"><input name="effect[]" type="checkbox"  value="补水保湿">补水,保湿,滋润</label>&nbsp;&nbsp;
+                                    <label style="color:#666;"><input name="effect[]" type="checkbox"  value="控油">控油</label>&nbsp;&nbsp;
+                                    <label style="color:#666;"><input name="effect[]" type="checkbox"  value="抗衰老/抗皱">抗衰老/抗皱</label>&nbsp;&nbsp;
+                                    <label style="color:#666;"><input name="effect[]" type="checkbox"  value="抗菌消炎">抗菌消炎</label>&nbsp;&nbsp;
+                                    <label style="color:#666;"><input name="effect[]" type="checkbox"  value="收缩毛孔">收缩毛孔</label>&nbsp;&nbsp;
+                                    <label style="color:#666;"><input name="effect[]" type="checkbox"  value="抗氧化">抗氧化</label></label>&nbsp;&nbsp;
+                                    <label style="color:#666;"><input name="effect[]" type="checkbox"  value="抗敏感">抗敏感</label>&nbsp;&nbsp;
+                                    <label style="color:#666;"><input name="effect[]" type="checkbox"  value="去黑眼圈">去黑眼圈</label>&nbsp;&nbsp;
+                                   <label style="color:#666;"><input name="effect[]" type="checkbox"  value="修护养护">修护养护</label>&nbsp;&nbsp;
+                                    <label style="color:#666;"><input name="effect[]" type="checkbox" value="安神镇静">安神镇静</label>&nbsp;&nbsp;
+                                    <label style="color:#666;"><input name="effect[]" type="checkbox"  value="纤颜塑形">纤颜塑形</label><br>
+                                </div>
+                                <div class="form-group">
+                                    <label>商品的详情</label>
+                                    <script id="editor" name="bigpics" type="text/plain" style="width:800px;height:500px;"></script>
+                                </div>
+                            
+                                <button  class="btn btn-primary">添加</button>
+                                <button type="reset" class="btn btn-default">重置</button>
+                            </form>
+                        </div>
+                        <!-- /.col-lg-6 (nested) -->
+                       
+                    </div>
+                    <!-- /.row (nested) -->
+                </div>
+                <!-- /.panel-body -->
+            </div>
+            <!-- /.panel -->
+        </div>
+        <!-- /.col-lg-12 -->
+    </div>	
+    <script type="text/javascript">
+    //实例化编辑器
+    //建议使用工厂方法getEditor创建和引用编辑器实例，如果在某个闭包下引用该编辑器，直接调用UE.getEditor('editor')就能拿到相关的实例
+    var ue = UE.getEditor('editor');
+
+    </script>  
+</block>

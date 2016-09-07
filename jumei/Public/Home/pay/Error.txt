@@ -1,0 +1,2 @@
+﻿文件下载网址  =>  文件保存路径
+about:blank  =>  C:\wamp\www\聚美页面 + 最新数据库\仿站小工具\cart.jumei.com\images\1201e50ed32e462e973adec0affd6bb2.gif

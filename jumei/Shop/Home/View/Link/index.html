@@ -1,0 +1,225 @@
+<extend name="Index/index"/>
+<block name="link">
+<title>商务合作 - 聚美优品</title>
+</block>
+<block name="rewritecss">
+    <!-- <link rel="stylesheet" href="__PUBLIC__/Home/link/css/jumei.min.css" type="text/css" media="screen" charset="utf-8" /> -->
+    <link rel="stylesheet" href="__PUBLIC__/Home/link/css/jumei_help_new.min.css" type="text/css" media="screen" charset="utf-8" />
+ 
+</block>   
+    
+<block name="con">
+<div id="container" style="margin:0 auto">
+    <ul id="helpTopnav" style="margin-top:20px;">
+    <li class="helpTop_navItem"><a href="/i/order/list" class="item01"></a></li>
+    <li class="helpTop_navItem"><a href="/i/shipping/list" class="item02"></a></li>
+    <li class="helpTop_navItem"><a href="/i/account/resetreq" class="item03"></a></li>
+    <li class="helpTop_navItem"><a href="/i/account/subscribe" class="item04"></a></li>
+    <li class="helpTop_navItem"><a href="/i/RMA/show" class="item05"></a></li>
+</ul>
+<div id="main" >
+    <div class="profile">
+        
+        <div class="round_container">
+            <div class="nav">
+    <h2>
+        <b></b>
+        <a href="/help/main">帮助中心</a>
+    </h2>
+    <dl>
+        <dt><b></b>使用帮助</dt>
+        <dd id="dd_ie_fix">
+            <a href="/help/guidebook">新手指南</a>
+            <a href="/help/faq">常见问题</a>
+            <a href="/help/get_update">获取更新</a>
+            <a href="/help/user_terms">用户协议</a>
+        </dd>
+    </dl>
+    <dl>
+        <dt><b></b>账户相关</dt>
+        <dd>
+            <a href="/help/invite_friends">邀请好友</a>
+            <a href="/help/member_level">会员等级</a>
+            <a href="/help/gold_credit">金币积分（新）</a>
+            <a href="/help/email_subscribe">邮件订阅</a>
+            <a href="/help/msg_subscribe">短信订阅</a>
+            <a href="/help/promocards">优惠卡券</a>
+            <a href="/help/email/mail163">邮件加入白名单</a>
+        </dd>
+    </dl>
+    <dl>
+        <dt><b></b>支付相关</dt>
+        <dd>
+            <a href="/help/two_for_freeshipping">满159包邮</a>
+            <a href="/help/pay_promocards">现金券支付</a>
+            <a href="/help/pay_balance">余额支付</a>
+            <a href="/help/pay_online">在线支付</a>
+            <a href="/help/pay_cod">货到付款</a>
+        </dd>
+    </dl>
+    <dl>
+        <dt><b></b>配送相关</dt>
+        <dd>
+            <a href="/help/lighting_shipping">闪电发货</a>
+            <a href="/help/delivery_state">配送说明</a>
+            <a href="/help/delivery_fee">运费说明</a>
+            <a href="/help/express_search">快递查询</a>
+            <a href="/help/check_goods">验货签收</a>
+        </dd>
+    </dl>
+    <dl>
+        <dt><b></b>售后服务</dt>
+        <dd>
+            <a href="/activity_guarantee.html" target="_blank">正品保证</a>
+            <a href="/help/refund_policies">退货政策</a>
+            <a href="/help/refund_handle">退货办理</a>
+            <a href="/help/refund_state">退款说明</a>
+            <a href="/help/koubei">口碑中心</a>
+        </dd>
+    </dl>
+    <dl>
+        <dt><b></b>聚美手机版</dt>
+        <dd>
+            <a href="http://hd.jumei.com/act/9-478-1477-download_app.html" target="_blank">手机客户端</a>
+            <a href="http://m.jumei.com/"  target="_blank">聚美WAP版</a>
+        </dd>
+    </dl>
+    <h2>
+        <b></b>
+        关于聚美优品
+    </h2>
+    <dl>
+        <dt><b></b>聚美优品介绍</dt>
+        <dd>
+            <a href="/about/about_us">关于我们</a>
+            <a href="/about/founder">企业创始人</a>
+            <a href="http://www.jumei.com/activity_meizhuang1218.html" target="_blank">明星热荐</a>
+            <!--<a href="/about/progress">聚美历程回顾</a>-->
+        </dd>
+    </dl>
+    <dl>
+        <dt>
+            <b></b>
+            <a href="/i/market/cooperation"  target="_blank">品牌专区</a>
+        </dt>
+    </dl>
+    <dl>
+        <dt>
+            <b></b>
+            <a href="/about/news_center">媒体报道</a>
+        </dt>
+    </dl>
+    <dl>
+        <dt>
+            <b></b>
+            <a href="/about/awards_honor">所获荣誉</a>
+        </dt>
+    </dl>
+    <dl style="background:#fff">
+        <dt ><b></b>携手聚美</dt>
+        <dd>
+            <a href="/about/business">商务合作</a>
+            <a href="http://jumeizhaopin.hirede.com/">招贤纳士</a>
+        </dd>
+    </dl>
+    </div>
+
+<script>
+    function fix_ie6(){
+        $('#dd_ie_fix a').hide().show();
+    }
+    $(function(){
+        var isIE6= /msie 6/i.test(navigator.userAgent);
+
+        if (isIE6) {
+            setTimeout(fix_ie6, 200);
+        }
+    })
+</script>
+            <input type="hidden" id="J_Page_Label" value="business">
+            <div class="content">
+                <h1>商务合作</h1>
+                <div class="sector"><h3><li>化妆品品牌/代理商团购合作</li></h3><p>如果您希望在聚美优品组织团购，请<a target="_blank" href="/i/feedback/seller" style="color:#ED145B"><u>在线提交团购信息</u></a></p><p>服装/鞋包/配饰等行业品牌合作事宜请<a href="http://bj.jumei.com/activity_pop_invite_business.html?from=about_business" target="_blank" style="color:#ED145B">查看POP模式说明</a><br /></p>    <br /><h3><li>品牌（市场）合作</li></h3><p>1.电视媒体合作</p><p>2.平面媒体合作</p><p>3.广告投放合作</p><p>4.线下活动合作</p><p>5.校园推广合作</p><p>6.明星宣传合作</p><p>7.联合推广合作</p><p>市场部联系方式——</p><p>Email:hezuo@jumei.com</p><p><a target="_blank" href="http://www.jumei.com/i/market/cooperation" style="font-size: 12px;color:#ED145B">查看以往合作案例》</a></p><br /><h3><li>线上商务合作</li></h3><p>1.优惠券合作</p><p>2.联合推广活动合作</p><p>3.第三方平台合作</p><p>4.联盟合作</p><p>5.银行与支付合作</p><p>6.社会化媒体营销合作</p><p>7.电信运营商合作</p><p>商务拓展部联系方式——</p><p>Email:shuos@jumei.com</p><p><br /></p><h3><li>友情链接申请</li></h3><p>1.站点PR值≥6，alexa排名在1万内；内页要求PR≥2</p><p>2.百度谷歌搜索引擎收录数据大于10000</p><p>3.相关站点优先，如：化妆品、购物、女性时尚、美容等</p><p>如符合条件请先做好本站在贵公司的友情链接</p><p>关键词：化妆品 或 团购网</p><p>URL：http://www.jumei.com</p><p>友情链接申请邮箱：qingli@jumei.com</p><p><a target="_blank" href="{:U('Home/Link/friend')}" style="color:#ED145B"><u>查看友情链接》</u></a></p><br />            <p>聚美优品为北京创锐文化传媒有限公司所有并运营。</p></div>
+            </div>
+        </div>
+    </div>
+    </div>
+
+
+<script type="text/javascript">
+    $(function(){
+//        if($.browser.msie) {
+//            $('.faqlist li p').children().show();
+//        }
+//        $('.faqlist li h4').click(function(){
+//            $('.faqlist li p').not($(this).nextAll()).hide();
+//            if(!$.browser.msie){
+//                $('.faqlist li table').not($(this).nextAll()).hide();}
+//            $('.faqlist li h4 .switch_on').not($(this).children('.switch')).removeClass('switch_on');
+//            $(this).nextAll().toggle();
+//            $(this).children('.switch').toggleClass('switch_on');
+//        }).nextAll().hide(); xiaoz
+
+        //自主导航栏hover效果
+        $("#helpTopnav a").hover(function(){
+            $(this).addClass("on_a");
+            $(this).parent("li").addClass("on_nav");
+            $(this).parent("li").prev("li").find("a").addClass("on_a1")
+        },function(){
+            $(this).removeClass("on_a");
+            $(this).parent("li").removeClass("on_nav");
+            $(this).parent("li").prev("li").find("a").removeClass("on_a1");
+        });
+
+        //start for ticket #32192
+        /**
+         * 滚动到node-name属性与hashStr参数匹配的A标签
+         * @param hashStr {String} like "#controller"
+         */
+        var scrollToHash = function(hashStr){
+            var scrollOffset = 0;
+
+            hashStr = hashStr.slice(1, hashStr.length);
+            if (hashStr !== ""){
+                var nodeTag = $("a[node-name=" + hashStr +"]");
+                scrollOffset = nodeTag.length > 0 ? nodeTag.offset().top : 0;
+            }
+            $('html,body').animate({
+                scrollTop:scrollOffset
+            }, 300);
+            // change location hash
+            window.location.hash = "#" + hashStr;
+        };
+
+        $(".content a").each(function(i, n){
+            var node = $(n),
+                anchor = node.attr("name");
+
+            //改变锚点属性名以阻止当url中含有hash时浏览器的默认滚动
+            if (anchor){
+                node.removeAttr("name").attr("node-name", anchor);
+            }
+        }).click(function(e){
+            var hashStr = $(this).attr("href");
+
+            //是否是指向锚点的链接
+            if (hashStr && (hashStr.charAt(0) === "#")){
+                e.preventDefault();
+                scrollToHash(hashStr);
+            }
+        });
+
+        //当页面加载时，若url中含有hash，则调用scrollToHash方法滚动到锚点
+        var hashIndex = window.location.href.indexOf("#");
+        if (hashIndex != -1){
+            var hash = window.location.href.slice(hashIndex,  window.location.href.length);
+            scrollToHash(hash);
+        };
+        //end for ticket #32192
+    });
+</script>
+
+</div>
+
+    <div class="clear"></div>    
+ </block>   

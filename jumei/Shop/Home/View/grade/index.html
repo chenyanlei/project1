@@ -1,0 +1,311 @@
+<extend name="Index/index"/>
+<block name="link">
+    <title>我的会员等级</title>
+    <link rel="stylesheet" href="__PUBLIC__/Home/Grade/css/jumei_usercenter.min.css?v7" type="text/css" media="screen" charset="utf-8" />
+</block>
+   
+<block name="con">
+<div class="profile">
+<script src="__PUBLIC__/Home/Grade/js/jquery.selectui.min.js"></script>
+<!--[if lte IE 8]>
+    <script src="http://s0.jmstatic.com/templates/jumei/js/v46.7/Jumei.Usercenter.ie.min.js?v21"></script>
+<![endif]-->
+<script type="text/javascript">
+var checkuid = 2610126;
+
+    if(checkuid != $.cookie('uid')){
+        $.getJSON('http://www.jumei.com/i/tools/diff_cookie?callback=?',{},function(){})
+    }
+</script>
+<div class="nav">
+    <div class="notice">
+        <a href="/i/account/avatar" target="_blank" style="border-bottom: 0;padding:0;"><img src="{$uinfo['pic']|default="__PUBLIC__/Home/Comment/images/liyugang.png"}" alt="nyyn1199" /></a>
+        <p class="nickname"><a style="padding-left:0;line-height: 1.8;color:#ed145b" href="/i/account/settings" target="_blank">{$uinfo['username']|default=$info['phone']}</a></p>
+        <p><a style="padding-left:0;line-height: normal;" href="/i/membership" target="_blank">{$uinfo['grade']|default="普通会员"}
+        </a></p>
+        <p class="uid">用户ID: {$uinfo['uid']}</p>
+    </div>
+    <h2><b></b>我的聚美优品</h2>
+    <a href="{:U('Home/Order/order')}" class="list"><b></b>我的订单</a>
+    <a href="/i/wishdeal/onsale" class="wish"><b></b>我的心愿单</a>
+    <a href="/i/product/fav_products" class="fav"><b></b>我的收藏</a>
+    <a href="{:U('Home/Grade/index')}" class="member selected"><b></b>我的会员等级</a>
+    <a href="/i/membership/show_promocards" class="cards"><b></b>我的现金券</a>
+    <a href="/i/membership/show_red_envelope" class="envelope"><b></b>我的红包</a>
+    <a href="/i/credit/credit_info" class="credit"><b></b>我的金币</a>
+    <a href="/i/activity/mycode" class="code new"><b></b>我的邀请码</a>
+    <a href="/i/account/trial_apply" class="trial"><b></b>我的Free派</a>
+    <a href="/i/account/mysize" class="code new"><b></b>我的尺码</a>
+    <a href="/i/account/subscribe" class="subscribe"><b></b>订阅邮件短信</a>
+    <h2><b></b>管理个人账户</h2>
+    <a href="/i/account/balance" class="balance"><b></b>我的余额</a>
+    <a href="/i/account/balance_record" class="balance"><b></b>我的提现退款</a>
+    <a href="/i/giftcard/list" class="giftcard"><b></b>我的礼品卡</a>
+    <a href="/i/account/settings" class="settings"><b></b>设置账户信息</a>
+    <a href="/i/account/password" class="password"><b></b>修改密码</a>
+    <a href="/i/account/mobile_bind_status" class="bind"><b></b>绑定手机</a>
+    <a href="{:U('Home/Address/address')}" class="addr"><b></b>管理收货地址</a>
+    <a href="/i/account/sync_share" class="share"><b></b>绑定站外分享</a>
+    <h2><b></b>售后服务</h2>
+    <a href="/i/RMA/service_list/" class="rmapre"><b></b>我的售后咨询</a>
+    <a href="/i/RMA/list/" class="rmalist"><b></b>我的退货</a>
+    <h2><b></b>聚美惊喜</h2>
+    <a href="/i/membership/lucky_box" class="lucky"><b></b>我的喜从盒来</a>
+    <a href="/i/membership/gift_card" class="gift"><b></b>兑换VIP卡</a>
+
+
+
+</div>
+
+
+<style>
+ .profile .nav .giftcard b {
+     background-image: url( http://f0.jmstatic.com/static_account/dist/20151020/images/gift_card/giftcard_menu_icon.png)
+ }
+</style>
+<style>
+    .profile .filter+table th {
+        border: 1px solid rgb(219, 214, 208);
+        border-top: 0;
+    }
+</style>
+
+<h1>我的会员等级</h1>
+<div class="content">
+    <div class="insider_content" style="position:relative;">
+        <a href="/i/account/avatar" style="display:block;float:left"><img src="{$uinfo['pic']|default="__PUBLIC__/Home/Comment/images/liyugang.png"}" width="100px" height="100px"></a>
+        <div class="insider_name" style="float:left;margin-left:10px;">{$uinfo['username']|default=$uinfo['phone']}</div>
+        <div class="insider_member;" style="line-height:26px;font-size:16px;font-weight:bold;position:absolute;top:30px;left:110px;color:#EC1A5B">{$uinfo['grade']|default="普通会员"}</div>
+                    <!-- 普通会员不显示 -->
+           
+                <div class="insider_useful" style="padding-top:40px;position:absolute;top:45px;left:110px;"> 升级到钻石会员，可享受<span class="insider_leftover">钻石会员卡、全场包邮、线下活动邀请、美卡纸质版杂志</span>等7项等级特权</div>
+    </div>
+
+    <div class="insider_mostly insider_space" style="background:#fff;">
+        <div class="insider_title">升级进度</div>
+        <div class="insider_content">
+            <div class="insider_left">
+                                                                                                                                                                        
+                                                            <div class="insider_left_con">
+                            <div class="insider_keep"><span class="insider_arrowleft"></span>升级到黄金会员</div>
+                            <div class="insider_keep_con">
+                            只需在聚美优品购物
+                                    <span class="bold">4500元</span>，且保持累计退货款金额不超过累计购物金额的<span
+                                        class="bold">10.00%</span>，即可在11月继续享受白金会员                                    优惠
+                                                            </div>
+                            <div class="insider_keep_con">
+                                - 每个日历月累计购买超过<span class="bold">100</span>元                          </div>
+                                                            <div class="insider_keep_con">- 历史退货商品价值比例小于
+                                    <span class="pink">10.00                                            %</span><span class="insider_complete"></span>                                </div>
+                                                    </div>
+                    
+                                            <div class="insider_left_con">
+                            <div class="insider_keep">
+                                <span class="insider_arrowtop"></span>
+                                升级到钻石会员                            </div>
+                            <div class="insider_keep_con">
+                            只需继续在聚美优品购物<span class="bold">8469                                            元</span>,
+                            且保持累计退货款金额不超过累计购物金额的<span class="bold">10.00%</span>，
+                            即可拥有钻石会员资格
+                                                            </div>
+                        </div>
+                                                    
+                                    <div class="insider_vessel">
+                        <span class="insider_leftTop"></span>
+                        <span class="insider_rightTop"></span>
+                        <span class="insider_leftBottom"></span>
+                        <span class="insider_rightBottom"></span>
+                                <span style="display:inline-block;">升级到钻石会员                                    后立享以下9大特权：</span>
+                        <ul class="insider_sort">
+                                                            <li>全场包邮</li>
+                                                            <li>满100返10元现金券</li>
+                                                            <li>钻石专享换购</li>
+                                                            <li>钻石专享喜从盒来</li>
+                                                            <li>钻石专享会员卡</li>
+                                                            <li>生日特权礼包</li>
+                                                            <li>聚美线下活动邀请</li>
+                                                            <li>体验试用产品优先权</li>
+                                                            <li>喜从盒来订购专属</li>
+                                                    </ul>
+                    </div>
+                            </div>
+            <div class="insider_right">
+                <div class="insider_addUp">累计购物</div>
+                <div class="insider_price">¥{$uinfo['sum']|default="0"}</div>
+                <div class="insider_useful">
+                    付款生效30天后金额计入<br/>
+                    您的累计购物额度（不包括快递/红包/现金券/退货相应金额）
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <div class="insider_mostly insider_space" style="background:#fdfdfe;">
+    <div class="insider_title">会员特权</div>
+    <div class="insider_privilege">
+        <ul class="insider_priUl">
+            <li>
+                <span class="insider_corn insider_corn2"></span>
+                <span class="insider_addUp">满就返</span>
+                <span class="insider_keep_con">
+                    <span class="insider_member">单个订单内每满100元即返10元现金券（无启用金额；买越多，返越多）</span>
+                </span>
+            </li>
+            <li>
+                <span class="insider_corn insider_corn3"></span>
+                <span class="insider_addUp">换购特惠</span>
+                <span class="insider_keep_con">参加不定时推出的黄金/白金会员特惠换购产品</span>
+            </li>
+            <li>
+                <span class="insider_corn insider_corn4"></span>
+                <span class="insider_addUp">喜从盒来</span>
+                <span class="insider_keep_con">享受“喜从盒来”专属（仅供黄金/白金/钻石会员抢购）|   升级到 “钻石会员” 后：<br>钻石会员专享“喜从盒来”订阅特权（即将推出）</span>
+            </li>
+            <li>
+                <span class="insider_corn insider_corn5"></span>
+                <span class="insider_addUp">体验部分试用产品</span>
+                <span class="insider_keep_con">优先体验专属黄金/白金会员的试用产品  |  升级到 “钻石会员” 后：<br>优先其他等级会员体验所有的试用产品</span>
+            </li>
+            <li style="border: none;">
+                <span class="insider_corn insider_corn9"></span>
+                <span class="insider_addUp">短信订阅</span>
+                <span class="insider_keep_con">最多可订阅20种商品的短信提醒</span>
+            </li>
+        </ul>
+    </div>
+</div>
+
+    <div class="insider_mostly insider_space" style="background:#fdfdfe;">
+        <div class="insider_title">会员升降级规则</div>
+        <div class="insider_privilege">
+            <ul class="insider_priUl">
+                <li>
+                    <div class="insider_addUp">有哪些会员等级？</div>
+                    <div class="insider_explain">聚美优品目前设有普通会员、黄金会员、白金会员、钻石会员四个等级。</div>
+                </li>
+                <li>
+                    <div class="insider_addUp">会员等级的标准是什么？</div>
+                    <div class="insider_explain" style="padding-top:5px;">
+                        普通会员：注册聚美优品即可获得；<br>
+                        黄金会员：累计在聚美优品有效消费（注，下同）399元即可获得；<br>
+                        白金会员：累计在聚美优品有效消费1299元即可获得。<br>
+                        钻石会员：累计在聚美优品有效消费9999元即可获得。 <br>
+                        注：快递费、红包、现金券、退货费，不包括在累计购物金额中。由于聚美优品承诺30天无条件退货，订单付款成功（货到付款为发货后）30天后才会被计入累计购物额中。
+                    </div>
+                </li>
+                <li style="border:none;">
+                    <div class="insider_addUp">不同的会员等级都有什么优惠？</div>
+                    <div class="insider_explain">
+                        <table class="insider_tier">
+                            <tr>
+                                <td width="20%">普通会员</td>
+                                <td width="23%">黄金会员</td>
+                                <td width="23%">白金会员</td>
+                                <td width="34%">钻石会员</td>
+                            </tr>
+                            <tr>
+                                <td>- 享受聚美优品每日超值优惠产品；</td>
+                                <td>
+                                    - 满100返5元现金券（无启用金额；买越多，返越多）<br>
+                                    - 黄金会员专享优惠专场<br>
+                                    - 黄金会员专享换购特惠<br>
+                                    - 优先体验部分试用产品<br>
+                                    - 喜从盒来订购专属<br>
+                                    - 最多短信订阅10种商品
+                                </td>
+                                <td>
+                                    - 满100返10元现金券（无启用金额；买越多，返越多）<br>
+                                    - 白金会员专享优惠专场<br>
+                                    - 白金会员专享换购特惠<br>
+                                    - 优先体验部分试用产品<br>
+                                    - 喜从盒来订购专属<br>
+                                    - 最多短信订阅20种商品
+                                </td>
+                                <td>
+                                    - 全场包邮（除海淘直邮，海淘直邮只减5元运费）<br>
+                                    - 满100返10元现金券（无启用金额；买越多，返越多）<br>
+                                    - 钻石会员专享优惠专场<br>
+                                    - 钻石会员专享换购特惠<br>
+                                    - 优先体验所有试用产品<br>
+                                    - 喜从盒来订购专属<br>
+                                    - 实体聚美优品钻石会员卡<br>
+                                    - 生日特权礼包<br>
+                                    - 聚美优品线下活动邀请<br>
+                                    - 最多短信订阅50种商品
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                </li>
+                <li style="border:none;">
+                    <div class="insider_addUp">会员的保级/降级规则</div>
+                    <div class="insider_explain">
+                        <div style="padding-top:5px;">
+                            普通会员：<br>
+
+                            <p class="rule_section">- 成为普通会员，终身有效</p>
+                        </div>
+                        <div style="padding-top:5px;">
+                            黄金会员：<br>
+
+                            <p class="rule_section">
+                                - 保级：每个自然月在聚美购物一次 <br>
+                                - 降级：当月未在聚美购物，下月1日由黄金会员降级为普通会员
+                            </p>
+                        </div>
+                        <div style="padding-top:5px;">
+                            白金会员：<br>
+
+                            <p class="rule_section">
+                                - 保级：每个自然月保持购物100元，且累计退货款金额不超过累计购物金额的10%<br>
+                                - 降级：当月未在聚美购物满100元，下月1日由白金会员降级为黄金会员；当累计退货款金额超过累计购物金额10%，次日将会由白金会员降级为黄金会员
+                            </p>
+                        </div>
+                        <div style="padding-top:5px;">
+                            钻石会员：<br>
+
+                            <p class="rule_section">
+                                - 保级：每个自然月保持购物500元，且累计退货款金额不超过累计购物金额的10%<br>
+                                - 降级：当月未在聚美购物满500元，下月1日由钻石会员降级为白金会员；当累计退货款金额超过累计购物金额10%，次日将会由钻石会员降级为白金会员
+                            </p>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+            <a class="btn_mid_pink insider_button" href="/help/member_level" target="_blank">查看更多会员常见问题</a>
+        </div>
+    </div>
+</div>
+</div>
+<div class="clear"></div>
+<script type="text/javascript">
+/*301 www域名跳转
+ *jiel
+ */
+$(function () {
+        var cur_location = $.cookie('default_site_25') || '';
+        if (cur_location == '') {
+        $.getJSON(RM_SITE_MAIN_WEBBASEURL + 'i/ajax/getsite?callback=?', function (data) {
+            cur_location = data.site;
+            })
+        }
+        var url_host = window.location.host.slice(0,2); //获取当前地址域名
+
+        if(url_host =='bj' || url_host =='sh'|| url_host =='gz' || url_host =='cd'){
+            if(url_host != cur_location) {
+                $.cookie('default_site_25',url_host,{expires: 1,path: "/",domain: RM_SITE_MAIN_TOPLEVELDOMAINNAME});
+                cur_location = url_host;
+            }
+        }
+        $("body").delegate("a,area", "click", function () {
+            if(cur_location == ''){ cur_location ='www'};
+            var href = $(this).attr("href") || '';
+            if(href.indexOf('/i/deal/mobile_subscribe')<0 && href !=''){
+            var reg = new RegExp("^(http://)(hd(?=.jumei.com)|huodong(?=.jumei.com)|www(?=.jumei.com/i/deal))(.*)$","i");
+            var href =href.replace(reg, "$1"+ cur_location +"$3");
+            $(this).attr("href",href);
+        }
+    })
+})
+</script>
+</block>

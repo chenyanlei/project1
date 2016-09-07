@@ -1,0 +1,39 @@
+﻿.lightbox {
+  filter: progid:DXImageTransform.Microsoft.gradient(startColorStr=#4D000000, endColorStr=#4D000000);
+  background: rgba(0, 0, 0, 0.3); }
+  .lightbox dialog {
+    background: none;
+    padding: 0;
+    border: 0; }
+  .lightbox .dialog {
+    -webkit-box-shadow: 1px 0 4px rgba(0, 0, 0, 0.4);
+    box-shadow: 1px 0 4px rgba(0, 0, 0, 0.4);
+    border: 1px solid #999;
+    padding-bottom: 1px;
+    position: relative;
+    line-height: 1.5;
+    background: #fff;
+    font-size: 12px;
+    color: #333;
+    *zoom: 1; }
+
+.lightbox dialog, .lightbox .dialog {
+  -webkit-border-radius: 2px;
+  border-radius: 2px; }
+
+.dialog h2 {
+  -webkit-border-radius: 2px 2px 0 0;
+  border-radius: 2px 2px 0 0;
+  background: #faf7f8;
+  font-weight: bold;
+  line-height: 40px;
+  font-size: 14px;
+  padding: 0 20px;
+  color: #ef3270;
+  border-bottom: 1px solid #ede9ea; }
+  .dialog h2 .close#cboxClose {
+    display: block; }
+
+@media all and (min-width: 0) {
+  .lightbox .dialog {
+    border: 1px solid #909090; } }

@@ -1,0 +1,855 @@
+<extend name="index:index" />
+<block name="rewritecss">
+<link rel="stylesheet" href="__PUBLIC__/Home/search/imgs/jumei.css" type="text/css"
+        media="screen" charset="utf-8">
+        <link rel="stylesheet" href="__PUBLIC__/Home/search/imgs/app.css" type="text/css"
+        media="screen" charset="utf-8">
+        <link rel="stylesheet" href="__PUBLIC__/Home/search/imgs/common.css" type="text/css"
+        media="screen" charset="utf-8">
+        <link rel="stylesheet" href="__PUBLIC__/Home/search/imgs/jumei_search.css"
+        type="text/css" media="screen" charset="utf-8">
+        <link type="text/css" rel="stylesheet" href="__PUBLIC__/Home/search/imgs/jumei_newmall_wide_new.css">
+        <style type="text/css">
+            #newlife{
+                width:30px;
+                height:30px;
+                position:absolute;
+                z-index:10000000;
+                border-radius:50%;
+            }
+
+        </style>
+</block>
+<block name="bar1">
+</block>
+<block name="con">
+    <div id="container">
+            <div id="bread_container">
+                <a id="bread_prev" href="javascript:void(0);">
+                </a>
+                <div class="bread_container_con">
+                    <div class="search_crumb clearfix" style="width:1090px">
+                        <if condition="$lay['layer'] eq 1">
+                            <ul class="clearfix fl bread_ul">
+                                <li class="bread_first_item">
+                                    <a href="{:U('Home/Index1/index')}">
+                                        化妆品首页
+                                    </a>
+                                </li>
+                                <li>
+                                    <span>
+                                        &gt;
+                                    </span>
+                                </li>
+                            </ul>
+                            <div class="selected_panel">
+                                <p style="display: none;" id="cat_id">
+                                    1
+                                </p>
+                                <p id="{$lay['id']}">
+                                    {$lay['name']}
+                                    </a>
+                                </p>
+                                <div style="width: 242px; display: none;" class="sub_selected_panel clearfix"
+                                id="J_sub_selected_panel">
+                                    <ul class="clearfix">
+                                        <foreach name="lay1" item="vo">
+                                            <li>
+                                                <a href="{:U('Home/Search/index',array('cate'=>$vo['id']))}">
+                                                    {$vo['name']}
+                                                </a>
+                                            </li>
+                                        </foreach>
+                                    </ul>
+                                    <ul class="clearfix">
+                                        <foreach name="cateinfo" item="vo">
+                                            <li>
+                                                <a href="{:U('Home/Search/index',array('cate'=>$vo['id']))}">
+                                                    {$vo['name']}
+                                                </a>
+                                            </li>
+                                        </foreach>
+                                    </ul>
+                                    <i class="arrow_tri1">
+                                    </i>
+                                    <i class="arrow_tri">
+                                    </i>
+                                </div>
+                                <div style="width: 242px;" class="hover_mask">
+                                </div>
+                            </div>
+                                <if condition="$price eq null">
+                                <else />
+                                <p class="search_gt">
+                                    >
+                                </p>
+                                </if>
+                            <div class="filter_choosed_item_wrap">
+                                <if condition="$price eq null">
+                                <else />
+
+                                    <div id='effect_warp' class='filter_choosed_item'>
+                                        <span title='价格:0-139' class='next_selected_bor'>价格:{$price}</span><a href="{:U('Home/Search/index'.$url,array('delete'=>'1'))}"></a>
+                                        <div class='clear'></div>
+                                    </div>
+                                </if>
+                            </div>
+                            <elseif condition="$lay['layer'] eq 2" />
+                            <ul class="clearfix fl bread_ul">
+                                <li class="bread_first_item">
+                                    <a href="{:U('Home/Index1/index')}">
+                                        化妆品首页
+                                    </a>
+                                </li>
+                                <li>
+                                    <span>
+                                        &gt;
+                                    </span>
+                                </li>
+                                <li>
+                                    <span>
+                                        <a href="{:U('Home/Search/index',array('cate'=>$layp['id']))}">
+                                            {$layp['name']}
+                                        </a>
+                                    </span>
+                                </li>
+                                <li>
+                                    <span>
+                                        &gt;
+                                    </span>
+                                </li>
+                            </ul>
+                            <div class="selected_panel">
+                                <p style="display: none;" id="cat_id">
+                                    1
+                                </p>
+                                <p id="{$lay['id']}">
+                                    {$lay['name']}
+                                    </a>
+                                </p>
+                                <div style="width: 242px; display: none;" class="sub_selected_panel clearfix"
+                                id="J_sub_selected_panel">
+                                    <ul class="clearfix">
+                                        <foreach name="lays" item="vo">
+                                            <li>
+                                                <a href="{:U('Home/Search/index',array('cate'=>$vo['id']))}">
+                                                    {$vo['name']}
+                                                </a>
+                                            </li>
+                                        </foreach>
+                                    </ul>
+                                    <ul class="clearfix">
+                                        <foreach name="cateinfo" item="vo">
+                                            <li>
+                                                <a href="{:U('Home/Search/index',array('cate'=>$vo['id']))}">
+                                                    {$vo['name']}
+                                                </a>
+                                            </li>
+                                        </foreach>
+                                    </ul>
+                                    <i class="arrow_tri1">
+                                    </i>
+                                    <i class="arrow_tri">
+                                    </i>
+                                </div>
+                                <div style="width: 242px;" class="hover_mask">
+                                </div>
+                            </div>
+                            <if condition="$price eq null">
+                            <else />
+                                <p class="search_gt">
+                                    >
+                                </p>
+                            </if>
+                            <div class="filter_choosed_item_wrap">
+                                <if condition="$price eq null">
+                                <else />
+                                    <div id='effect_warp' class='filter_choosed_item'>
+                                        <span title='价格:0-139' class='next_selected_bor'>价格:{$price}</span><a href="{:U('Home/Search/index'.$url,array('delete'=>'1'))}"></a>
+                                        <div class='clear'></div>
+                                    </div>
+                                </if>
+                            </div>
+                            <elseif condition="$lay['layer'] eq 3" />
+                            <ul class="clearfix fl bread_ul">
+                                <li class="bread_first_item">
+                                    <a href="{:U('Home/Index1/index')}">
+                                        化妆品首页
+                                    </a>
+                                </li>
+                                <li>
+                                    <span>
+                                        &gt;
+                                    </span>
+                                </li>
+                                <li>
+                                    <span>
+                                        <a href="{:U('Home/Search/index',array('cate'=>$layp['id']))}">
+                                            {$layp['name']}
+                                        </a>
+                                    </span>
+                                </li>
+                                <li>
+                                    <span>
+                                        &gt;
+                                    </span>
+                                </li>
+                            </ul>
+                            <div class="selected_panel">
+                                <p style="display: none;" id="cat_id">
+                                    1
+                                </p>
+                                <p id="{$lay['id']}">
+                                    {$lays2['name']}
+                                    </a>
+                                </p>
+                                <div style="width: 242px; display: none;" class="sub_selected_panel clearfix"
+                                id="J_sub_selected_panel">
+                                    <ul class="clearfix">
+                                        <foreach name="lays" item="vo">
+                                            <li>
+                                                <a href="{:U('Home/Search/index',array('cate'=>$vo['id']))}">
+                                                    {$vo['name']}
+                                                </a>
+                                            </li>
+                                        </foreach>
+                                    </ul>
+                                    <ul class="clearfix">
+                                        <foreach name="layg" item="vo">
+                                            <li>
+                                                <a href="{:U('Home/Search/index',array('cate'=>$vo['id']))}">
+                                                    {$vo['name']}
+                                                </a>
+                                            </li>
+                                        </foreach>
+                                    </ul>
+                                    <i class="arrow_tri1">
+                                    </i>
+                                    <i class="arrow_tri">
+                                    </i>
+                                </div>
+                                <div style="width: 242px;" class="hover_mask">
+                                </div>
+                            </div>
+                            <p class="search_gt">
+                                >
+                            </p>
+                            <div class="filter_choosed_item_wrap">
+                                <!--当前选择的分类-->
+                                <div id="classification_warp" class="filter_choosed_item">
+                                    <span title="分类:面膜贴" class="next_selected_bor">
+                                        分类:{$lay['name']}
+                                    </span>
+                                    <a href="{:U('Home/Search/index',array('cate'=>$lays2['id']))}">
+                                    </a>
+                                    <div class="clear">
+                                    </div>
+                                </div>
+                                <if condition="$price eq null">
+                                <else />
+                                    <div id='effect_warp' class='filter_choosed_item'>
+                                        <span title='价格:0-139' class='next_selected_bor'>价格:{$price}</span><a href="{:U('Home/Search/index'.$url,array('delete'=>'1'))}"></a>
+                                        <div class='clear'></div>
+                                    </div>
+                                </if>
+                            </div>
+                        <else />
+                             <ul class="clearfix fl bread_ul">
+                                <li class="bread_first_item">
+                                    <a href="{:U('Home/Index1/index')}">
+                                        化妆品首页
+                                    </a>
+                                </li>
+                              </ul>  
+                        </if>
+                        <!----右侧搜索框 start ---->
+                        <div class="right_search" id="J_bread_search">
+                            <form action="/" method="get" target="_self">
+                                <span class="search_gt_1">
+                                    &gt;
+                                </span>
+                                <span class="bread_search_title" id="J_bread_search_title">
+                                </span>
+                                <input class="bread_search_input" name="search" id="J_bread_search_input"
+                                type="text">
+                                <input value="" class="bread_search_img" id="J_right_search_submit" type="submit">
+                            </form>
+                        </div>
+                        <!----右侧搜索框 end---->
+                    </div>
+                </div>
+                <a id="bread_next" href="javascript:void(0);">
+                </a>
+            </div>
+            <div id="body">
+                <div id="search_result_wrap">
+                    <!--存在搜索结果显示的 页面内容 start-->
+                    <div class="search_info" id="J_search_info">
+                    </div>
+                    <div class="search_filter_title">
+                        <div class="search_filter_top">
+                            <strong>
+                                在
+                                <span>
+                                    面部护肤
+                                </span>
+                                中筛选
+                                <label>
+                                    （多选模式，每个属性最多可同时选5个选项）
+                                </label>
+                            </strong>
+                        </div>
+                    </div>
+                   <if condition="$lay['layer'] neq null">
+                    <div class="search_filter">
+                      
+                        <div class="filter_con">
+                            <div class="filter_tit">
+                                <p class="filter_brand_span clearfix">
+                                    <span class="filter_brand_span_keyword">
+                                        {$lay['name']}&nbsp;
+                                    </span>
+                                    下
+                                </p>
+                                <span>
+                                    分类:
+                                </span>
+                            </div>
+                            <div style="height: auto;" class="filter_attrs" id="filter_cat">
+                                <ul>
+                                    <foreach name="cateinfo" item="vo">
+                                        <li class="" title="面膜">
+                                            <a name="14" id="item_1_14" href="{:U('Home/Search/index'.$url,array('cate'=>$vo['id']))}">
+                                                {$vo['name']}
+                                            </a>
+                                        </li>
+                                    </foreach>
+                                </ul>
+                                <div class="placeholder_line">
+                                </div>
+                                <div class="bottom_multi_selecteds">
+                                    <label class="filter_tit_wide">
+                                        已选分类:
+                                    </label>
+                                    <div class="bms_container">
+                                        <span style="display: none;" class="search_current_item">
+                                            1
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="multi_buttons clearfix">
+                                <p class="btn_multi_hint">
+                                    提示:最多可同时选5个选项
+                                </p>
+                                <div class="multi_area">
+                                    <a href="javascript:;" class="btn_multi_submit" title="确定" id="btn_multi_submit"
+                                    name="1">
+                                    </a>
+                                    <a href="#container" title="重选" class="btn_multi_reset J_btn_multi_reset"
+                                    id="btn_multi_reset">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+
+                        <if condition="$price eq null">          
+                        <div style="border-bottom: medium none;" class="filter_con">
+                            <div class="filter_tit">
+                                价格:
+                            </div>
+                            <div style="height: auto;" class="filter_attrs" id="filter_price">
+                                <ul>
+                                    <li title="">
+                                        <a name="0-139" id="item_3_0-139" href="{:U('Home/Search/index'.$url,array('price'=>'0-139元'))}">
+                                            0-139元
+                                        </a>
+                                    </li>
+                                    <li title="">
+                                        <a name="140-329" id="item_3_140-329" href="{:U('Home/Search/index'.$url,array('price'=>'140-329元'))}">
+                                            140-329元
+                                        </a>
+                                    </li>
+                                    <li title="">
+                                        <a name="330-809" id="item_3_330-809" href="{:U('Home/Search/index'.$url,array('price'=>'330-809元'))}">
+                                            330-809元
+                                        </a>
+                                    </li>
+                                    <li title="">
+                                        <a name="810-1399" id="item_3_810-1399" href="{:U('Home/Search/index'.$url,array('price'=>'810-1399元'))}">
+                                            810-1399元
+                                        </a>
+                                    </li>
+                                    <li title="">
+                                        <a name="1400" id="item_3_1400" href="{:U('Home/Search/index'.$url,array('price'=>'1400元以上'))}">
+                                            1400元以上
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="placeholder_line">
+                                </div>
+                                <div class="bottom_multi_selecteds">
+                                    <label class="filter_tit_wide">
+                                        已选价格:
+                                    </label>
+                                    <div class="bms_container">
+                                        <span style="display: none;" class="search_current_item">
+                                            3
+                                        </span>
+                                    </div>
+                                </div>
+                            </div>
+                            
+                            <div class="multi_buttons clearfix">
+                                <div class="multi_area">
+                                    <a href="javascript:;" class="btn_multi_submit" title="确定" id="btn_multi_submit"
+                                    name="3">
+                                    </a>
+                                    <a href="#container" title="重选" class="btn_multi_reset J_btn_multi_reset"
+                                    id="btn_multi_reset">
+                                    </a>
+                                </div>
+                            </div>
+                        </div>
+                        <else />
+                        </if>
+                    </div>
+                   <else />
+                   
+                   </if> 
+                    <div id="search_list_wrap">
+                        <div style="display:none" id="s_r_t" name="搜索点击流用">
+                            1
+                        </div>
+                        <div class="search_list_head_fiex">
+                            <div style="position: static; top: auto; width: 100%;" class="search_list_head">
+                                <div class="slh_label">
+                                    排序:
+                                </div>
+                                <ul>
+                                    <li <if condition="$sort eq null">class="selected"<else /> </if> >
+                                        <a class="down" href="{:U('Home/Search/index'.$url,array('sort'=>null))}">
+                                            默认
+                                        </a>
+                                    </li>
+                                    <li  <if condition="$sort eq null"> <else />class="selected"</if> >
+                                        <a <if condition="$sort eq 'up'"> href="{:U('Home/Search/index'.$url,array('sort'=>'down'))}"  class="price_sort up"<else/>href="{:U('Home/Search/index'.$url,array('sort'=>'up'))}" class="price_sort down"</if>>
+                                            价格
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="down" href="http://search.jumei.com/?filter=0-41-1&amp;search=&amp;cat=1#search_list_wrap">
+                                            销量
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="down" href="http://search.jumei.com/?filter=0-01-1&amp;search=&amp;cat=1#search_list_wrap">
+                                            人气
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="add_time" href="http://search.jumei.com/?filter=0-31-1&amp;search=&amp;cat=1#search_list_wrap">
+                                            上架时间
+                                        </a>
+                                    </li>
+                                    <li>
+                                        <a class="show_check">
+                                            只看特卖
+                                        </a>
+                                    </li>
+                                </ul>
+                                <div class="have_stock">
+                                    <a href="">
+                                        仅显示有货
+                                    </a>
+                                </div>
+                                <!--头部分页-->
+                                <div class="head_pagebtn">
+                                    <a class="dis prev" href="{$url}">
+                                        上一页
+                                    </a>
+                                    <a class="enable next" href="">
+                                        下一页
+                                    </a>
+                                </div>
+                                <div class="head_pageInfo">
+                                    <span style="color:#ed154b;margin-left: 8px;">
+                                        {$nowPage}
+                                    </span>
+                                    /{$totalPages}页
+                                </div>
+                                <div class="head_pagecount">
+                                    共
+                                    <span>
+                                        {$count}
+                                    </span>
+                                    个商品
+                                </div>
+                            </div>
+                        </div>
+                        <div class="products_wrap">
+                            <ul>
+                                <!--deal start-->
+                                <foreach name="goods" item="vo">
+                                    <li class="hai item" gid="{$vo['id']}" price="{$vo['price']}" bid="{$vo['bid']}"
+                                    cate="{$vo['cate']}" search_product_type="global_deal" h_p_m_id="ht150604p1299685t2"
+                                    product_type="global_deal">
+                                        <div class="item_wrap clearfix  ">
+                                            <!--商品的hover展示-->
+                                            <div class="item_wrap_right">
+                                                <div class="s_l_pic">
+                                                    <div class="icon_wrap clearfix">
+                                                       
+                                                    </div>
+                                                    <a href="{:U('Home/Details/index',array('id'=>$vo['id']))}" target="_blank">
+                                                        <img src="{$vo['spic'] | default='./Public/Uploads/avatar_nonesign.jpg'}" style="display: inline;" height="255" width="255">
+                                                    </a>
+                                                </div>
+                                                <div class="s_l_name">
+                                                    <a href="{:U('Home/Details/index',array('id'=>$vo['id']))}" target="_blank">
+                                                        <span class="disc">
+                                                            {$vo.discount}折
+                                                            <em>
+                                                                +包邮
+                                                            </em>
+                                                            /
+                                                        </span>
+                                                        {$vo.title}
+                                                    </a>
+                                                </div>
+                                                <div class="s_l_view_bg">
+                                                    <div class="icon_wrap_bot clearfix">
+                                                    </div>
+                                                    <div class="search_list_price">
+                                                        <label>
+                                                            ¥
+                                                        </label>
+                                                        <span>
+                                                            {$vo.price}
+                                                        </span>
+                                                        <del>
+                                                            ¥{$vo.cprice}
+                                                        </del>
+                                                    </div>
+                                                </div>
+                                                <div class="search_deal_buttom_bg clearfix">
+                                                </div>
+                                                <div class="search_list_button">
+                                                    <a class="track_click  zuhe_zhifu_dingjing" title="加入购物车" href="javascript:;">
+                                                    </a>
+                                                    <a title="收藏商品" <if condition="in_array($vo['id'],$collid)">class="collected" <else /> class="btn_fav" </if> href="javascript:;"></a>
+                                                </div> 
+                                                <!--功效-->
+                                                <p class="search_list_tags">
+                                                    <span>
+                                                        保湿
+                                                    </span>
+                                                    <span>
+                                                        补水
+                                                    </span>
+                                                    <span>
+                                                        滋润
+                                                    </span>
+                                                    <span>
+                                                        清爽
+                                                    </span>
+                                                </p>
+                                            </div>
+                                        </div>
+                                    </li>
+                                </foreach>
+                                <!--global deal end-->
+                            </ul>
+                            <div class="clear">
+                            </div>
+                        </div>
+                        <div style="display:none;">
+                            <i id="brand_id">
+                            </i>
+                            <i id="search_keywords">
+                            </i>
+                        </div>
+                        <div class="page-nav-wrapper">
+                            <ul class="page-nav">
+                                <li class="current">
+                                    {$pages}
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
+                    <!--存在搜索结果显示的 页面内容 end-->
+                    <!--可能喜欢-->
+                    <!--最终购买 异步ajax-->
+                    <div style="display: none;" class="search_last_buy" search="">
+                    </div>
+                    <div class="search_footer ">
+                        <p class="sf_other">
+                        </p>
+                        <div class="search_foot_label">
+                            搜索全部
+                        </div>
+                        <div class="search_footer_wrap">
+                            <form action="#" method="get">
+                                <input name="search" class="" value="补水" id="search_footer_input" default_val="补水"
+                                lang="zh" type="text">
+                                <button type="submit">
+                                    搜索
+                                </button>
+                            </form>
+                            <!--搜索结果容器-->
+                            <div class="search_result_pop_a" id="foot_search_pop_div">
+                            </div>
+                        </div>
+                        <div class="clear">
+                        </div>
+                        <p style="padding: 10px 0 0 76px;" class="bottom_othersearch">
+                            <a href="http://search.jumei.com/?filter=4-0-0-0-11-1&amp;search=" target="_blank">
+                                去口碑中心搜索
+                            </a>
+                        </p>
+                    </div>
+                    <div style="display: block;" class="browse_history_wide" id="browse_history">
+                        <div class="title">
+                            您最近查看的商品
+                            <em>
+                                RECENTLY VIEWD ITEMS
+                            </em>
+                        </div>
+                        <div class="bh_content">
+                            <!--浏览记录-->
+                            <div class="browse_list_wrap fl">
+                                <h2 class="browse_tit">
+                                    查看记录
+                                </h2>
+                                <div class="browse_list">
+                                    <p style="text-align:center;margin-top: 120px;">
+                                        你最近没有浏览过聚美商品，
+                                        <br>
+                                        快去逛逛吧~
+                                    </p>
+                                </div>
+                            </div>
+                            <div class="browse_Recommend fr">
+                                <h2 class="browse_tit">
+                                    根据查看记录推荐
+                                    <span>
+                                        第
+                                        <em id="br_curpage">
+                                            0
+                                        </em>
+                                        页,共
+                                        <em id="br_pagecount">
+                                            0
+                                        </em>
+                                        页
+                                    </span>
+                                </h2>
+                                <div class="br_slide_container">
+                                    <em style="display: none;" class="slidearrow slidearrow_l">
+                                        &lt;
+                                    </em>
+                                    <div class="br_slide" id="br_slide">
+                                        <p style="text-align:center;margin-top:120px;">
+                                            对不起，暂时没有数据！
+                                        </p>
+                                    </div>
+                                    <em style="display: none;" class="slidearrow slidearrow_r">
+                                        &gt;
+                                    </em>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+    </div>
+</block>
+<block name="index.js">
+
+</block>
+<block name="rewritejs">
+<script type="text/javascript">
+
+$(function(){
+      //右侧工具条登录框
+         $('.mpbtn_login').mouseover(function(){
+            $('.status_logout').css('display','block');
+            
+         })
+         //添加点击事件
+        $('.status_logout .ibar_closebtn').click(function(){
+           
+            $('.status_logout').css('display','none');
+        })
+        //添加hover事件显示隐藏的内容
+        $('.ibar_mp_center > li').hover(function(){
+
+            $(this).find('.mp_tooltip').css('visibility','visible');
+
+            },function(){
+
+             $(this).find('.mp_tooltip').css('visibility','hidden');
+        })
+
+        $('.mpbtn_cart').click(function(){
+            $.ajax({
+                type: "POST",
+                url: "{:U('Home/Cart/checkGoods')}",
+                success: function(data) {
+            
+                    if(data){
+                        $('.disp').show();
+                    }else{
+                        $('.shownone').show();
+
+                    }
+                }
+            })
+
+            $('.ibar_sub_panel').css({'display':'block','left':'-287px'});
+      
+        })
+    $('.ibar_sub_panel a').click(function(){
+         $('.ibar_sub_panel').css({'display':'none','left':'0px'});
+    });
+    <php>
+    $addtime=session('addtime');
+        if($addtime){
+          
+        
+    </php> 
+    var addtime={:session('addtime')};  
+    var ntime={:NOW_TIME};
+    var intDiff = parseInt(12000+addtime-ntime);//倒计时总秒数量
+    function timer(intDiff){
+        window.setInterval(function(){
+        var minute=0,
+            secosnd=0,
+            minsecond;//时间默认值
+        if(intDiff > 0){
+            minute = Math.floor(intDiff / 600);
+            second = Math.floor(intDiff/10) - (minute * 60);
+            minsecond = Math.floor(intDiff) - (minute * 60*10)-(second*10);
+        }
+        if (minute <= 9) minute = '0' + minute;
+        if (second <= 9) second = '0' + second;
+        $('.ibar_cart_timer').html('<span class="ibar_pink">'+minute+'分'+second+'.'+minsecond+'秒后清空</span>');
+        
+        intDiff--;
+        }, 100);
+    } 
+                
+    timer(intDiff);          
+    <php>
+        }
+    </php>
+
+     //商品的阴影效果
+    $('li.item').each(function() {
+
+        $(this).hover(function() {
+            $(this).addClass('hover_sm');
+
+        },
+        function() {
+            $(this).removeClass('hover_sm');
+        })
+
+      
+      
+
+    })
+    //二级导航的分类下拉选项
+    $('.selected_panel').mouseover(function() {
+
+        $('#J_sub_selected_panel').css('display', 'block');
+        $(this).addClass('selected_panel_hover');
+    }).mouseout(function() {
+        $('#J_sub_selected_panel').css('display', 'none');
+        $(this).removeClass('selected_panel_hover');
+    })
+
+    //添加购物车
+    $(".search_list_button").delegate(".zuhe_zhifu_dingjing", "click",
+    function() {
+
+        var that = $(this);
+        var gid = that.parent().parent().parent().parent().attr("gid");
+        $.ajax({
+            type: "POST",
+            url: "{:U('Home/Cart/insert')}",
+            data: {
+                gid: gid
+            },
+            success: function(data) {
+                if (data) {
+                     var Top=parseInt(that.offset().top)-200;
+            var Left=parseInt(that.offset().left)+40;
+            var carTop=$('.mpbtn_cart').find('s').offset().top;
+            var carLeft=$('.mpbtn_cart').find('s').offset().left;
+
+          
+            var flygood=that.parents('.item_wrap_right').find('.s_l_pic img').clone();
+            flygood.attr('id','newlife');
+            flygood.css({left:Left+'px',top:Top+'px'});
+            $("body").append(flygood);
+            $("body").find('#newlife').animate({width: "40px",height: "40px","top":carTop+'px', "left": carLeft+'px', "opacity": 1 },1800, function(){$(this).remove()});
+                    var num = Number($('.cart_num').html());
+                    $('.cart_num').html(num + 1);
+                    
+                    <php>sleep(2);</php>
+                    document.location.href='';
+                }
+            }
+        })
+
+           
+
+    })
+    
+
+    //添加收藏
+   $('.track_click').next().click(function(){
+        <php>
+        $uid=session('id');
+        if(!$uid){
+        </php>
+        document.location.href="{:U('Home/User/login')}";
+        <php>
+        }else{
+        </php>
+        var that = $(this);
+        var gid = that.parent().parent().parent().parent().attr("gid");
+        $.ajax({
+            type: "POST",
+            url: "{:U('Home/Collect/insert')}",
+            data: {
+                gid: gid
+            },
+            success: function(data) {
+              
+                da=parseInt(data);
+                if (da==1) {
+                  that.removeClass('btn_fav').addClass('collected');
+                }else if(da==2){
+                    that.removeClass('collected').addClass('btn_fav');
+                }else if(da==3){
+                    alert('取消收藏失败');
+                }else if(da==4){
+                    alert('失败添加收藏');
+                }
+            }
+        })
+        <php>
+        }
+        </php>    
+   })
+   
+    
+})
+
+
+</script> 
+    
+</block>

@@ -107,9 +107,9 @@
                                     })
                             </script>
                             <script type="text/javascript">
-                                document.domain = 'test.ci.com';
+                                document.domain = 'jumei.taolei2016.com';
                                 var JM = JM || {};
-                                JM.SITE_MAIN_TOPLEVELDOMAINNAME = 'test.ci.com';
+                                JM.SITE_MAIN_TOPLEVELDOMAINNAME = 'jumei.taolei2016.com';
                                 JM.SITE = 'bj';
                                 JM.CONTROL = 'Mall';
                                 JM.ACTION = 'Mall';
@@ -1625,7 +1625,7 @@
                                                 </h3>
                                                 <?php $a=count($vo['son']) ?>
                                                 <p class="new_admall_menu_cont">
-                                                    <?php $__FOR_START_27103__=0;$__FOR_END_27103__=$a;for($i=$__FOR_START_27103__;$i < $__FOR_END_27103__;$i+=1){ ?><a href="<?php echo U('Home/Search/index',array('cate'=>$vo['son'][$i]['id']));?>"
+                                                    <?php $__FOR_START_2020187459__=0;$__FOR_END_2020187459__=$a;for($i=$__FOR_START_2020187459__;$i < $__FOR_END_2020187459__;$i+=1){ ?><a href="<?php echo U('Home/Search/index',array('cate'=>$vo['son'][$i]['id']));?>"
                                                         target="_blank">
                                                             <?php echo ($vo['son'][$i]['name']); ?>
                                                         </a><?php } ?>
@@ -1649,7 +1649,7 @@
                                 <?php $count=count($vo['son']); ?>
                                     <div class="subc3_item_body">
                                         <div class="subc3_area">
-                                            <?php $__FOR_START_13868__=0;$__FOR_END_13868__=$count;for($i=$__FOR_START_13868__;$i < $__FOR_END_13868__;$i+=1){ if($vo['son'][$i]['power'] == 1): ?><a href="" target="_blank"><?php echo ($vo['son'][$i]['bname']); ?></a><?php endif; } ?>
+                                            <?php $__FOR_START_922571713__=0;$__FOR_END_922571713__=$count;for($i=$__FOR_START_922571713__;$i < $__FOR_END_922571713__;$i+=1){ if($vo['son'][$i]['power'] == 1): ?><a href="" target="_blank"><?php echo ($vo['son'][$i]['bname']); ?></a><?php endif; } ?>
                                         
                                         </div>
                                     </div>
@@ -1673,7 +1673,7 @@
                                                 </h2>
                                                 <div class="subc_left_body">
                                                     <?php $x=count($vo['son']); ?>
-                                                    <?php $__FOR_START_10485__=0;$__FOR_END_10485__=$x;for($i=$__FOR_START_10485__;$i < $__FOR_END_10485__;$i+=1){ ?><div class="subc_item clearfix">
+                                                    <?php $__FOR_START_589160641__=0;$__FOR_END_589160641__=$x;for($i=$__FOR_START_589160641__;$i < $__FOR_END_589160641__;$i+=1){ ?><div class="subc_item clearfix">
                                                             <h3 class="subc_item_title fl">
                                                                 <a href="<?php echo U('Home/Search/index',array('cate'=>$vo['son'][$i]['id']));?>"
                                                                 target="_blank">
@@ -1683,7 +1683,7 @@
                                                             <div class="subc_item_body fl">
                                                                 <div class="subc_item_area">
                                                                     <?php $y=count($vo['son'][$i]['grandson']) ?>
-                                                                    <?php $__FOR_START_18058__=0;$__FOR_END_18058__=$y;for($j=$__FOR_START_18058__;$j < $__FOR_END_18058__;$j+=1){ ?><a href="<?php echo U('Home/Search/index',array('cate'=>$vo['son'][$i]['grandson'][$j]['id']));?>"
+                                                                    <?php $__FOR_START_223001694__=0;$__FOR_END_223001694__=$y;for($j=$__FOR_START_223001694__;$j < $__FOR_END_223001694__;$j+=1){ ?><a href="<?php echo U('Home/Search/index',array('cate'=>$vo['son'][$i]['grandson'][$j]['id']));?>"
                                                                         target="_blank">
                                                                             <?php echo ($vo['son'][$i]['grandson'][$j]['name']); ?>
                                                                         </a><?php } ?>

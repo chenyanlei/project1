@@ -1,18 +1,18 @@
 <?php if (!defined('THINK_PATH')) exit();?><!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
-<html xmlns="http://www.w3.org/1999/xhtml"><head><script src="/jumei/Public/Home/register/h.js" type="text/javascript"></script><script src="/jumei/Public/Home/register/dc.js" async="" type="text/javascript"></script><script src="/jumei/Public/Home/register/adw.js" async="" type="text/javascript"></script><script src="/jumei/Public/Home/register/mynav.txt"></script><script src="/jumei/Public/Home/register/a.txt"></script>
+<html xmlns="http://www.w3.org/1999/xhtml"><head><script src="/Public/Home/register/h.js" type="text/javascript"></script><script src="/Public/Home/register/dc.js" async="" type="text/javascript"></script><script src="/Public/Home/register/adw.js" async="" type="text/javascript"></script><script src="/Public/Home/register/mynav.txt"></script><script src="/Public/Home/register/a.txt"></script>
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta property="qc:admins" content="56207406376255516375">
     <title>注册 - 聚美账户</title>
 
-<link rel="stylesheet" href="/jumei/Public/Home/register/common.css" type="text/css" media="screen" charset="utf-8">
-<link rel="stylesheet" href="/jumei/Public/Home/register/jumei_sign.css" type="text/css" media="screen" charset="utf-8">
+<link rel="stylesheet" href="/Public/Home/register/common.css" type="text/css" media="screen" charset="utf-8">
+<link rel="stylesheet" href="/Public/Home/register/jumei_sign.css" type="text/css" media="screen" charset="utf-8">
 
 
 
-<script src="/jumei/Public/Home/register/website.js"></script>
-<script src="/jumei/Public/Home/register/boot.js"></script>
-<script src="/jumei/Public/Home/register/jquery.js"></script>
+<script src="/Public/Home/register/website.js"></script>
+<script src="/Public/Home/register/boot.js"></script>
+<script src="/Public/Home/register/jquery.js"></script>
 </head>
 
 
@@ -49,7 +49,7 @@ $(".top_nav_hot").css("display","block")
 });
 </script>
 
-<link href="/jumei/Public/Home/register/signup.css" rel="stylesheet">
+<link href="/Public/Home/register/signup.css" rel="stylesheet">
 <script>
  var REDIRECT = '';
  var IS_OPEN_PASSPORT = true;
@@ -174,9 +174,9 @@ $(".top_nav_hot").css("display","block")
 <!--*连续登陆探测 -->
 
 <!--点击流用-->
-<script type="text/javascript" charset="utf-8" src="/jumei/Public/Home/register/clk_jumei.js"></script>
-<script type="text/javascript" charset="utf-8" src="/jumei/Public/Home/register/Jumei.js"></script>
-<script type="text/javascript" src="/jumei/Public/Home/js/jquery-1.8.3.min.js"></script>
+<script type="text/javascript" charset="utf-8" src="/Public/Home/register/clk_jumei.js"></script>
+<script type="text/javascript" charset="utf-8" src="/Public/Home/register/Jumei.js"></script>
+<script type="text/javascript" src="/Public/Home/js/jquery-1.8.3.min.js"></script>
     <script type="text/javascript">
 
     //声明全局变量检测input的值 是否输入正确
@@ -329,6 +329,6 @@ $(".top_nav_hot").css("display","block")
 
 
 
-<iframe id="emar_box_pv" src="/jumei/Public/Home/register/_adw.htm" style="width: 1px; border: 0px none; position: absolute; left: -100px; top: -100px; height: 1px;"></iframe>
+<iframe id="emar_box_pv" src="/Public/Home/register/_adw.htm" style="width: 1px; border: 0px none; position: absolute; left: -100px; top: -100px; height: 1px;"></iframe>
 
 </body></html>

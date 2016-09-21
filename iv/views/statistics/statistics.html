@@ -1,0 +1,235 @@
+<link rel="stylesheet" href="/Public/css/bootstrap.min.css">
+<style>
+	body,html{
+		font-size: 14px;
+		font-family:"Microsoft YaHei";
+		height: 100%;
+		background-color: #f5f5f5;
+	}
+	a:hover, a:visited, a:link, a:active{
+		text-decoration: none;
+	}
+	p {
+	    margin: 0;
+	}
+	a{
+		font-size: 12px;
+		color: #00d8ff;
+	}
+	.table{/*修改bootstrap 样式*/
+		margin-bottom: 0;
+	}
+	.table-bordered{/*修改bootstrap 样式*/
+		border:1px solid #ccc;
+	}
+	.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {/*修改bootstrap 样式*/
+		padding:20px 0;
+	    border-top: none;
+	    font-size: 14px;
+	    color: #585858;
+	}
+	.income-border{/*修改bootstrap 样式*/
+		border-top: none;
+	}
+	.statis-main{
+		width: 1135px;
+		background-color: #fff;
+		margin:0 auto;
+		padding:0 15px;
+		padding-bottom: 240px;
+	}
+	.statis-income,.statis-pro,.statis-share,.statis-customer{
+		font-size:16px;
+		color: #333;
+		padding: 30px 0  20px 0;
+		font-weight: bold;
+	}
+	.incomeOne-name:hover{
+		background-color: #f9f9f9;
+		cursor: pointer;
+	}
+	.incomeOne-name-active{
+		background-color: #f5f5f5;
+	}
+	.incomeOne-name>span,.incomeOne-name>p{
+		font-size: 14px;
+		color: #777;
+		padding-left: 20px;
+	}
+	.table tr .incomeOne-name{
+		padding:10px 0;
+	}
+	.incomeOne-name>p{
+		font-size: 20px;
+		color: #585858;
+		font-family: "Arial";
+		font-weight: bold;
+	}
+	.table tr .income-padding{
+		padding-left:20px;
+		border-left: none; 
+		border-right: none; 
+	}
+	.table-bgColor-g tr td{
+		text-align: center;
+		background-color: #f9f9f9;
+		color: #333;
+	}
+	.table-bgColor-g .table-bgColor-f td{
+		text-align: center;
+		background-color: #fff;
+		color: #585858;
+	}
+	.statis-pro a,.statis-share a,.statis-customer a,.table-bgColor-f a{
+		padding-left: 20px;
+	}
+	.statis-pro a:hover,.statis-share a:hover,.statis-customer a:hover,.table a:hover{
+		color: #00d8ff;
+	}
+</style>
+<div class="statis-main">
+	<p class="statis-income">收入</p>
+	<div>
+		<table class="table table-bordered">
+			<tr>
+				<td class="incomeOne-name incomeOne-name-active" rel="0">
+					<span>昨日预估计收入</span>
+					<p><span>￥ </span><span class="account_yes"></span></p>
+				</td>
+				<td class="incomeOne-name" rel="1">
+					<span>前七日预估计收入</span>
+					<p><span>￥ </span><span class="account_sev"></span></p>
+				</td>
+				<td class="incomeOne-name" rel="2">
+					<span>本月预估计收入</span>
+					<p><span>￥ </span><span class="account_thm"></span></p>
+				</td>
+				<td class="incomeOne-name" rel="3">
+					<span>上月预估计收入</span>
+					<p><span>￥ </span><span class="account_lam"></span></p>
+				</td>
+			</tr>
+		</table>
+	</div>
+	<div>
+		<input type="hidden" id="price_data" value=<?=$list_price;?>>
+		<table class="table table-bordered income-border">
+			<tr>
+				<td class="income-padding">我的佣金</td>
+				<td class="income-padding">佣金：<span class="sale_commition"></span></td>
+				<td class="income-padding">订单数：<span class="sale_order_num"></span></td>
+				<td class="income-padding">销售额：<span class="sale_money"></span></td>
+				<td class="income-padding"><a href="/personal/commition">查看详情</a></td>
+			</tr>
+			<tr>
+				<td class="income-padding">我的奖励</td>
+				<td class="income-padding">预估奖励金额：<span class="agent_commition"></span></td>
+				<td class="income-padding">订单数：<span class="agent_order_num"></span></td>
+				<td class="income-padding">下线代理销售额：<span class="agent_money"></span></td>
+				<td class="income-padding"><a href="/personal/commition?c_type=2">查看详情</a></td>
+			</tr>
+		</table>
+	</div>
+	<?php
+	if(false){
+	?>
+	<p class="statis-pro">您的产品 <a href="">查看详情</a></p>
+	<div>
+		<table class="table table-bordered table-bgColor-g">
+			<tr>
+				<td>一日游</td>
+				<td>组团游</td>
+				<td>总数</td>
+			</tr>
+			<tr class="table-bgColor-f">
+				<td><span>15<span> 个</span></span><a href="">详情</a></td>
+				<td><span>15<span> 个</span></span><a href="">详情</a></td>
+				<td><span>30<span> 个</span></span><a href="">详情</a></td>
+			</tr>
+		</table>
+	</div>
+	<p class="statis-share">您的分享 <a href="">查看详情</a></p>
+	<div>
+		<table class="table table-bordered table-bgColor-g">
+			<tr>
+				<td>渠道</td>
+				<td>分享次数</td>
+				<td>阅读次数</td>
+				<td>订单数</td>
+			</tr>
+			<tr class="table-bgColor-f">
+				<td>微信</td>
+				<td>30<span> 次</span></td>
+				<td>15<span> 次</span></td>
+				<td>15<span> 人</span></td>
+			</tr>
+			<tr class="table-bgColor-f">
+				<td>QQ</td>
+				<td>30<span> 次</span></td>
+				<td>15<span> 次</span></td>
+				<td>15<span> 人</span></td>
+			</tr>
+			<tr class="table-bgColor-f">
+				<td>微博</td>
+				<td>30<span> 次</span></td>
+				<td>15<span> 次</span></td>
+				<td>15<span> 人</span></td>
+			</tr>
+		</table>
+	</div>
+	<p class="statis-customer">您的客户 <a href="">查看详情</a></p>
+	<div>
+		<table class="table table-bordered table-bgColor-g">
+			<tr>
+				<td>7月1日</td>
+				<td>7月2日</td>
+				<td>7月3日</td>
+				<td>7月4日</td>
+				<td>7月5日</td>
+				<td>7月6日</td>
+				<td>7月7日</td>
+			</tr>
+			<tr class="table-bgColor-f">
+				<td>30<span> 人</span></td>
+				<td>15<span> 人</span></td>
+				<td>15<span> 人</span></td>
+				<td>15<span> 人</span></td>
+				<td>15<span> 人</span></td>
+				<td>15<span> 人</span></td>
+				<td>15<span> 人</span></td>
+			</tr>
+		</table>
+	</div>
+	<?php }?>
+</div>
+<script>
+	var price_data= JSON.parse($('#price_data').val());
+	$('.account_yes').html(price_data[0]['my_sale_commition']-0+ price_data[0]['my_agent_commition'] - 0);
+	$('.account_sev').html(price_data[1]['my_sale_commition']-0+ price_data[1]['my_agent_commition'] - 0);
+	$('.account_thm').html(price_data[2]['my_sale_commition']-0+ price_data[2]['my_agent_commition'] - 0);
+	$('.account_lam').html(price_data[3]['my_sale_commition']-0+ price_data[3]['my_agent_commition'] - 0);
+	var cate = 0;
+	price_assign(cate);
+	function price_assign(cate){
+
+		var my_sale_commition = price_data[cate]['my_sale_commition'];
+		var my_sale_order_num = price_data[cate]['my_sale_order_num'];
+		var my_sale_money = price_data[cate]['my_sale_money'];
+		var my_agent_commition = price_data[cate]['my_agent_commition'];
+		var my_agent_order_num = price_data[cate]['my_agent_order_num'];
+		var my_agent_money = price_data[cate]['my_agent_money'];
+		$('.sale_commition').html(my_sale_commition);
+		$('.sale_order_num').html(my_sale_order_num);
+		$('.sale_money').html(my_sale_money);
+		$('.agent_commition').html(my_agent_commition);
+		$('.agent_order_num').html(my_agent_order_num);
+		$('.agent_money').html(my_agent_money);
+
+	}
+	$(".incomeOne-name").click(function() {
+		cate = $(this).attr('rel')-0;
+		price_assign(cate);
+		$(".incomeOne-name").removeClass('incomeOne-name-active');
+		$(this).addClass('incomeOne-name-active');
+	});
+</script>

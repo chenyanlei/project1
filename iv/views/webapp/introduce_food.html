@@ -1,0 +1,95 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+	<link rel="stylesheet" href="/Public/css/aui.css">
+	<link rel="stylesheet" href="/Public/css/aui-slider-full.css">
+	<link rel="stylesheet" href="/Public/css/aui-flex.css">
+	<title></title>
+	<style>
+		.btn_enter{
+			border:2px solid #fff;
+			height: 50px;
+			width: 100px;
+			margin:0 auto;
+			line-height: 50px;
+			text-align: center;
+			color: #fff;
+			font-size: 20px;
+			position: absolute;
+			bottom:10%;
+			left: 50%;
+			margin-left: -50px;
+		}
+		.aui-slider-full > .aui-slider-list img {
+		    width: 100%;
+		    height: 100%;
+		}
+	</style>
+</head>
+<body>
+	<div class="aui-slider-full">
+		<div class="aui-slider-list aui-flex-col aui-flex-middle">
+			<img src="/Public/images/test_02.png" alt=""/>
+		</div>
+		<div class="aui-slider-list aui-flex-col aui-flex-middle">
+			<img src="/Public/images/test_02.png" alt=""/>
+		</div>
+		<div class="aui-slider-list aui-flex-col aui-flex-middle">
+			<img src="/Public/images/test_02.png" alt=""/>
+			<div class="btn_enter">点击进入</div>
+		</div>
+		<span class="aui-slider-up">
+			<i class="aui-iconfont aui-icon-fold"></i>
+		</span>
+	</div>
+
+
+
+	<script src="/Public/js/jquery.1.11.3.js"></script>
+	<script src="/Public/js/api.js"></script>
+	<script src="/Public/js/aui-slider-full.js"></script>
+	<script src="/Public/js/weixin-1.0.0.js"></script>
+	<script src="/Public/js/weixin-share.js"></script>
+	<script type="text/javascript">
+	$(function () {
+		
+		apiready = function(){
+			api.parseTapmode();
+		}
+		var sliderFull = new auiSliderFull({
+			direction:'y'
+		});
+		// $aui.sliderUp($api.byId("sliderNav"));
+		function closeWin(){
+	        api.closeWin({
+	        	name:'slider_full_win',
+	        	animation:{
+	        		type:'push',
+	                subType:'from_top'
+	            }
+	        });
+	    }
+	    // 点击跳转事件
+	   	    $('.btn_enter').click(function() {
+	   	    	window.location.href='/webapp_global/merchant_list?act=f';
+	   	    });
+
+	    // ready参数
+	      var title='逍品旅行';
+	      var desc="逍品旅行，出境旅游优质供应商分销平台";
+	      var link=window.location.href;
+	      var imgUrl='http://a.qsctrip.com/Public/images/travel.png';
+	      //ajax请求数据 
+	      request_share();
+	      //判断是否为微信内核
+	      var ua = navigator.userAgent.toLowerCase();//获取判断用的对象
+	      if (ua.match(/MicroMessenger/i) == "micromessenger") {
+	          weixin_config(appId,timestamp,nonceStr,signature);
+	          weixin_ready(title,desc,link,imgUrl);
+	      } 
+	})
+	</script>
+</body>
+</html>

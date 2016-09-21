@@ -1,0 +1,471 @@
+<script src="/Public/js/layer.js"></script>
+	<style>
+		body,div,h1,h2,h3,h4,h5,h6,p,ul,li,select,input,a{
+			margin: 0;
+			padding:0;
+		}
+		a:hover, a:visited, a:link, a:active{
+			text-decoration: none;
+		}
+		ul li{
+			list-style: none;
+		}
+		button{
+			outline: none;
+		}
+		body{
+			font-size: 14px;
+			font-family:"Microsoft YaHei";
+			background-color: #f5f5f5;
+		}
+		/*重置初始样式--end*/
+
+		/*立即推广主体样式--begin*/
+		.extend-main{
+			width: 1135px;
+			margin:0 auto;
+			padding:10px 0 300px 0px;
+		}
+		.extend-tree{
+			padding: 20px 0;
+		}
+		.extend-tree a{
+			font-size: 14px;
+			color: #585858;		
+		}
+		.extent-detail{
+			background-color: #fff;
+			padding: 20px 0;
+			width: 1135px;
+			position: relative;
+			z-index: 1;
+		}
+		.extent-detail-left,.extent-detail-right{
+			float: left;
+		}
+		.extent-detail-left img{
+			width: 150px;
+			height: 80px;
+		}
+		.extent-detail-right{
+			margin-left: 30px;
+			width:500px;
+		}
+		.extend-detail-name{
+			font-size: 18px;
+			font-weight: bold;
+			color: #585858;
+			height: 50px;
+		}
+		.extend-detail-price{
+			height: 25px;
+			line-height: 25px;
+			overflow:hidden;
+		}
+		.real-price{
+			font-size: 22px;
+			color: #00d8ff;
+			margin-right: 20px;
+			float: left;
+		}
+		.sale-price{
+			font-size: 16px;
+			color: #999;
+			text-decoration: line-through;
+			float: left;
+		}
+		.extend-choice{
+			float: right;
+			width: 250px;
+		}
+		.extend-add-btn{
+			width: 250px;
+			height: 40px;
+			font-size: 18px;
+			font-weight: bold;
+			border: 1px solid  #00d8ff;
+			color: #fff;
+			margin-top: 20px;
+			background-color: #00d8ff;
+			cursor: pointer;
+		}
+		.extend-add-btn:disabled{
+			cursor: not-allowed;
+			background-color: #ccc;
+			border: 1px solid  #ccc;
+		}
+		.extend-explain{
+			padding: 20px 0;
+			text-align: center;
+			font-size: 16px;
+			color: #777;
+		}
+		.extend-des{
+			font-size: 14px;
+			color: #999;
+		}
+		.extend-nav{
+			background-color: #fff;
+			padding: 10px 0 10px 20px;
+			overflow: hidden;
+		} 
+		.extend-nav a{
+			color: #333;
+		} 
+		.extend-nav .extend-navOne{
+			float: left;
+			margin-right: 30px;
+			padding: 5px 10px;
+			cursor: pointer;
+		}
+		.extend-nav .extend-navTwo{
+			float: right;
+			margin-right: 30px;
+			padding: 5px 10px;
+			cursor: pointer;
+			color: #00d8ff;
+		}
+		.extend-nav .extend-navOne:hover{
+			background-color: #00d8ff;
+			color: #fff;
+		}
+		
+		.extend-nav-active{
+			background-color: #00d8ff;
+			color: #fff;
+		}
+		.ex-material-list{
+			overflow: hidden;
+			width: 1156px;
+			margin-left: -10px; 
+			margin-top: 10px;
+		}
+		.ex-material-detail{
+			width: 265px;
+			border: 2px solid #ccc;
+			float: left;
+			margin:0 10px 20px 10px;
+			cursor: pointer;
+			position: relative;
+			background-color: #fff;
+		}
+		.ex-material-detail:hover{
+			border: 2px solid #00d8ff;
+		}
+		.ex-material-detail img{
+			vertical-align: bottom;/*解决图片下方有间距问题*/
+			width: 265px;
+			height: 150px;
+		}
+		#ex-material-add{
+			border:none;
+			margin-left:10px;
+			width: 269px;
+		}
+		#ex-material-add img{
+			width: 100%;
+			height: 219px;
+		}
+		.ex-material-des{
+			font-size: 16px;
+			color: #585858;
+			height: 65px;
+			text-align: center;
+			line-height: 65px;
+		}
+		.ex-material-add{
+			width:350px;
+			margin:44px auto;
+		}
+		.ex-material-addinfo{
+			font-size: 18px;
+			color:#585858;
+			margin-bottom: 50px;
+			text-align:center;
+		}
+		.ex-material-addimg{
+			width:200px;
+			margin:0 auto;
+		}
+		.ex-material-addimg img{
+			cursor: pointer;
+		}
+		.ex-checkbox{
+			position: absolute;
+			right: 0;
+			top: 0;
+			width: 26px;
+			height: 26px;
+			cursor: pointer;
+			background-color: #fff;
+			border-left: 2px solid #00d8ff;
+			border-bottom: 2px solid #00d8ff;
+			display: none;
+		}
+		.ex-checkbox img{
+			width: 20px;
+			height: 20px;
+			display: none;
+			margin:0 auto;
+			margin-top: 3px;
+		}
+		.ex-show-active{
+			border: 2px solid #00d8ff;
+		}
+		.ex-hide-active{
+			border: 2px solid #ccc;
+		}
+		/*立即推广主体样式--end*/
+	</style>
+	<div class="extend-main">
+		<?php
+
+                 function get_single_price($price_type, $prices) {
+                    if(isset($prices[0]['price2'])) {
+                        switch($price_type) {
+                            case Ptype::PRICE_TYPE_0:
+                                return $prices[0]['price2'];
+                                break;
+                            case Ptype::PRICE_TYPE_1:
+                                return $prices[0]['price1'];
+                                break;
+                            default:
+                                return $prices[0]['price1'];
+                                break;
+                        }
+                    } else {
+                        return $prices[0]['price1'];
+                    }
+                }
+
+                require_once 'libraries/commen_user.php' ;
+
+                $same=get_same_price($display_prices);
+				$sale=get_sale_price($display_prices);
+
+		?>
+		<div class="extend-tree">
+			<a href="">产品商城</a> >
+			<a href="">推广</a> >
+			<a href="">选择素材</a>
+		</div>
+		
+		<div class="extent-detail">
+			<div style="overflow:hidden;margin:0 auto;width:1095px">
+				<div class="extent-detail-left">
+					<img src="<?=$face_img?>" alt="">
+				</div>
+				<div class="extent-detail-right">
+					<p class="extend-detail-name"><?=$title;?></p>
+					<div class="extend-detail-price">
+						<p class="real-price"><span>同行价：</span><span class="real-price-num"><?=$same;?></span></p>
+						<p class="sale-price"><span>建议零售价：</span><span><?=$sale;?></span></p>
+					</div>
+				</div>
+				<div class="extend-choice">
+					<button type="button"  class="extend-add-btn" disabled="disabled">去分享</button>
+				</div>
+			</div>
+		</div>
+		<div class="choice-sucai" style="padding:20px 0;text-align:center;font-size:16px;color:#777">
+			请在此选择关联素材
+		</div>
+		<div class="extend-nav">
+			<ul>
+				<a href="/spread/extend?pid=<?=$id;?>"><li  <?=$act=='e'?'class="extend-navOne extend-nav-active"' : 'class="extend-navOne"';?>>素材推荐</li></a>
+				<a href="/spread/myextend?pid=<?=$id;?>"><li  <?=$act=='m'?'class="extend-navOne extend-nav-active"' : 'class="extend-navOne"';?>>我的素材</li></a>
+			</ul>
+		</div>
+		<div class="ex-material-list">
+			<?php 	
+
+				if($data){
+					if($act=='m'){
+			?>
+					<div class="ex-material-detail" rel="void" id="ex-material-add">
+					    <img src="/Public/images/tianjia01.png" alt="" onclick="javascript:location.href='/spread/add_spread'">
+					</div>
+			<?php
+					}
+			foreach($data as $v){ 
+
+
+				?>
+
+			<div class="ex-material-detail" rel="<?=$v['mid'];?>">
+				<img src="<?=$img_url.$v['face_img'];?>" alt="">
+				<div class="ex-material-des"><?=mb_substr($v['title'],0,13,'utf-8');?></div>
+				<div class="ex-checkbox">
+					<img src="/Public/images/gou.png" alt="">
+				</div>
+				
+			</div>
+			<?php }
+				}else{
+			?>
+
+			<div class="ex-material-add">
+				<div class="ex-material-addinfo">
+					<?php
+						if($act=='e'){
+					?>
+					该产品暂无关联素材,请去添加素材或者去我的素材选择
+					<?php }else{?>
+					您还没有素材,请去添加素材吧
+					<?php }?>
+				</div>
+				<div class="ex-material-addimg">
+					<img src="/Public/images/tianjia.png" alt="" onclick="javascript:location.href='/spread/add_spread'">
+				</div>
+			</div>
+
+			<?php 
+				}
+			?>
+		</div>
+		
+
+		<form action="/spread/add" id="sub" method="post">
+			<input type="hidden" id="mid" value="" name="mid">
+			<input type="hidden" id="pid" value="<?=$id;?>" name="pid">
+		</form>
+	</div>
+	
+	<script>
+		$(function(){
+			//使产品定在顶部
+				 var top1=$(window).height();
+				 var Top=$('.extent-detail').offset().top;
+				 var a=$('.ex-material-list').offset().top;
+				$(window).scroll(function(){
+				  var sTop=$(window).scrollTop();
+				 if(sTop > Top){
+				 	$('.extent-detail').css({'position':'fixed','top':'0px'});
+				 	$(".choice-sucai").css({
+				 		"margin-top":'120px'
+				 	});
+				 }
+				 else{
+				 	$('.extent-detail').css({
+				 		'position':"relative"
+				 	});
+				 	$(".choice-sucai").css({
+				 		"margin-top":'0'
+				 	});
+				 }
+			})
+			// 点击添加素材按钮
+			$(".extend-add-btn").click(function() {
+				var mid = $('#mid').val();
+				if(!mid){
+					alert('请选择素材');
+					return false;
+				}
+
+				$('#sub').trigger('submit');
+			});
+			$(".ex-material-detail").click(function() {
+				var id=$(this).attr('rel');
+				if(id==='void'){
+					return false;
+				}
+				layer.open({
+				  type: 2,
+				  title:"素材详情",
+				  shade: [0.8, '#393D49'],
+				  area: ['1000px', '500px'],
+				  content: '/spread/material_detail_iframe?id='+id,
+				  zIndex: layer.zIndex, //重点1
+				  success: function(layero,index){
+				    layer.setTop(layero); //重点2
+				    var body = layer.getChildFrame('body', index);//禁window下的body跟随子元素滚动
+				    body.scrollUnique();//调用此方法禁window下的body跟随子元素滚动
+				  }
+				});  
+				
+			});
+			$(".ex-material-detail").mouseover(function() {
+				$(this).find('.ex-checkbox').css({
+					'display':'block'
+				});
+			});
+			$(".ex-material-detail").mouseout(function() {
+				$(this).find('.ex-checkbox').css({
+					'display':'none'
+				});
+			});
+			//点击勾选框
+			$(".ex-checkbox").click(function(e) {
+				e.stopPropagation();
+				var mid = $(this).parent().attr('rel');
+				$('#mid').val(mid);
+				// var isActive=$(this).parent(".ex-material-detail").hasClass('ex-show-active');
+				$(".ex-checkbox").css({
+					"display": 'none'
+				});
+				$(".ex-checkbox").find('img').css({
+					'display': 'none'
+				});
+				$(".ex-material-detail").removeClass('ex-show-active');
+				$(this).css({
+					'display': 'block'
+				});
+				$(this).find('img').css({
+					'display': 'block'
+				});
+				$(this).parent(".ex-material-detail").addClass('ex-show-active');
+				$(".extend-add-btn").removeAttr('disabled');
+				//重新绑定mouseout事件 实现鼠标移出隐藏
+				$(".ex-material-detail").mouseout(function() {
+					$(this).find('.ex-checkbox').css({
+						'display':'none'
+					});
+				});
+				//重写mouseout实现鼠标移出不隐藏 把自己显示
+				$(this).parent(".ex-material-detail").mouseout(function() {
+					$(this).find(".ex-checkbox").css({
+						'display':'block'
+					});
+				});
+			});
+			$(".ex-look-meterial").click(function(event) {
+				if (event.stopPropagation) { 
+				// this code is for Mozilla and Opera 
+				event.stopPropagation(); 
+				} 
+				else if (window.event) { 
+				// this code is for IE 
+				window.event.cancelBubble = true; 
+				}
+				alert("我点的是查看详情");
+			});
+
+			//扩展jquery方法子元素滚动body不滚动-----！勿动！---------begin-------------
+			$.fn.scrollUnique = function() {
+			    return $(this).each(function() {
+			        var eventType = 'mousewheel';
+			        // 火狐是DOMMouseScroll事件
+			        if (document.mozHidden !== undefined) {
+			            eventType = 'DOMMouseScroll';
+			        }
+			        $(this).on(eventType, function(event) {
+			            // 一些数据
+			            var scrollTop = this.scrollTop,
+			                scrollHeight = this.scrollHeight,
+			                height = this.clientHeight;
+
+			            var delta = (event.originalEvent.wheelDelta) ? event.originalEvent.wheelDelta : -(event.originalEvent.detail || 0);        
+
+			            if ((delta > 0 && scrollTop <= delta) || (delta < 0 && scrollHeight - height - scrollTop <= -1 * delta)) {
+			                // IE浏览器下滚动会跨越边界直接影响父级滚动，因此，临界时候手动边界滚动定位
+			                this.scrollTop = delta > 0? 0: scrollHeight;
+			                // 向上滚 || 向下滚
+			                event.preventDefault();
+			            }        
+			        });
+			    }); 
+			};
+			//扩展jquery方法子元素滚动body不滚动--------------end-------------
+		})
+		
+	</script>

@@ -1,0 +1,191 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>我的定制</title>
+    <link rel="stylesheet" type="text/css" href="/Public/css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="/Public/css/iconfont.css" />
+
+    <style>
+        body{
+            height: auto;
+            font-family: "Microsoft YaHei";
+        }
+        .order_list{
+            color: #585858;
+        }
+        .aui-list-view-cell {
+            position: relative;
+            padding: 10px 10px;
+            overflow: hidden;
+            -webkit-transform-style: preserve-3d;
+            transform-style: preserve-3d;
+            -webkit-touch-callout: none;
+        }
+        .go_custom{
+            background-color: #00d8ff;
+            color: #fff;
+            padding: 2px 10px;
+            width: 100px;
+        }
+        .cus_time{
+            font-size: 14px;
+            color: #585858;
+        }
+        .cus_person_num,.cus_cou{
+            font-size: 16px;
+            color: #000;
+        }
+        .aui-arrow-right:after {
+            font-family: "auiicon" !important;
+            right: 15px;
+            content: '';
+        }
+        .c_d_left,.c_d_right{
+            display: inline-block;
+        }
+        .c_d_left{
+            float: left;
+        }
+        .c_d_right{
+            float: right;
+            line-height: 48px;
+        }
+        .aui-icon-loading{
+            font-size: 14px;
+            color: #585858;
+        }
+        button, .aui-btn{
+            background-color:transparent;
+        }
+        .aui-bar{
+            background-color:#00d8ff;
+        }
+    </style>
+</head>
+<body>
+<header class="aui-bar aui-bar-nav aui-bar-color" id="aui-header">
+    <a class="aui-btn aui-pull-left aui-bar-color"">
+        <span class="aui-iconfont aui-icon-left"  onclick="window.history.go(-1)"></span>
+    </a>
+    <div class="aui-title">定制列表</div>
+</header>
+<div class="aui-content">
+    <ul class="aui-list-view order_list">
+    </ul>
+    <div class="pro_loading" style="text-align:center;padding:20px 0;display:none"><img src="/Public/images/nh.gif" style="vertical-align:middle;background-color:#f1f1f1;margin-right:10px;"  alt=""><span style="line-height:12px;">加载中...</span></div> 
+    </div>
+</div>
+</body>
+<script src="/Public/js/jquery-1.11.3.js"></script>
+<script type="text/javascript" src="/Public/js/api.js" ></script>
+<script src="/Public/js/aui-scroll.js"></script>
+<script src="/Public/js/layer.js"></script>
+<script src="/Public/js/weixin-1.0.0.js"></script>
+<script src="/Public/js/weixin-share.js"></script>
+<script type="text/javascript">
+    $(function () {
+
+        stopDrop();
+        //禁止下拉回弹
+        function stopDrop() {
+            var lastY;//最后一次y坐标点
+            $(document.body).on('touchstart', function(event) {
+                lastY = event.originalEvent.changedTouches[0].clientY;//点击屏幕时记录最后一次Y度坐标。
+            });
+            $(document.body).on('touchmove', function(event) {
+                var y = event.originalEvent.changedTouches[0].clientY;
+                var st = $(this).scrollTop(); //滚动条高度  
+                if (y >= lastY && st <= 10) {//如果滚动条高度小于0，可以理解为到顶了，且是下拉情况下，阻止touchmove事件。
+                    lastY = y;
+                    event.preventDefault();
+                }
+                lastY = y;
+         
+            });
+        }
+        var pn=0;
+        var rn=10;
+        var go_on=false;
+        var total;
+        var show_msg=true;
+        //页面一开始调用方法
+        add_custom();
+        // 滚动事件
+        var scroll = new auiScroll({
+            listen:false, //是否监听滚动高度，开启后将实时返回滚动高度
+            distance:0,//判断到达底部的距离，isToBottom为true
+        },function(ret){
+            if (ret.isToBottom) {
+                if (go_on) {
+                    if (Math.ceil(total/rn)>pn){
+                        $(".pro_loading").show();
+                        add_custom();
+                    }else{
+                        if (show_msg) {
+                            layer.msg('没有更多内容了',{time:1000,offset:'80%'})
+                            show_msg=false;
+                        }
+                    }
+                }
+            }else{
+                return false;
+            }
+        });
+        // 请求方法
+        function add_custom(){
+            $.ajax({
+                type:'get',
+                url:'/custom/customize_data',
+                data:{'pn':pn,'rn':rn},
+                async: false,
+                beforeSend:function () {
+                    go_on=false;
+                    $(".pro_loading").show();
+                },
+                success:function (data) {
+                    if (data.result.err==0) {
+                        var str='';
+                        total=data.content.total;
+                        for (var i = 0; i <data.content.data.length; i++) {
+                            str+='<a href="/custom/customize_detail?id='+data.content.data[i].id+'">';
+                            str+=' <li class="aui-list-view-cell">';
+                            str+='<div class="aui-arrow-right aui-ellipsis-1">';
+                            str+='<div class="c_d_left">'
+                            str+='<p class="cus_time">'+data.content.data[i].start_date+'</p>';
+                            str+='<span class="cus_cou">'+data.content.data[i].start_point+'—'+data.content.data[i].destination+'/</span>';
+                            str+='<span class="cus_person_num">'+data.content.data[i].person_num+'人*定制游</span>';
+                            str+='</div>'
+                            str+='<div class="c_d_right"><span class="aui-iconfont aui-icon-loading"></span></div>'
+                            str+='</div>';
+                            str+='</li>';
+                            str+='</a>';
+                        }
+                        pn++;
+                        $(".pro_loading").hide();
+                        $('.order_list').append(str);
+                        go_on=true;
+                    }else if(data.result.err==4004){
+                        var err_str='<div style="text-align:center;margin-top:100px;"><span>您还没有定制产品,去定制&nbsp;</span><a href="/custom/index"><button class="go_custom">去定制</button></a></div>';
+                        $('body').html(err_str);
+                    }
+                }
+            })
+        }
+        // ready参数
+          var title='逍品旅行';
+          var desc="逍品旅行，出境旅游优质供应商分销平台";
+          var link=window.location.href;
+          var imgUrl='http://a.qsctrip.com/Public/images/travel.png';
+          //ajax请求数据 
+          request_share();
+          //判断是否为微信内核
+          var ua = navigator.userAgent.toLowerCase();//获取判断用的对象
+          if (ua.match(/MicroMessenger/i) == "micromessenger") {
+              weixin_config(appId,timestamp,nonceStr,signature);
+              weixin_ready(title,desc,link,imgUrl);
+          } 
+    })
+</script>
+</html>

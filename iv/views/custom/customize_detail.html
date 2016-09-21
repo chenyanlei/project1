@@ -1,0 +1,89 @@
+<!doctype html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <meta name="format-detection" content="telephone=no,email=no,date=no,address=no">
+    <title>定制详情</title>
+    <link rel="stylesheet" type="text/css" href="/Public/css/aui.css">
+    <link rel="stylesheet" type="text/css" href="/Public/css/iconfont.css">
+    <style type="text/css">
+        img.aui-img-object {
+            border-radius: 50%;
+        }
+        .laud {
+            font-size: 14px;
+            color: #999;
+        }
+        p {
+            margin: 5px 0 !important;
+            display: table;
+        }
+        .helper-tag {
+            color: #666666;
+            font-size: 12px;
+        }
+        .aui-img-body p{
+            padding-left:20px
+        }
+        button, .aui-btn{
+            background-color:transparent;
+        }
+        .aui-bar{
+            background-color:#00d8ff;
+        }
+    </style>
+</head>
+<body>
+<header class="aui-bar aui-bar-nav aui-bar-color" id="aui-header">
+    <a class="aui-btn aui-pull-left aui-bar-color"">
+    <span class="aui-iconfont aui-icon-left"  onclick="window.history.go(-1)"></span>
+    </a>
+    <div class="aui-title">定制详情</div>
+</header>
+<p class="aui-text-center aui-padded-10 ">定制信息</p>
+<section class="aui-content">
+    <ul class="aui-list-view">
+        <li class="aui-list-view-cell">
+            <p class='aui-ellipsis-1'>
+                与谁同行:<?=trim(implode(',',json_decode($preference)),',');?>
+            </p>
+            <p class='aui-ellipsis-2'>
+                出发日期：<?=$start_date?>
+            </p>
+            <p class='aui-ellipsis-2'>
+                出行人数：<?=$person_num?>
+            </p>
+            <p class='aui-ellipsis-2'>
+                出发地：<?=$start_point;?>
+            </p>
+            <p class='aui-ellipsis-2'>
+                目的地：<?=$destination;?>
+            </p>
+        </li>
+
+    </ul>
+</section>
+<p class="aui-text-center aui-padded-10 ">联系人信息</p>
+<section class="aui-content">
+    <ul class="aui-list-view">
+
+        <li class="aui-list-view-cell">
+            <p class='aui-ellipsis-2'>
+                联系人：<?=$name?>
+            </p>
+            <p class='aui-ellipsis-2'>
+                联系电话：<?=$phone?>
+            </p>
+            <p class='aui-ellipsis-2'>
+                性别：<?=$sex?'男':'女';?>
+            </p>
+            <p class='aui-ellipsis-2'>
+                年龄：<?=$age?>
+            </p>
+        </li>
+
+    </ul>
+</section>
+</body>
+</html>

@@ -1,0 +1,123 @@
+
+<style>
+	img{
+		border: none;
+	}
+	.use_help_main{
+		width:1200px;
+		margin: 0 auto;
+		margin-top: 50px;
+		overflow:hidden;
+		padding-bottom:200px; 
+	}
+	.help_left{
+		float: left;
+		/*width: 100px;*/
+	}
+	.help_right{
+		width: 903px;
+		float: right;
+		/*margin-left: 100px;*/
+		font-size: 14px;
+		color: #585858;
+	}
+	.right_module_title{
+		margin-bottom: 20px;
+	}
+	.help_right_img{
+		margin-top: 10px;
+		margin-bottom: 30px;
+	}
+	.help_right img{
+		width: 903px;
+	}
+</style>
+<div class="use_help_main">
+	<div class="help_left">
+		<?php
+		    $CI = & get_instance() ;
+		    $CI->load->view("help/slide_bar.html") ;
+		?>
+	</div>
+	<div class="help_right">
+		<div id="help_right_registry">
+			<p class="right_module_title">一、注册流程</p>
+			<p>在浏览器里输入<a href="">http://a.qsctrip.com/</a>进入逍品首页，点击“立即注册”进入注册页面</p>
+			<div class="help_right_img">
+				<img src="/Public/images/help_1.jpg" alt="">
+			</div>
+			<p>第一步：填写账号信息。通过手机号和短信验证码即可完成</p>
+			<div class="help_right_img">
+				<img src="/Public/images/help_2.png" alt="">
+			</div>
+			<p>第二步：完善信息。若您是旅行顾问注册，按照提示一次填写个人信息即可；若您是旅行社注册，点击“旅行社”进入完善旅行社页面，按照提示依次填写旅行社信息即可。</p>
+			<div class="help_right_img">
+				<img src="/Public/images/help_3.png" alt="">
+			</div>
+			<p class="right_module_title">第三步：等待审核。在此期间，逍品旅行会审核您提交的信息，审核结果会以短信的形式发送至您注册的手机号，请及时留意手机短信。收到短信后刷新该页面。</p>
+			<div class="help_right_img">
+				<img src="/Public/images/help_4.png" alt="">
+			</div>
+			<p>若审核通过，点击“确定”即可直接登陆；或通过<a href="">http://a.qsctrip.com/</a>进入逍品旅行首页通过以已注册的手机号和密码(或动态密码)进行登陆。</p>
+			<div class="help_right_img">
+				<img src="/Public/images/help_5.png" alt="">
+			</div>
+		</div>
+		<div id="help_right_share">
+			<p class="right_module_title">二、分享产品</p>
+			<p>通过账号密码登陆之后即可进入逍品旅行代理端首页。在该页面，选择“选择产品商城”即可查看相应的产品。同时通过“筛选”您可以通过产品的目的地和类别来查看相应的产品。</p>
+			<div class="help_right_img">
+				<img src="/Public/images/help_6.jpg" alt="">
+			</div>
+			<p>当您看到一款想代理的产品时，您可以点击该产品图片区域查看该产品详情。</p>
+			<div class="help_right_img">
+				<img src="/Public/images/help_7.png" alt="">
+			</div>
+			<p>在产品详情页面，您还可以直接分享该产品给微信好友，微信朋友圈等。当别人在自己的微信看到您分享的产品，便可直接购买了，您就可以获得相应的佣金。</p>
+			<div class="help_right_img">
+				<img src="/Public/images/help_8.png" alt="">
+			</div>
+			<p>在浏览产品时，您可以点击“放入店铺”，随时将您想代理的产品添加到“我的店铺”。也可以点击“立即推广”为该产品选择一款合适的素材之后，再分享出去。(素材的作用是向别人介绍一款产品)</p>
+			<div class="help_right_img">
+				<img src="/Public/images/help_9.jpg" alt="">
+			</div>
+			<p>素材选择页面，会有逍品旅行为该款产品推荐的素材，当然您也可以在“我的素材”中添加自己的素材并选择。点击素材区域，查看每款素材的详情，点击每款素材右上方区域可以为产品选择该素材，选择完成后，点击“确定”可跳至分享页面。</p>
+			<div class="help_right_img">
+				<img src="/Public/images/help_10.png" alt="">
+			</div>
+		</div>
+		<div id="help_right_login">
+			
+		</div>
+		<!-- <div id="help_right_flow">
+			<p class="right_module_title">一、流程图</p>
+			<div style="height:500px;"></div>
+		</div> -->
+		<div id="help_right_order"></div>
+		<div id="help_right_store"></div>
+		<div id="help_right_noun"></div>
+	</div>
+</div>
+<script>
+$(function() {
+	// $("#slide_bar ul li:first-child").addClass('active');
+	var top=$("#slide_bar").offset().top;
+	console.log(top);
+	$(window).scroll(function () {
+		var t=$(this).scrollTop();
+		if (t>top) {
+			$("#slide_bar").css({
+				position: 'fixed',
+				top: '0'
+			});
+		}else{
+			$("#slide_bar").css({
+				position: 'relative',
+			});
+			$("#slide_bar ul li:first-child").addClass('active');
+		}
+	})
+	$('body').scrollspy({ target: '#slide_bar' })
+	
+})
+</script>

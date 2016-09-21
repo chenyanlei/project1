@@ -1,0 +1,862 @@
+<?php
+    $order_status = $detail['order_status'];
+    $contact = $detail['contact'];
+?>
+<script type="text/javascript" src="/Public/js/layer.js"></script>
+<link rel="stylesheet" href="/Public/css/bootstrap.min.css">
+<style>
+	*{
+		margin:0;
+		padding:0;
+	}
+	a:link,a:hover,a:active,a:visited{
+		text-decoration: none !important;
+	}
+	ul li{
+		list-style: none;
+	}
+	body,html{
+		font-size: 14px;
+		font-family:"Microsoft YaHei";
+		height: 100%;
+		background-color: #f5f5f5;
+		color: #585858;
+	}
+	table  
+	{  
+	    border-collapse:collapse;  
+	}  
+	table td  
+	{  
+	    empty-cells : show  
+	}  
+	/* 样式重置 */
+	.info-main{
+		padding-bottom: 240px;
+		width: 1135px;
+		margin: 0 auto;
+	}
+	.info-link{
+		padding: 15px 0;
+	}
+	.info-link a{
+		font-size: 14px;
+		color: #585858;
+
+	}
+	.info-detail{
+		background-color: #fff;
+		padding: 0 30px;
+		width: 1135px;
+	}
+	.order-status,.order-info,.orderPro-info{
+		padding: 30px 0 20px 0;
+		border-bottom: 1px solid #ccc;
+	}
+	.infoModule-title{
+		font-size: 18px;
+		color: #585858;
+		font-weight: bold;
+	}
+	.order-status-info{
+		margin-top:40px;
+	}
+	.now-pay{
+		font-size: 14px;
+		font-weight: bold;
+		color: #00d8ff;
+		padding-left: 30px;
+	}
+	.now-pay:hover{
+		color: #00d8ff;
+	}
+	.order-info-num{
+		margin-top:40px;
+		margin-bottom:20px;
+	}
+	.orderPro-info>div{
+		margin-top: 20px;
+	}
+	.table>tbody>tr>td, .table>tbody>tr>th, .table>tfoot>tr>td, .table>tfoot>tr>th, .table>thead>tr>td, .table>thead>tr>th {/*修改bootstrap 样式*/
+		padding:20px 0;
+	    font-size: 14px;
+	    color: #585858;
+	    /*text-align: center;*/
+	}
+	.table-bordered {
+	    border: 1px solid #ccc;
+	}
+	.concatact-listInfo>td{
+		font-weight: bold;
+		background-color: #f5f5f5;
+		width: 33%
+	}
+	.concatact-table-info{
+		padding: 30px 0 20px 0;
+
+	}
+	.visitor-listInfo>td{
+		font-weight: bold;
+		background-color: #f5f5f5;
+		width: 20%;
+	}
+	.change-div{
+		overflow: hidden;
+	}
+	.changeDiv-left{
+		float: left;
+	}
+	.changeDiv-right{
+		float: right;
+		color: #00d8ff;
+		font-size: 18px;
+		margin-right: 30px;
+	}
+	.changeDiv-right:hover{
+		color: #00d8ff;
+	}
+	.table-center{
+		text-align: center;
+	}
+	.concatact-table tr td input{
+		width: 200px;
+		border: none;
+		text-align: left;
+		margin-left:50px
+	}
+	.visitor-table tr td input{
+		width: 200px;
+		border: none;
+		text-align: left;
+		margin-left:50px
+	}
+	.concatact-btngroup,.visitor-btngroup{
+		width:210px;
+		margin:30px auto;
+		overflow:hidden;
+		display: none;
+	}
+	.concatact-true,.concatact-no,.visitor-true,.visitor-no{
+		float: left;
+		width: 100px;
+		padding: 10px 0;
+		text-align: center;
+		color:#fff;
+		cursor: pointer;
+
+	}
+	.concatact-true,.visitor-true{
+		margin-right: 10px;
+		background-color: #7ce8fc;
+	}
+	.concatact-true:hover,.visior-true:hover{
+		background-color: #00d8ff;
+
+	}
+	.concatact-no,.visitor-no{
+		background-color: #e5e5e5;
+	}
+	.concatact-no:hover,.visitor-no:hover{
+		background-color: #ccc;
+	}
+	.visitor-change{
+		text-align: center;
+	}
+	.visitor-change a{
+		color: #00d8ff;
+		font-weight: bold;
+	}
+	.visitor-change a:hover{
+		color: #00d8ff;
+	}
+	.cancel-order{
+		width: 100px;
+		padding: 10px 0;
+		border:1px solid #00d8ff;
+		text-align: center;
+		cursor: pointer;
+
+	}
+	.refund-order{
+		width: 100px;
+		padding: 10px 0;
+		border:1px solid red;
+		text-align: center;
+		cursor: pointer;
+	}
+	.refund-order:hover{
+		background-color: #ccc;
+		color: #fff;
+	}
+	.cancel-order:hover{
+		background-color: #ccc;
+		color: #fff;
+	}
+	.info-color{
+		color: #00d8ff;
+	}
+	/*alertcss*/
+	#verify{
+        width:420px;
+        margin:0 auto;
+    }
+    .v_title{
+        margin-top:5px;
+        text-align:center;
+        font-size:16px;
+        color:#585858
+    }
+
+    .v_to{
+        margin-top:30px;
+        color:#585858
+    }
+    .v_con{
+        margin-top:20px;
+        color:#585858;
+        display: inline-block;
+        vertical-align: middle;
+        position: relative;
+    }
+    .js_cancel_order_pop_select{
+        display: inline-block;
+        vertical-align: middle;
+        position: relative;
+    }
+    .v_con input{
+        width:200px;
+        border:solid #cccccc 1px;
+        margin:10px 0px;
+        height:30px;
+        padding:10px;
+    }
+    .v_con button{
+        color:#ffffff;
+        border-radius:4px;
+        background:#7fcbea;
+        height:30px;
+        width:100px;
+        border:none
+    }
+
+    .valid,.invalid{
+        display: none;
+        line-height: 1.5;
+        position: absolute;
+    }
+    .invalid {
+        color: #999;
+        left: 86px;
+        top:100%;
+        white-space: nowrap;
+        word-break: keep-all;
+    }
+    .js_cancel_order_pop_select~.invalid{
+        left: 100px;
+        top:64px;
+    }
+    .js_cancel_order~.invalid{
+        left: 100px;
+        top:64px;
+    }
+    .valid {
+        background-position: 0 -125px;
+        line-height: 1.5;
+        position: absolute;
+        left: 93%;
+        margin-top: -0.75em;
+        top: 45%;
+     }
+    .invalid i{
+        background-position: 0 5px;
+        left: -20px;
+        position: absolute;
+        top: 34%;
+    }
+    .invalid i {
+        background-image: url("/Public/images/wrong1.png");
+        background-repeat: no-repeat;
+    }
+	.valid,.invalid i {
+        height: 20px;
+        margin-top: -10px;
+        width: 20px;
+   }
+   #J_cancelmsg{
+        margin-top:10px;
+        text-align:center
+    }
+    .layui-layer-btn .layui-layer-btn1 {
+      background-color: #e5e5e5;
+        color: #ffffff;
+    }
+    .layui-layer-title{background:#6fc3f8; color:#fff; border: none;}
+    .layui-layer-btn{
+        background:#ffffff;
+    }
+    .layui-layer-btn a{
+        color: #fff;
+        cursor: pointer;
+        font-size: 14px;
+        font-weight: 700;
+        height: 40px;
+        line-height: 40px;
+        margin: 0 8px;
+        padding: 0 20px;
+        text-decoration: none;
+        width:100px;
+        background:#0097d6
+    }
+	.js_cancel_order_pop_select,.js_cancel_order{
+		height:40px;
+	}
+</style>
+<div class="info-main">
+	<div class="info-link">
+		<a href="">订单</a> >
+		<a href="">订单详情</a>
+	</div>
+	<div class="info-detail">
+		<div class="order-status">
+			<p class="infoModule-title">订单状态</p>
+			<div class="order-status-info">
+				<span>当前订单状态：</span>
+				<?php
+          		  $status_item = $detail['order_cur_status'] ;
+            	?>
+				<span>
+					<?php
+                    $CI = &get_instance() ;
+                    $CI->load->library('commen') ;
+                    $status_txt = $CI->commen->get_order_status_txt($status_item['status']) ;
+                    echo $status_txt;?>
+				</span>
+				<?php
+                if($status_item['status'] == '0'){
+                    echo '<a class="now-pay" href="/order/order_pay?order_id='.$detail['order_id'].'">立即支付</a>' ;
+                }  else {
+//                        echo $status_txt ;
+                }?>
+
+			</div>
+		</div>
+		<div class="order-info">
+			<p class="infoModule-title">订单信息</p>
+			<div>
+				<div class="order-info-num">
+					<span>订单号：</span>
+					<span class="order_id"><?php echo $detail['order_id'] ;?></span>
+				</div>
+				<div>
+					<span>创建时间：</span>
+					<span><?=$detail['create_time']?></span>
+				</div>
+			</div>
+		</div>
+		<div class="orderPro-info">
+			<p class="infoModule-title">产品信息</p>
+			<div style="margin-top:40px;">
+				<span>产品名称： </span><span><a href="/product/product_detail?&p_type=1&pid=<?php echo $detail['pid'];?>"><?php echo $detail['title'] ;?></a></span>
+			</div>
+			<div>
+				<span>价格： </span><span>￥ <?php echo $detail['unit_price'] ;?>/人</span><span>(人民币)</span>
+			</div>
+			<div>
+				<span>日期： </span><span><?php echo date('Y-m-d',$detail['travel_date']) ;?></span>
+			</div>
+			<div>
+				<span>人数： </span><span><?php echo $detail['num'] ;?>人</span>
+			</div>
+		</div>
+		<?php
+        $costomers ;
+        $contact_1 ;
+        $index = 0 ;
+        foreach($contact as $contact_item) {
+            if($contact_item['is_contact'] == 1) {
+                $contact_1 = $contact_item ;
+            } else {
+                $costomers[] = $contact_item ;
+            }
+         } ?>
+		<div class="concatact-table-info">
+			<div class="change-div">
+				<span class="infoModule-title changeDiv-left">联系人</span>
+				<?php  if($status_item['status'] == Ptype::ORDER_STATUS_WILL_PAY || $status_item['status'] == Ptype::ORDER_STATUS_PAYED ){?>
+				<a href="javascript:;" class="changeDiv-right concatact-change">修改</a>
+			    <?php }?>
+			</div>
+			<div style="margin-top:30px;"  id="contact" data="<?=$contact_1['id'];?>">
+				<table class="table table-bordered concatact-table">
+					<tr class="concatact-listInfo">
+						<td class="table-center">姓名</td>
+						<td class="table-center">邮箱</td>
+						<td class="table-center">联系电话</td>
+					</tr>
+					<tr>
+						<td><input class="concatact-table-name" type="text" value="<?=$contact_1['name'];?>" placeholder="<?=$contact_1['name'];?>" readonly></td>
+						<td><input class="concatact-table-email" type="text" value="<?=$contact_1['email'];?>" placeholder="<?=$contact_1['email']?>" readonly></td>
+						<td><input class="concatact-table-phone" type="text" value="<?=$contact_1['phone']?>" placeholder="<?=$contact_1['phone']?>" readonly ></td>
+					</tr>
+				</table>
+				<div>
+					<div class="concatact-btngroup">
+						<div class="concatact-true">确定修改</div>
+						<div class="concatact-no">取消</div>
+					</div>
+				</div>
+			</div>
+			 <?php if(isset($costomers) && sizeof($costomers) > 0) { ?>
+			<div class="change-div">
+				<p class="infoModule-title">游客信息</p>
+			</div>
+			<div style="margin-top:30px;">
+				<table class="table table-bordered visitor-table">
+					<tr class="visitor-listInfo">
+						<td class="table-center">姓名</td>
+						<td class="table-center">性别</td>
+						<td class="table-center">身份证号</td>
+						<td class="table-center">护照号码</td>
+						<td class="table-center">操作</td>
+					</tr>
+
+		        <?php foreach($costomers as $contact_item) { ?>
+					<tr data="<?=$contact_item['id'];?>">
+						<td><input class="vistor-table-name" type="text" value="<?=$contact_item['name'];?>" placeholder="<?=$contact_item['name'];?>" readonly></td>
+						<td style="text-align:center">
+							<div class="sex"><?=$contact_item['sex']=='0'?'男':'女'?></div>
+							<select name="" class="sex_sel" style="display:none">
+								<option value="0" <?=$contact_item['sex']=='0'?'selected':'';?>>男</option>
+								<option value="1" <?=$contact_item['sex']=='1'?'selected':'';?>>女</option>
+							</select>
+						</td>
+						<td><input class="vistor-table-idCard" type="text" value="<?=$contact_item['id_card'];?>" placeholder="<?=$contact_item['id_card'];?>" readonly></td>	
+						<td><input class="vistor-table-passCard" type="text" value="<?=$contact_item['passport'];?>" placeholder="<?=$contact_item['passport'];?>" readonly></td>	
+						<td class="visitor-change">
+						<?php  if($status_item['status'] == Ptype::ORDER_STATUS_WILL_PAY || $status_item['status'] == Ptype::ORDER_STATUS_PAYED ){?>
+							<a href="javascript:;">修改</a>
+						<?php }else{?>	
+						 	无法修改(取消,退订等原因)
+						<?php }?>
+						</td>	
+					</tr>
+				<?php } ?>
+				</table>
+				<div>
+					<div class="visitor-btngroup">
+						<div class="visitor-true">确定修改</div>
+						<div class="visitor-no">取消</div>
+					</div>
+				</div>
+			</div>
+
+
+			<?php }
+
+			if($status_item['status'] == Ptype::ORDER_STATUS_WILL_PAY){ ?>
+				<div class="cancel-order">取消订单</div>
+        	<?php }else if($status_item['status'] == Ptype::ORDER_STATUS_PAYED){ ?>
+        		<div class="refund-order">申请退款</div>
+        	<?php } ?>	
+
+		</div>
+	</div>
+</div>
+
+<script>
+   /*
+	*修改部分
+	*
+	*/
+	var order_id = $('.order_id').html();
+	//检查邮箱格式
+    function is_email(email){
+        //检测用户名的格式是否ok
+        var reg = /^[0-9A-Za-zd]+([-_.][A-Za-zd]+)*@([0-9A-Za-zd]+[-.])+[A-Za-zd]{2,5}$/;
+        //获取用户名的值
+        //检测   exec
+        return reg.test(email);
+    }
+    //检查手机号格式
+    function is_phone(phone){
+        var reg = /^1[3-9][0-9]{9}$/; 
+        //检测   exec
+        return reg.test(phone);
+    }
+    //检查姓名格式
+    function is_name(name){
+        var reg =/^[^\d]+$/;
+        //检测   exec
+        return reg.test(name); 
+    }
+    //检查身份证号格式
+    function is_idnumber(idnum){
+        var reg = /(^\d{15}$)|(^\d{17}(\d|X)$)/;
+        //检测   exec
+        return reg.test(idnum);  
+    }
+    //检查护照格式
+    function is_passport(pass){
+        var reg = /^1[45][0-9]{7}$|E[0-9]{8}$|G[0-9]{8}$|P[0-9]{7}$|S[0-9]{7,8}$|D[0-9]+$/;
+        //检测   exec
+        return reg.test(pass);
+    }	
+	// 点击联系人修改按钮事件
+	var contact_name;
+	var contact_email;
+	var contact_phone;
+	$(".changeDiv-right").click(function() {
+		//获取当前输入框的值做是否改变的判断
+		$(this).hide();
+		$(".concatact-btngroup").show();
+		$(".concatact-table tr td input").removeAttr('readonly');
+		$(".concatact-table-name").focus();
+		$(".concatact-table tr td input").css({
+			outline: 'none'
+		});
+		$(".concatact-table tr:last-child td input").addClass('info-color');
+		contact_name=$('.concatact-table-name').val();
+		contact_email=$('.concatact-table-email').val();
+		contact_phone=$('.concatact-table-phone').val();
+	});
+	// 点击联系人-------------确认修改按钮
+	$(".concatact-true").click(function() {
+		var id = $('#contact').attr('data');
+		var name = $('.concatact-table-name');
+		console.log(name.val());
+		if(!is_name(name.val())){
+			alert('姓名格式不正确');
+			name.val(contact_name);
+			return false;
+		}
+
+		var email = $('.concatact-table-email');
+		if(!is_email(email.val())){
+			alert('邮箱格式不正确');
+			email.val(contact_email);
+			return false;
+		}
+
+		var phone = $('.concatact-table-phone');
+		if(!is_phone(phone.val())){
+			alert('手机号格式不正确');
+			phone.val(contact_phone);
+			return false;
+		}
+		 $.ajax({
+                url:'/order/modify_user',
+                data:{order_id:order_id,customer_id:id,name:name.val(),email:email.val(),phone:phone.val()},
+                type:'post',
+                success:function(data){
+                    if(data.result.err==0){
+                       $(".changeDiv-right").show();
+						$(".concatact-btngroup").hide();
+						$(".concatact-table tr td input").attr('readonly','readonly');
+						$(".concatact-table tr:last-child td input").removeClass('info-color');
+						$(".concatact-table tr:last-child td input").removeClass('info-color');
+                        return true;
+                    }else{
+                        return false;
+                    }
+                }
+            },'json')
+		
+	});
+	// 点击联系人----------------取消按钮
+	$(".concatact-no").click(function() {
+		$(".changeDiv-right").show();
+		$(".concatact-btngroup").hide();
+		$(".concatact-table tr td input").attr('readonly','readonly');
+		$(".concatact-table tr:last-child td input").removeClass('info-color');
+		$('.concatact-table-name').val(contact_name);
+		$('.concatact-table-email').val(contact_email);
+		$('.concatact-table-phone').val(contact_phone);
+	});
+
+	var customer_id;//data id值
+	var sex_sel;
+	var sex_div;
+	//点击客户信息table中修改按钮事件
+	var visitor_name;
+	var visitor_sex;
+	var visitor_idCard;
+	var visitor_passCard;
+
+	$(".visitor-change a").click(function() {
+		customer_id = $(this).parents('tr').attr('data');
+		sex_sel = $(this).parents('tr').find('.sex_sel');
+		sex_sel.show();
+		sex_div = $(this).parents('tr').find('.sex');
+		sex_div.hide();
+		$(".visitor-btngroup").show();
+		$(this).parent('td').siblings('td').find('input').removeAttr('readonly');
+		$(this).parent('td').siblings('td').find('.vistor-table-name').focus();
+		$(this).parent('td').siblings('td').find('input').css({
+			outline: 'none'
+		});
+		$(".visitor-table tr td input").removeClass('info-color');
+		$(this).parent('td').siblings('td').find('input').addClass('info-color');
+		$(this).parent('td').siblings('td').find('select').addClass('info-color');
+		visitor_name=$(this).parent('td').siblings('td').find('.vistor-table-name').val();
+		visitor_idCard=$(this).parent('td').siblings('td').find('.vistor-table-idCard').val();
+		visitor_passCard=$(this).parent('td').siblings('td').find('.vistor-table-passCard').val();
+		visitor_sex=$(this).parent('td').siblings('td').find('.sex_sel option:selected').val();
+	});
+	//点击客户信息table中---确认修改按钮-table-name
+	$(".visitor-true").click(function() {
+		var name = $('.vistor-table-name');
+		if(!is_name(name.val())){
+			alert('姓名格式不正确');
+			$('tr[data='+customer_id+']').find('.vistor-table-name').val(visitor_name);
+			return false;
+		}
+
+		var idCard = $('.vistor-table-idCard');
+		if(!is_idnumber(idCard.val())){
+			alert('身份证号格式不正确');
+			$('tr[data='+customer_id+']').find('.vistor-table-idCard').val(visitor_idCard);
+			return false;
+		}
+		var passCard = $('.vistor-table-passCard');
+		if(!is_passport(passCard.val())){
+			alert('护照号码格式不正确');
+			$('tr[data='+customer_id+']').find('.vistor-table-passCard').val(visitor_passCard);
+			return false;
+		}
+
+		var sex = sex_sel.val();
+		  $.ajax({
+                url:'/order/modify_user',
+                data:{order_id:order_id,customer_id:customer_id,name:name.val(),sex:sex,id_card:idCard.val(),passport:passCard.val()},
+                type:'post',
+                success:function(data){
+
+                    if(data.result.err==0){
+                        $(".visitor-btngroup").hide();
+						$(".visitor-table tr td input").attr('readonly','readonly');
+						$(".visitor-table tr td input").removeClass('info-color');
+						sex_sel.hide();
+						sex_div.show();
+						sex_div.html(sex == 0 ? '男' : '女');
+                        return true;
+                    }else{
+                        return false;
+                    }
+                }
+            },'json')
+		
+	});
+	//点击客户信息table中---取消按钮
+	$(".visitor-no").click(function(){
+		sex_sel.hide();
+		sex_div.show();
+		$(".visitor-btngroup").hide();
+		$(".visitor-table tr td input").attr('readonly','readonly');
+		$(".visitor-table tr td input").removeClass('info-color');
+		$(".visitor-table tr td select").removeClass('info-color');
+		$('tr[data='+customer_id+']').find('.vistor-table-name').val(visitor_name);
+		$('tr[data='+customer_id+']').find('.vistor-table-idCard').val(visitor_idCard);
+		$('tr[data='+customer_id+']').find('.vistor-table-passCard').val(visitor_passCard);
+		$('tr[data='+customer_id+']').find('.sex_sel option:selected').val(visitor_sex);
+
+	});
+	/*
+	*订单操作部分
+	*/
+	//取消订单
+
+	//正确的ui 
+    function ui_false(e){
+        e.parent().find('.invalid').css('display','block');
+    }
+    //错误的ui
+    function ui_true(e){
+        e.parent().find('.invalid').css('display','none');
+        e.parent().find('.valid').css('display','inline');
+    }
+
+    function error_ui(e,i){
+        var error_info = '<div class="invalid" style="display:none;margin-left:20px"><i></i><div class="msg">'+i+'</div></div><i class="valid" style="display: none;"></i>';
+        if(e.parent().find('.invalid').attr('class') != 'invalid'){
+            e.parent().append(error_info);
+        }else{
+            e.parent().find('.msg').html(i);
+        }
+        
+    }
+	function check_reason(){
+        var e = $('.js_cancel_order_pop_select');
+       if(e.val()==""){
+            error_ui(e,'请选择取消原因');
+            ui_false(e);
+            return false;
+        }else{
+            error_ui(e,"");
+            ui_true(e);
+            return true;
+        }
+    }
+    var reason = '';
+    var desc = '';
+    $('body').delegate('.js_cancel_order_pop_select','change',function(){
+        check_reason();
+        reason = $('.js_cancel_order_pop_select').val();
+        desc = $('#js_cancel_order_remark').val();
+    })
+
+    var index1 = '';
+    $('.cancel-order').click(function(){
+        var msg = '<table id="J_crosswise_pay" class="crosswise_tb" style="display: table;"> <tbody><tr> <th style="width:82px;"><span id="js_cancel_order_pop_tip">取消原因</span><strong class="required">*</strong></th> <td> <select style="width:278px;" class="js_cancel_order_pop_select" name="reason"> <option value=""></option><option value="行程不确定">行程不确定</option> <option value="无法按时付款">无法按时付款</option> <option value="价格原因">价格原因</option> <option value="重复预订">重复预订</option> <option value="材料无法按时提供">材料无法按时提供</option> <option value="担心不成团">担心不成团</option> <option value="突发事件">突发事件</option> <option value="其他原因">其他原因</option> </select> </td> </tr>   <tr> <th style="vertical-align:middle;margin-top:20px">取消描述<strong id="js_cancel_order_pop_star" style="display: none;" class="required">*</strong></th> <td><textarea id="js_cancel_order_remark" style="width:470px;height:100px;resize:none;margin-top:30px"></textarea></td> </tr> </tbody> </table>';
+        var msg1 = '<div style="display: block;" class="order_masking_content"><strong id="J_cancelmsg">确认申请取消订单<span class="js_pop_orderId">'+order_id+'</span>吗？一经取消订单将无法恢复，请再次确认，谢谢！</strong></div>';
+         layer.open({
+                     title:'取消订单',
+                     content: msg,
+                     area: ['645px', 'auto'],
+                     success:function () {
+                     	$('.layui-layer-content').scrollUnique();
+                     },
+                     yes: function(index, layero){
+                        if(check_reason()){
+                            layer.open({ 
+                                title:'取消订单',
+                                content: msg1,
+                                area: ['645px', 'auto'],
+                                btn: ['确定', '取消']
+                                ,yes:function(index){
+                                    index1 = layer.load(1,{offset:['200px','650px'],shade: [0.4, '#393D49']});
+                                    $.ajax({
+                                        url:'/order/cancel_order',
+                                        data:{order_id:order_id,reason:reason,desc:desc},
+                                        type:'post',
+                                        success:function(data){
+                                            if(data.result.err==0){
+                                               layer.close(index);
+                                               layer.close(index1);
+                                               document.location.href="";
+                                               return true;
+                                            }else{
+                                                var msg = data.result.err+':'+data.result.msg;
+                                                  layer.open({ 
+                                                        title:'取消订单',
+                                                        content: msg,
+                                                        area: ['645px', '145px']
+                                                   })     
+                                                return false;
+                                            }
+                                        }
+                                },'json')
+                                    
+                                }
+                            })
+                            return true;
+                        }
+
+                        return false;
+                       
+                    }
+            });
+    })
+	//申请退款
+	 function check_reason_refund(){
+         var e = $('.js_cancel_order');
+       if(e.val()==""){
+            error_ui(e,'请选择退款原因');
+            ui_false(e);
+            return false;
+        }else{
+            error_ui(e,"");
+            ui_true(e);
+            return true;
+        }
+    }
+	var refund_reason = '';
+    var refund_desc = '';
+    $('body').delegate('.js_cancel_order','change',function(){
+
+        check_reason_refund();
+        refund_reason = $('.js_cancel_order').val();
+        refund_desc = $('#js_cancel_order').val();
+    })
+	 var index2 = '';
+   $('.refund-order').click(function(){
+        var msg1 = '<table id="J_crosswise_pay" class="crosswise_tb" style="display: table;"> <tbody><tr> <td style="width:82px;"><span id="js_cancel_order_pop_tip">退款原因</span><strong class="required">*</strong></td> <td> <select style="width:278px;" class="js_cancel_order" name="reason"> <option value=""></option><option value="行程不确定">行程不确定</option> <option value="无法按时付款">无法按时付款</option> <option value="价格原因">价格原因</option> <option value="重复预订">重复预订</option> <option value="材料无法按时提供">材料无法按时提供</option> <option value="担心不成团">担心不成团</option> <option value="突发事件">突发事件</option> <option value="其他原因">其他原因</option> </select> </td> </tr>   <tr> <td style="vertical-align:middle;margin-top:20px">原因描述<strong id="js_cancel_order_pop_star" style="display: none;" class="required">*</strong></td> <td><textarea id="js_cancel_order" style="width:470px;height:100px;resize:none;margin-top:30px"></textarea></td> </tr> </tbody> </table>';
+        var refund_inst = '<div class="instruct"><div class="refund_inst">退款说明:</div><div>1. 游客申请退款;</div><div>2. 逍品旅游与供应商核算损失;</div><div>3. 客服人员提交退款申请;</div><div>4. 财务人员审核通过;</div><div>5. 出纳退款;</div><div>6. 退款进入银行处理程序</div><div>特别说明:所有退款均为"原路退回"方式.</div><br><div>到账时间说明</div><div>处理退款的时间为3个工作日左右,银行处理时间视客人不同支付方式不同,具体如下:</div><div>1.支付宝余额支付,及时到账;</div><div>2.网上银行支付,5-10个工作日到账;</div><div>3.信用卡支付,10-25个工作日到账;</div><div>4.借记卡汇款,3-5个工作日.</div><div>如果退款过时不到账,请致电逍品旅游客服询问是否已进行退款处理,或致电银行客户询问账目情况.</div></div>';
+
+        var msg = msg1 + refund_inst;
+        var msg2 = '<div style="display: block;" class="order_masking_content"><strong id="J_cancelmsg">确认申请退款订单号为:<span class="js_pop_orderId">'+order_id+'</span>的订单吗？退款对您将产生一定损失，具体损失视产品而定,请再次确认，谢谢！</strong></div>';
+        layer.open({
+                     title:'退款申请',
+                     content: msg,
+                     area: ['700px', '445px'],
+                     btn:'退款',
+                     success:function () {
+                     	$('.layui-layer-content').scrollUnique();
+                     },
+                     yes: function(index, layero){
+                        if(check_reason_refund()){
+                            layer.open({ 
+                                title:'退款申请',
+                                content: msg2,
+                                area: ['645px', 'auto'],
+                                btn: ['确定', '取消']
+                                ,yes:function(index){
+                                    index2 = layer.load(1,{offset:['200px','650px'],shade: [0.4, '#393D49']});
+                                    $.ajax({
+                                        url:'/order/refund_order',
+                                        data:{order_id:order_id,reason:refund_reason,desc:refund_desc},
+                                        type:'post',
+                                        success:function(data){
+                                            if(data.result.err==0){
+                                               layer.close(index);
+                                               layer.close(index2);
+                                               document.location.href="";
+                                               return true;
+                                            }else{
+                                                var msg = data.result.err+':'+data.result.msg;
+                                                  layer.open({ 
+                                                        title:'取消订单',
+                                                        content: msg,
+                                                        area: ['645px', '145px']
+                                                   })     
+                                                return false;
+                                            }
+                                        }
+                                },'json')
+                                    
+                                }
+                            })
+                            return true;
+                        }
+
+                     }
+        })             
+   })
+
+
+   //扩展jquery方法子元素滚动body不滚动-----！勿动！---------begin-------------
+   $.fn.scrollUnique = function() {
+       return $(this).each(function() {
+           var eventType = 'mousewheel';
+           // 火狐是DOMMouseScroll事件
+           if (document.mozHidden !== undefined) {
+               eventType = 'DOMMouseScroll';
+           }
+           $(this).on(eventType, function(event) {
+               // 一些数据
+               var scrollTop = this.scrollTop,
+                   scrollHeight = this.scrollHeight,
+                   height = this.clientHeight;
+
+               var delta = (event.originalEvent.wheelDelta) ? event.originalEvent.wheelDelta : -(event.originalEvent.detail || 0);        
+
+               if ((delta > 0 && scrollTop <= delta) || (delta < 0 && scrollHeight - height - scrollTop <= -1 * delta)) {
+                   // IE浏览器下滚动会跨越边界直接影响父级滚动，因此，临界时候手动边界滚动定位
+                   this.scrollTop = delta > 0? 0: scrollHeight;
+                   // 向上滚 || 向下滚
+                   event.preventDefault();
+               }        
+           });
+       }); 
+   };
+   //扩展jquery方法子元素滚动body不滚动--------------end-------------
+</script>

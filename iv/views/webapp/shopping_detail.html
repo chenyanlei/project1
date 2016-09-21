@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+	<title>商店详情</title>
+	<link rel="stylesheet" type="text/css" href="/Public/css/aui.css" />
+	<link rel="stylesheet" type="text/css" href="/Public/css/aui-flex.css" />
+</head>
+<body>
+	<style type="text/css">
+		 body{
+		 	background-color:#fff;
+		 }
+		 .face_img{
+		 	height:230px;
+		 	width:100%;
+		 }
+		 .shop_title{
+			font-size:16px;
+			color:#585858;
+			font-weight:bold;
+			margin-bottom:20px;
+		 }
+		 .shop_detail>div,.shop_detail>p{
+		 	color:#585858 !important;
+		 	font-size:16px;
+		 }
+		 .feature{
+		 	padding-top:20px;
+		 	padding-bottom:20px;
+		 	border-top:1px solid #ccc;
+		 }
+		 .feature_title{
+		 	text-align:center;
+		 	padding-bottom:6px;		 	
+		 }
+		 .feature_title>span{
+		 	border-bottom:1px solid #7febff;
+		 	padding-bottom:6px;
+		 	font-weight:bold;
+		 	color:#585858;
+		 	font-size:16px;
+		 }
+		 .content{
+		 	font-size:16px;
+		 	color:#585858;
+		 	padding-top:10px;
+		 }
+		*
+		{
+			word-wrap:break-word;
+            word-break:break-all;
+		}
+		.information{
+			width:100%;
+			margin-bottom:8px;
+		}
+		.information:after{
+			content:'';
+			display: block;
+			clear:both;
+		}
+		.info_title{
+			float:left;
+			width:13%;
+		}
+		.info_con{
+			float:left;
+			width:87%;
+		}
+	</style>
+	<div class="aui-toast" id="loading" style="display:none">
+		<div class="aui-toast-loading"></div>
+        <div class="aui-toast-content">加载中</div>
+	</div>
+	<div class="aui-content-padded">
+		<div class="aui-flex-col">
+			<div class="aui-flex-item-12" style="padding-top:10px;">
+				<img class="aui-img-object face_img"  src="">
+				<div style="margin-top:20px;padding-bottom:20px;">
+					<div class="shop_title">
+				    </div>
+					<div  class="shop_detail">
+					    <div class="information">
+					    	<span class="info_title " style="padding-left:16px">洲:</span>
+							<div class="info_con continent"></div>
+					    </div>
+					    <div class="information" >
+					    	<span class="info_title ">国家:</span>
+							<div class="info_con country"></div>
+					    </div>
+						<div class="information" >
+							<span class="info_title ">地址:</span>
+							<div class="info_con addr"></div>
+						</div>
+						<div class="information" > 
+							<span class="info_title">电话:</span>
+							<div class="info_con tel"></div>
+						</div>
+						<div class="information" >
+							<span class="info_title">传真:</span>
+							<div class="info_con fax"></div>
+						</div>
+						<div class="information" >
+							<span class="info_title">网址:</span>
+							<div class="info_con web"></div>
+						</div>
+					</div>				   
+				</div>
+				<div class="feature">
+					<div class="feature_title"><span>特色介绍</span></div>
+					<div class="content fea">
+						
+					</div>
+				</div>
+				<div class="feature">
+					<div class="feature_title"><span>商户介绍</span></div>
+					<div class="content server">
+						
+					</div>
+				</div>
+				
+			</div>
+		</div>
+	</div>
+	<script type="text/javascript" src="/Public/js/jquery-1.11.3.js"></script>
+	<script>
+	var id= GetQueryString('id');   
+    var type= GetQueryString('type');
+	$.ajax({
+			type:'GET',
+			url:'/webapp_global/get_detail_data',
+			data:{id:id,
+                  type:type
+                 },
+			success:function(data){
+				if(data.result.err=="0"){
+                  if(data.content!=null){
+                      update_detail(data.content);
+                  }
+         	    }else{
+                      alert("成功");
+                }
+		    }
+	});
+
+    function update_detail(content){
+    	$('.face_img').attr("src",content.imgs[0].img);
+    	$('.shop_title').html(content.name);
+    	$(' .continent').html(content.continent);
+    	$(' .country').html(content.country);
+    	$('.addr').html(content.addr);
+    	$('.tel').html(content.tel);
+    	$('.fax').html(content.fax);
+    	$('.web').html(content.web);
+    	$('.fea').html(content.feature);
+    	$('.server').html(content.brief);
+    }
+
+     function GetQueryString(name)
+    {
+      var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+      var r = window.location.search.substr(1).match(reg);
+      if(r!=null)return  decodeURI(r[2]); return null;
+    }   
+	</script>
+</body>
+</html>

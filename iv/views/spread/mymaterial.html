@@ -1,0 +1,222 @@
+
+	<style>
+		.myStore-main{
+			width: 1140px;
+			margin:0 auto;
+		}
+		
+		.my-share-main{
+			width: 1140px;
+			margin:20px auto 0px;
+			background-color: #f5f5f5;
+
+		}
+		.foot{
+			width: 1140px;
+			margin:0 auto;
+			padding-bottom: 200px;
+		}
+		.my-share-nav{
+			padding: 20px 0;
+		}
+		.my-share-nav a{
+			font-size: 14px;
+			color: #585858;		
+		}
+		.share-list{
+			float: left;
+			width: 270px;
+			background-color: #fff;
+			padding-bottom: 10px;
+			margin:0 10px 20px 10px;
+		}
+		.share-again{
+			width: 1160px;
+			margin-left: -10px;
+			overflow: hidden;
+		}
+		.share-list img{
+			vertical-align: bottom;
+			width: 270px;
+			height: 200px;
+		}
+		.my-share-des{
+			padding: 10px 10px 15px 10px;
+			font-size: 14px;
+			color: #585858;
+		}
+		.my-share-btn{
+			padding: 0 10px;
+			overflow: hidden;
+
+		}
+	
+	
+		.clear{
+			clear:both;
+		}
+		.extend-tree{
+			width: 1140px;
+			padding: 20px 0;
+			border-bottom: 1px dashed #aaa;
+			overflow: hidden;
+		}
+		.extend-tree a{
+			font-size: 14px;
+			color: #585858;
+			float: left;		
+		}
+		.extend-tree .extend-addStatis{
+			float: right;
+			color: #00d8ff;
+			margin-right: 20px;
+		}
+	</style>
+
+	<div class="myStore-main">
+		<div class="extend-tree">
+			<a href="#">产品商城 ></a>
+			<a href="#">添加素材 ></a>
+			<a href="#">我的全部素材</a>
+			<a href="/spread/add_spread" class="extend-addStatis">添加素材</a>
+		</div>
+		<div class="my-share-main">
+
+			<div class="share-again">
+				<?php foreach($data as $v){?>
+				 <a href="/spread/material_detail?id=<?=$v['mid'];?>&aid=<?=$aid;?>&p_type=<?=$p_type;?>">
+				<div class="share-list">
+					<img src="http://img.qsctrip.com/<?=$v['face_img'];?>" alt="">
+					<div class="my-share-des"><?=mb_substr($v['title'],0,27,'utf-8').'...';?></div>
+				</div>
+				</a> 
+				<?php } ?>
+			</div>
+		</div>
+		<input type="hidden" value="<?=$total?$total:0;?>" id="total">
+		<input type="hidden" value="<?=$page?$page:0;?>" id="page">
+		<input type="hidden" value="<?=$rn?$rn:0;?>" id="rn">   	
+	</div>
+	<div class="clear"></div>
+	<div class="foot">
+		<ul class="center pagination pagination-lg" id="ul_pages"></ul>
+	</div>
+	<script type="text/javascript">
+		//分页	
+	var m_total=$('#total').val();
+	console.log(m_total);
+    var m_current_page=$('#page').val();
+    var m_page_record = $('#rn').val();
+    add_pages(m_total,m_current_page);
+ 	 /**
+     * 添加页码
+     * @param total
+     */
+    function add_pages(total, current) {
+        m_total_page = Math.ceil(total /m_page_record);
+        var html = "<li" ;
+
+        //首页
+        if(current == 0) {
+            html += " class=\"disabled\"" ;
+            html += "><a>首页<li>";
+        }else{
+            html += "><a class='page_click' rel='0'>首页<li>";
+        }
+
+        
+
+        html += "<li" ;
+
+        //上一页
+        if(current == 0) {
+            html += " class=\"disabled\"" ;
+            html += "><a>上一页</a></li>" ;
+        }else{
+        	 html += "><a class='page_click' rel="+(current-1)+">上一页</a></li>" ;
+        }
+        
+
+        //中间页
+        if(m_total_page<10){
+            for(var i=0;i<m_total_page;i++) {
+                if(i == current ) {
+                    html += "<li class=\"active\">" ;
+                } else {
+                    html += "<li>";
+                }
+
+                html += "<a class='page_click' rel="+i+">" + (i+1) + "</a></li>" ;
+            }
+        }else{
+            var now_half =  m_total_page-9;
+
+            if(current < now_half){
+                for(var i=0;i<4;i++) {
+                    if(current + i== current ) {
+                        html += "<li class=\"active\">" ;
+                    } else {
+                        html += "<li>";
+                    }
+
+                    html += "<a class='page_click' rel="+(current+i)+">" + (current+i+1) + "</a></li>" ;
+                }
+                html += "<li><a  class='page_click' rel=" + (current+4) + ">" + "..." + "</a></li>";
+                for(var i=4;i>0;i--) {
+                    if(m_total_page-i == current ) {
+                        html += "<li class=\"active\">" ;
+                    } else {
+                        html += "<li>";
+                    }
+
+                    html += "<a class='page_click' rel=" + (m_total_page-i)+ ">" + (m_total_page-i+1) + "</a></li>" ;
+                }
+            }else{
+                for(var i= 9;i>0;i--) {
+                    if(m_total_page-i == current ) {
+                        html += "<li class=\"active\">" ;
+                    } else {
+                        html += "<li>";
+                    }
+
+                    html += "<a class='page_click' rel=" + (m_total_page-i)+ ">" + (m_total_page-i+1) + "</a></li>" ;
+                }
+            }
+
+        }
+
+        //下一页
+        html += "<li" ;
+        if(current == m_total_page - 1){
+            html += " class=\"disabled\"";
+            html += "><a>下一页</a></li>" ;
+        }else{
+        	html += "><a class='page_click' rel="+(current-0+1)+">下一页</a></li>" ;
+        }
+        
+
+        //尾页
+        html += "<li" ;
+        if(current == m_total_page - 1){
+            html += " class=\"disabled\"";
+            html += "><a>尾页</a></li>" ;
+        }else{
+            html += "><a class='page_click' rel="+(m_total_page - 1)+" >尾页</a></li>" ;
+        }
+
+        
+
+        $("#ul_pages").html(html) ;
+    }
+
+    $('body').delegate('.page_click', 'click', function() {
+    	var p = $(this).attr('rel');
+    	var s =window.location.pathname+'?';
+    	'' != p  && (s += "page=" + p);
+    
+    	window.location.href = s
+    });
+
+	</script>
+</body>
+</html>

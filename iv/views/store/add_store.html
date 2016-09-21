@@ -1,0 +1,214 @@
+<style>
+    .add-store-main{
+        width: 1135px;
+        margin:0 auto;
+        background-color: #fff;
+        padding-bottom:200px;
+    }
+    .add-store-main-title {
+       height:50px;
+       background-color:#f9f9f9;
+       color:#333;
+       font-size: 14px;
+       text-align: center;
+       line-height: 50px;
+    }
+    .title-one{
+        background-color: #0097d6;
+        color:#fff;
+    }
+    .title-two{
+        background: url(/Public/images/icon-left.png) no-repeat;
+        color:#585858;
+    }
+    .store-input-left{
+        display: inline-block;
+        width: 80px;
+        text-align:right;
+        font-size: 14px;
+        color:#585858;
+        margin-right:10px;
+    }
+    .input_inf{
+        width:300px;
+        height:30px;
+        border:1px solid #ccc;
+    }
+    .store-phone{
+        position: relative;
+    }
+    .err-info{
+        height: 20px;
+        padding: 10px 0;
+    }
+    .err-info-password-detail,.err-info-phone-detail{
+        background:url(/Public/images/wrong1.png) no-repeat 0px 2px;
+        padding-left: 30px;
+        /*width: 100px;*/
+        margin-left: 96px;
+        height: 20px;
+        display: none;
+    }
+    .store-input-group{
+        width: 400px;
+        margin:0 auto;
+        margin-top:40px;
+    }
+    .next{
+       width: 120px;
+       height: 36px;
+       background-color: #00d8ff;
+       line-height: 36px;
+       margin:0 auto;
+       font-size: 14px;
+       color: #fff;
+       text-align: center;
+       cursor: pointer;
+    }
+    .store-phone-ok{
+        display: block;
+        width: 25px;
+        height: 25px;
+        background-image: url("/Public/images/sign.png?2");
+        background-repeat: no-repeat;
+        background-position: 0 -125px;
+        position: absolute;
+        left: 94%;
+        top:6px;
+        display: none;
+    }
+    input{
+        outline:none;
+    }
+    input:focus{
+        border:1px solid #7febff;
+    }
+</style>
+<div class="add-store-main">
+    <div class="add-store-main-title">
+        门市
+    </div>
+    <div class="store-input-group">
+         <div class="store-phone">
+            <span class="store-input-left">手机号：</span> 
+         <input type="text" id="store-phone" class="input_inf"><i class="store-phone-ok"></i></div>
+         <div class="err-info">
+             <div class="err-info-phone-detail"></div>
+         </div>
+         <div class="store-password"><span class="store-input-left">密码：</span> 
+         <input type="password" id="store-password" class="input_inf"></div>
+         <div class="err-info">
+             <div class="err-info-password-detail"></div>
+         </div>
+    </div>
+    <div class="next">下一步</div>
+</div>
+<form action="/store/add_store_info" id="sub" method="post">
+        <input type="hidden" id="uid" name="uid" value="">
+        <input type="hidden" id="contact_phone" name="contact_phone" value="">
+</form>
+<script type="text/javascript" src="/Public/js/md5.js"></script>
+<script type="text/javascript" src="/Public/js/layer.js"></script>
+<script>
+    var go_on=false;
+    function is_exist(p) {
+        $.ajax({
+            url:'/user/check_user_exists',
+            data:{'uname':p,'utype':2},
+            type:'post',
+            async:false,
+            success:function(data){
+            
+                //如果用户名不可用
+                if(data.result.err==5022){
+                     show_err('.err-info-phone-detail','该手机号已经注册');
+                     return false;
+                }else{
+                    $(".store-phone-ok").show();
+                    go_on=true;
+                }
+            }
+        },'json')
+        return true;
+    }
+    // 手机格式正则
+    function is_phone(phone){
+        var reg = /^1[3-9][0-9]{9}$/; 
+        //检测   exec
+        return reg.test(phone);
+    }
+    // 点击下一步
+    $(".next").click(function() {
+        var phone=$("#store-phone").val();
+        var pw=$("#store-password").val();
+        var pwd = hex_md5(pw);
+        if (phone=='') {
+            show_err('.err-info-phone-detail','手机号不能为空');
+        }
+        if (pw=='') {
+            show_err('.err-info-password-detail','密码不能为空')
+            // return false;
+        }
+        if (!is_phone(phone)) {
+            show_err('.err-info-phone-detail','手机号格式错误');
+            return false;
+        }else{
+            is_exist(phone)
+        }
+        if (phone!=''&&is_phone(phone)&&go_on) {
+            $.ajax({
+                url:'/user/doadd_user',
+                data:{'mobile':phone,'password':pwd},
+                type:'post',
+                // async:false,//设置同步
+                success:function(data){
+
+                    //如果用户名不可用
+                    if(data.result.err === 0){
+                       var uid = data.content.id;
+                       console.log(uid+'123')
+                        $('#uid').val(uid);
+                        $('#contact_phone').val(phone);
+                       $('#sub').trigger('submit');
+                      
+            
+                    }else{
+                        var message = data.result.err + ':' + data.result.msg;
+                        layer.open({
+                            title:false,
+                            content: message,
+                            area: '260px',
+                            closeBtn: false
+                        });
+                    }
+
+                }
+            },'json')
+
+        }
+
+    });
+    // 显示错误内容
+    function show_err(e,i) {
+        $(e).html(i);
+        $(e).show();
+    }
+    // 手机号获取焦点
+    $("#store-phone").focus(function() {
+        $(".err-info-phone-detail").hide();
+    });
+    // 手机号失去焦点
+    // $("#store-phone").blur(function() {
+    //     var phone=$("#store-phone").val();
+    //     if (!is_phone(phone)) {
+    //         show_err('.err-info-phone-detail','手机号格式错误');
+    //     }else{
+    //         is_exist(phone)
+    //     }
+    // });
+    // 密码获取焦点
+    $("#store-password").focus(function() {
+        $(".err-info-password-detail").hide();
+    });
+    // 判断手机号是否注册
+</script>

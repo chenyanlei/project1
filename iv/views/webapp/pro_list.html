@@ -1,0 +1,301 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+	<link rel="stylesheet" type="text/css" href="/Public/css/aui.css" />
+	<link rel="stylesheet" type="text/css" href="/Public/css/iconfont.css" />
+	<title></title>
+	<style>
+		body {
+		    height: auto;
+		    font-family: 'Microsoft Yahei';
+		}
+		.aui-list-view .aui-img-object{
+			max-width: 80px;
+			height: 80px;
+			line-height: 80px;
+		}
+		.aui-img-body{
+			height: 80px;
+			position: relative;
+		}
+		.pri_bot{
+			position: absolute;
+			bottom: 0;
+			background-image: url(/Public/images/icon_cny_02@2x.png);
+			background-repeat: no-repeat;
+			background-size: 12px 12px;
+			background-position: left 9px;
+			font-size: 20px;
+			color: #ff9500;
+		}
+		#aui-header{
+			position: fixed;
+			top:0;
+		}
+		.no_result{
+			padding: 30px;
+			border-bottom: 2px solid #ccc;
+			text-align: center;
+			color: #ff9400
+		}
+		.aui-bar-color,.aui-btn-color{
+		    background-color: #00d8ff;
+		}
+		#aui-footer{
+			border-top:1px solid #ccc;
+		}
+		/*修改layui加载层样式*/
+		.layui-layer-loading .layui-layer-content {
+		    margin:0 auto;
+		}
+		.hei_bottom{
+		    height: 50px;
+		}
+		.aui-badge-danger{
+			background-color: rgba(0,0,0,0.6);
+		}
+		.text-title{
+			color:#333;
+		}
+		.layui-layer-loading .layui-layer-content {
+		    width: 60px!important;
+		    height: 35px!important;
+		    background: url(/Public/images/loading2.gif) no-repeat!important;
+		}
+	</style>
+</head>
+<body>
+<div id="pre_mark">
+	
+
+	<header class="aui-bar aui-bar-nav aui-bar-color" id="aui-header">
+	    <a class="aui-btn aui-btn-color aui-pull-left">
+	        <span class="aui-iconfont aui-icon-left"  onclick="window.history.go(-1)"></span>
+	    </a>
+	    <div class="aui-title"><span class="country_name"></span></div>
+	    <a class="aui-btn aui-btn-color aui-pull-right">
+	        <span class="aui-iconfont aui-icon-search go_search"></span>
+	    </a>
+	</header>
+
+	<div class="aui-content" style="margin-top:45px;">
+		<ul class="aui-list-view pro_list_detail">
+					
+		</ul>
+	<div class="pro_loading" style="text-align:center;padding:20px 0;display:none"><img src="/Public/images/nh.gif" style="vertical-align:middle;background-color:#f1f1f1;margin-right:10px;"  alt=""><span style="line-height:12px;">加载中...</span></div> 
+	</div>
+	<div class="hei_bottom"></div>
+	 <footer class="aui-nav" id="aui-footer">
+	    <ul class="aui-bar-tab">
+	        <li id="mall"  class="active-danger">
+	            <a href="">
+	            	<span class="aui-iconfont aui-icon-cartfill"></span>
+	            	    <p>商城</p>
+	            </a>
+	        </li>
+	        <li id="my">
+	        <a href="/webapp_user/mycenter">
+	            <span class="aui-iconfont aui-icon-peoplefill"></span>
+	            <p>我的</p>
+	        </a>    
+	        </li>
+	    </ul>
+	</footer>
+</div>
+	<script src="/Public/js/jquery-1.11.3.js"></script>
+    <script type="text/javascript" src="/Public/js/api.js" ></script>
+    <script src="/Public/js/my_cookie.js"></script>
+    <script src="/Public/js/aui-scroll.js"></script>
+    <script src="/Public/js/layer.js"></script>
+    <script src="/Public/js/weixin-1.0.0.js"></script>
+    <script src="/Public/js/weixin-share.js"></script>
+
+
+	<script>
+		$(function() {
+			stopDrop();
+			//禁止下拉回弹
+			function stopDrop() {
+			    var lastY;//最后一次y坐标点
+			    $(document.body).on('touchstart', function(event) {
+			        lastY = event.originalEvent.changedTouches[0].clientY;//点击屏幕时记录最后一次Y度坐标。
+			    });
+			    $(document.body).on('touchmove', function(event) {
+			        var y = event.originalEvent.changedTouches[0].clientY;
+			        var st = $(this).scrollTop(); //滚动条高度  
+			        if (y >= lastY && st <= 10) {//如果滚动条高度小于0，可以理解为到顶了，且是下拉情况下，阻止touchmove事件。
+			            lastY = y;
+			            event.preventDefault();
+			        }
+			        lastY = y;
+			 
+			    });
+			}
+			// 加载层
+			var index=layer.load(0,{
+			    shade: [1,'#ccc']
+			});
+			apiready = function(){
+			    api.parseTapmode();
+			}
+			// 初始化
+			// 获取店铺名
+			var info = JSON.parse(getCookie('store_name'));
+			 $('title').html(info.name+'的店铺');
+     		$("#mall a").attr('href','/webapp_product/get_a_product_list?aid='+info.aid)
+
+
+			//滚动加载逻辑
+			//1、获得url地址栏参数
+			var page=0;
+			var len;
+			var rn=6;//3
+			var total;//13
+			var go_on=false;
+			var address;
+			var params;
+			var show_msg=true;
+			function GetQueryString(name)
+			{
+			     var reg = new RegExp("(^|&)"+ name +"=([^&]*)(&|$)");
+			     var r = window.location.search.substr(1).match(reg);
+			     if(r!=null)return  decodeURI(r[2]); return null;
+			}
+			var myurl=GetQueryString("act");
+			var zhou=GetQueryString("continent");
+			var guojia=GetQueryString("country");
+			if (guojia===null) {
+				if (myurl=='z') {
+					$('.country_name').html('跟团游');
+					address='/webapp_product/pro_list_data';
+					params={'page':page,'act':myurl,'rn':rn,'continent':zhou,'country':guojia};
+				}else if(myurl=='y'){
+					$('.country_name').html('自助游');
+					address='/webapp_product/pro_list_data';
+					params={'page':page,'act':myurl,'rn':rn,'continent':zhou,'country':guojia};
+				}else if(myurl=='h'){
+					$('.country_name').html('热门');
+					address='/webapp_product/service_hot';
+					params={'page':page,'act':myurl,'rn':rn};
+					$(".go_search").hide();
+				}else if(myurl=='r'){
+					$('.country_name').html('推荐');
+					address='/webapp_product/service_recommend';
+					params={'page':page,'act':myurl,'rn':rn};
+					$(".go_search").hide();
+				}
+			}else{
+					address='/webapp_product/pro_list_data';
+					params={'page':page,'act':myurl,'rn':rn,'continent':zhou,'country':guojia};
+				   $('.country_name').html(guojia)
+			}
+			if(myurl !=null && myurl.toString().length>0){
+				add_pro_list();
+				$(".pro_total").html(total);
+
+			}
+			if (go_on) {
+				setTimeout(function(){
+				  $("#pre_mark").show();
+				  layer.close(index);
+				}, 500);
+			}
+			var scroll = new auiScroll({
+			    listen:false, //是否监听滚动高度，开启后将实时返回滚动高度
+			    distance:0,//判断到达底部的距离，isToBottom为true
+			},function(ret){
+				if (ret.isToBottom) {
+					if (go_on) {
+						if (Math.ceil(total/rn)>page){
+							$(".pro_loading").show();
+							add_pro_list();
+						}else{
+							if (show_msg) {
+							    layer.msg('没有更多内容了',{time:1000,offset:'80%'});
+							    show_msg=false;
+							}
+						}
+					}
+				}else{
+					return false;
+				}
+			});
+			//请求数据函数
+			function add_pro_list(){
+				$.ajax({
+					type: "get",
+					url:address,
+					data:params,
+					async: false,
+					beforeSend: function () {
+						$(".pro_loading").show();
+					   go_on=false;
+					},
+					success: function (data) {
+					    if (data.result.err==0) {
+					        total=data.content.total;
+					        var str='';
+					        if(data.content.list !==undefined){
+					        	len=data.content.list;
+								for (var i in len) {
+									str+='<a href="/webapp_product/product_detail?pid='+data.content.list[i].id+'&aid='+info.aid+'&p_type='+data.content.list[i].p_type+'">'
+									str+='<li class="aui-list-view-cell aui-img">';
+					                str+='<img class="aui-img-object aui-pull-left" src="'+data.content.list[i].face_img+'">';
+					                str+='<div class="aui-img-body">';
+					                str+='<p class="aui-ellipsis-2 text-title">'+data.content.list[i].title+'</p>';
+					                str+='<p class="pri_bot"><span style="padding-left:15px;">'+data.content.list[i].display_prices.price2+'</span><span style="font-size:12px"><span style="margin-left:5px;color:#585858">起</span></span></p>';
+					                str+='</div>';
+			                        str+='</li>';
+			                        str+='</a>'
+								}
+                    			$(".pro_loading").hide();
+								$(".pro_list_detail").append(str);
+            					$api.css($api.byId("loading"),"display:none");
+					        }else{
+					        	len=data.content.recommend;
+					        	for (var i in len) {
+					                str+='<a href="/webapp_product/product_detail?pid='+data.content.recommend[i].id+'&aid='+info.aid+'&p_type='+data.content.recommend[i].p_type+'">'
+										str+='<li class="aui-list-view-cell aui-img">';
+											str+='<img class="aui-img-object aui-pull-left" src="'+data.content.recommend[i].face_img+'">';
+												str+='<div class="aui-img-body">';
+													str+='<p class="aui-ellipsis-2 text-title">'+data.content.recommend[i].title+'</p>';
+													str+='<p class="pri_bot"><span style="padding-left:15px;">'+data.content.recommend[i].display_prices.price2+'</span><span style="font-size:12px"><span style="margin-left:5px;color:#585858">起</span></span></p>';
+													str+='</div>';
+												str+='</li>';
+					        	    str+='</a>'
+					        	}
+                    			$(".pro_loading").hide();
+					        	$(".pro_list_detail").append('<div class="no_result"><i>没有搜索到结果，为您推荐以下产品</i></div>');
+					        	$(".pro_list_detail").append(str);
+            					$api.css($api.byId("loading"),"display:none");
+
+					        }
+							page++;
+							go_on=true;
+					    }
+					},
+				})
+			}
+			$('.go_search').click(function() {
+				window.location.href="/webapp_product/pro_country_search?act="+myurl
+			});
+			// ready参数
+			  var title='逍品旅行';
+			  var desc="逍品旅行，出境旅游优质供应商分销平台";
+			  var link=window.location.href;
+			  var imgUrl='http://a.qsctrip.com/Public/images/travel.png';
+			  //ajax请求数据 
+			  request_share();
+			  //判断是否为微信内核
+			  var ua = navigator.userAgent.toLowerCase();//获取判断用的对象
+			  if (ua.match(/MicroMessenger/i) == "micromessenger") {
+			      weixin_config(appId,timestamp,nonceStr,signature);
+			      weixin_ready(title,desc,link,imgUrl);
+			  } 
+			
+		})
+	</script>
+</body>
+</html>

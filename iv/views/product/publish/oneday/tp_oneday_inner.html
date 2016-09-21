@@ -1,0 +1,392 @@
+<!DOCTYPE HTML>
+<!--PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd"-->
+<!--xmlns="http://www.w3.org/1999/xhtml"-->
+<html lang="zh-CN">
+<head>
+    <title>一日游上传</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <script src="/Public/js/jquery-1.11.3.js"></script>
+    <link rel="stylesheet" type="text/css" href="/Public/css/common1.css"/>
+    <link rel="icon" href="/Public/images/ico.png">
+
+    <style>
+
+        .menu1 {
+            background: #fff;
+        }
+        .menu1,.content{
+            float: left;
+        }
+        .content{
+            width: 800px;
+        }
+        .item{
+            margin: 30px;
+        }
+
+        .item:before {
+            clear: both;
+
+        }
+        .item:after {
+            clear: both;
+        }
+        .qsc-active{
+            background: #4c5a5f;
+        }
+        .qsc-btn{
+            width:150px;
+            height:40px;
+            background-color: #00d8ff;
+            text-align: center;
+            line-height: 40px;
+            color: #fff;
+            margin:0 auto;
+            margin-top:40px;
+        }
+        .qsc-btn:hover{
+            background-color:#00d8ff;
+        }
+        .btn_next{
+            float: left;
+            margin-top:20px;
+        }
+    </style>
+</head>
+
+<body>
+<?php
+    $data['tip_title'] = "一日游产品上传";
+    $CI = & get_instance() ;
+    $CI->load->view("header", $data) ;
+?>
+<div style="width:1100px ;margin: 0 auto; background: #fff;min-height: 600px;padding: 10px">
+    <div class="menu1">
+        <?php
+        $CI->load->view("product/components/com_travel_oneday_menu") ;
+        ?>
+    </div>
+    <div class="content" style="padding-bottom:200px">
+        <div id="c_des" class="item" style="display: block">
+            <?php
+            $CI->load->view("product/components/com_destination_inner") ;
+            ?>
+            <div next="c_name" data="c_des" class="btn_next qsc-btn">下一步</div>
+        </div>
+        <div id="c_name" class="item" style="display: none">
+            <?php
+            $CI->load->view("product/components/com_product_name") ;
+            ?>
+            <div next="c_feature" data="c_name" class="btn_next qsc-btn">下一步</div>
+        </div>
+        <div id="c_feature" class="item" style="display: none">
+            <?php
+            $CI->load->view('product/components/com_tags_mng1' ,null) ;
+            ?>
+            <div style="clear: both"></div>
+            <div next="c_imgupload" data="c_feature" class="btn_next qsc-btn"
+                 style="margin-top:40px;">下一步</div>
+        </div>
+        <div id="c_imgupload" class="item" style="display: none">
+            <div class="y-margin-bottom-20px">请上传几张图片，能够吸引游客，为您带来更多收入</div>
+            <?php
+            $data_imgs['p_type'] = PType::GROUP_TRAVEL ;
+            $data_imgs['pid'] = -1 ;
+            $CI->load->view('product/components/com_image_upload1', $data_imgs) ;
+            ?>
+            <div style="clear: both"></div>
+            <div next="c_lang" data="c_imgupload" class="btn_next qsc-btn y-margin-top-20px">下一步</div>
+        </div>
+        <div id="c_lang" class="item" style="display: none">
+            <?php
+            $CI->load->view('product/components/com_lang_service') ;
+            ?>
+            <div next="c_travel" data="c_lang" class="btn_next qsc-btn y-margin-top-20px">下一步</div>
+        </div>
+        <div id="c_travel" class="item" style="display: none">
+            <?php
+            $CI->load->view('product/components/com_travel_info2') ;
+            ?>
+            <div next="c_price" data="c_travel" class="btn_next qsc-btn y-margin-top-20px">下一步</div>
+        </div>
+        <div id="c_price" class="item" style="display: none">
+            <?php
+            $CI->load->view('product/components/com_price_setting_ex') ;
+            ?>
+            <div next="c_minperson" data="c_price" class="btn_next qsc-btn y-margin-top-20px">下一步</div>
+        </div>
+        <div id="c_minperson" class="item" style="display: none">
+            <?php
+            $CI->load->view('product/components/com_min_person') ;
+            ?>
+            <div next="c_booking_policy" data="c_minperson" class="btn_next qsc-btn y-margin-top-20px">下一步</div>
+        </div>
+        <div id="c_booking_policy" class="item" style="display: none">
+            <?php
+            $CI->load->view('product/components/com_booking_policy') ;
+            ?>
+            <div next="c_fee_desc" data="c_booking_policy" class="btn_next qsc-btn y-margin-top-20px">下一步</div>
+        </div>
+        <div id="c_fee_desc" class="item" style="display: none">
+            <?php
+            $CI->load->view('product/components/com_product_fee_desc') ;
+            ?>
+            <div id="commit_data" data="c_fee_desc" class="qsc-btn y-margin-top-20px">完成</div>
+        </div>
+    </div>
+    <div style="clear: both"></div>
+</div>
+
+<?php
+    $CI->load->view("footer") ;
+?>
+
+</body>
+</html>
+<script>
+
+    var mToken = "<? echo $token;?>" ;
+    var mLastActive = "c_des" ;
+
+    $(function(){
+        $("#mc_des").addClass("active");
+    }) ;
+
+    function menu_click(avtive) {
+        $("#m" + mLastActive).removeClass("active");
+        $("#" + mLastActive).hide() ;
+        $("#m" + avtive).addClass("active");
+        $("#" + avtive).show() ;
+        menu_img_validate(mLastActive) ;
+        mLastActive = avtive ;
+    }
+
+    $(".btn_next").click(function(){
+        var next = $(this).attr("next") ;
+
+        $(".content .item").hide() ;
+        $("#"+next).show() ;
+
+        $("#ul_menu .com_group_menu").removeClass("active") ;
+        $("#m"+next).addClass("active");
+
+        var data = $(this).attr("data") ;
+        menu_img_validate(data) ;
+    }) ;
+
+    function tip_item_oper(tip_menu) {
+        $("#m" + tip_menu).addClass("active");
+        $("#" + tip_menu).show() ;
+        $("#mc_fee_desc").removeClass("active");
+        $("#c_fee_desc").hide() ;
+    }
+
+    $("#commit_data").click(function () {
+        menu_img_validate("commit_data") ;
+
+        if(!com_destination_is_validate()) {
+            tip_item_oper("c_des") ;
+            alert("请完善目的地信息") ;
+            return ;
+        }
+        var product_name = com_product_name_get_name() ;
+        if(!com_product_name_is_validate()) {
+            tip_item_oper("c_name") ;
+            alert("请添加产品名称") ;
+            return ;
+        }
+        var feature_tags = com_tags_mng_get_selected_tags() ;
+        if(!com_tags_mng_is_validate()) {
+            tip_item_oper("c_feature") ;
+            alert("请添加产品特色") ;
+            return ;
+        }
+        var upload_img_ids = com_image_upload_get_img_ids() ;
+        if(!com_image_upload_is_validate()) {
+            tip_item_oper("c_imgupload") ;
+            alert("请上传产品图片") ;
+            return ;
+        }
+        var lang_service = com_lang_service_get_lang_service() ;
+        if(!com_lang_service_is_validate()) {
+            tip_item_oper("c_lang") ;
+            alert("请选择服务语言") ;
+            return ;
+        }
+        var days_travel = com_travel_info_get_days_travel() ;
+        if(!com_travel_info_is_validate()) {
+            tip_item_oper("c_travel") ;
+            alert("请添加行程信息") ;
+            return ;
+        }
+        var date_prices = com_price_setting_get_prices() ;
+        if(!com_price_setting_is_validate()) {
+            tip_item_oper("c_price") ;
+            alert("请添加价格信息") ;
+            return ;
+        }
+        var min_person = com_min_person_get_data() ;
+        if(!com_min_person_is_validate()) {
+            tip_item_oper("c_minperson") ;
+            alert("请添加最少成团人数") ;
+            return ;
+        }
+
+        var fee_desc = com_product_fee_desc_get_data() ;
+        if(!com_product_fee_desc_is_validate()) {
+            alert("请添加费用说明") ;
+            return ;
+        }
+
+        var booking_policy = com_booking_policy_get_data() ;
+        if(!com_booking_policy_is_validate()) {
+            alert("请添预订须知") ;
+            return ;
+        }
+
+        var calendar_type = com_price_setting_get_calendar_type();
+        var price_type = com_price_setting_get_price_type() ;
+        var face_img = com_image_upload_get_face_img() ;
+
+        console.log("commit_data 2") ;
+        $.post(
+                "/publish_product_oneday_inner/commit",
+                {
+                    'title':product_name,
+                    'continent':'亚洲',
+                    'country':'中国',
+                    'province':m_select_province,
+                    'city':m_select_city,
+                    'county':m_select_county,
+                    'lang':lang_service,
+                    'tagname':JSON.stringify(feature_tags),
+                    'min_num':min_person,
+                    'fee_desc':fee_desc,
+                    'travel_intro':JSON.stringify(days_travel),
+                    'imgs[]':upload_img_ids,
+                    'date_prices[]':date_prices,
+                    'calendar_type':calendar_type,
+                    'price_type':price_type,
+                    'visa':'',
+                    'booking_policy':booking_policy,
+                    'face_img':face_img
+                },
+                function(data) {
+                    console.log("commit_data 3") ;
+                    console.log(data) ;
+
+                    if(data.length > 0 ) {
+                        var jsonObj = JSON.parse(data) ;
+                        if(jsonObj.result.err == 0) {
+                            if(true == confirm("产品提交成功，去查看") ) {
+                                window.location.href="/mall/search?act=yi" ;
+                            } else {
+                                window.location.href="/mall/search?act=yi" ;
+                            }
+                        } else {
+                            alert("上传失败，原因：" + jsonObj.result.msg) ;
+                        }
+
+
+                    }
+                }
+        ) ;
+    }) ;
+
+    function menu_img_validate(data) {
+        if(data == 'c_des') {
+            if(com_destination_is_validate()) {
+                $("#m"+data + " img").show() ;
+            } else {
+                $("#m"+data + " img").hide() ;
+            }
+        } else if(data == 'c_name') {
+            if(com_product_name_is_validate()) {
+                $("#m"+data + " img").show() ;
+            } else {
+                $("#m"+data + " img").hide() ;
+            }
+        } else if(data == 'c_startcity') {
+            if(com_start_city_is_validate()) {
+                $("#m"+data + " img").show() ;
+            } else {
+                $("#m"+data + " img").hide() ;
+            }
+        } else if(data == 'c_end') {
+            if(com_date_select_is_validate()) {
+                $("#m"+data + " img").show() ;
+            } else {
+                $("#m"+data + " img").hide() ;
+            }
+        } else if(data == 'c_local') {
+            if(com_access_info_is_validate()) {
+                $("#m"+data + " img").show() ;
+            } else {
+                $("#m"+data + " img").hide() ;
+            }
+        } else if(data == 'c_feature') {
+            if(com_tags_mng_is_validate()) {
+                $("#m"+data + " img").show() ;
+            } else {
+                $("#m"+data + " img").hide() ;
+            }
+        } else if(data == 'c_imgupload') {
+            if(com_image_upload_is_validate()) {
+                $("#m"+data + " img").show() ;
+            } else {
+                $("#m"+data + " img").hide() ;
+            }
+        } else if(data == 'c_lang') {
+            if(com_lang_service_is_validate()) {
+                $("#m"+data + " img").show() ;
+            } else {
+                $("#m"+data + " img").hide() ;
+            }
+        } else if(data == 'c_travel') {
+            if(com_travel_info_is_validate()) {
+                $("#m"+data + " img").show() ;
+            } else {
+                $("#m"+data + " img").hide() ;
+            }
+        } else if(data == 'c_price') {
+            if(com_price_setting_is_validate()) {
+                $("#m"+data + " img").show() ;
+            } else {
+                $("#m"+data + " img").hide() ;
+            }
+        } else if(data == 'c_minperson') {
+            if(com_min_person_is_validate()) {
+                $("#m"+data + " img").show() ;
+            } else {
+                $("#m"+data + " img").hide() ;
+            }
+        } else if(data == 'c_visa') {
+            if(com_product_visa_is_validate()) {
+                $("#m"+data + " img").show() ;
+            } else {
+                $("#m"+data + " img").hide() ;
+            }
+        } else if(data == 'c_fee_desc') {
+            if(com_product_fee_desc_is_validate()) {
+                $("#m"+data + " img").show() ;
+            } else {
+                $("#m"+data + " img").hide() ;
+            }
+        } else if(data == 'c_booking_policy'){
+            if(com_booking_policy_is_validate()) {
+                $("#m"+data + " img").show() ;
+            } else {
+                $("#m"+data + " img").hide() ;
+            }
+        } else if(data == 'commit_data') {
+            if(com_product_fee_desc_is_validate()) {
+                $("#mc_fee_desc img").show() ;
+            } else {
+                $("#mc_fee_desc img").hide() ;
+            }
+        }
+    }
+
+</script>

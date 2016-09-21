@@ -1,0 +1,185 @@
+<style>
+	.store_info_main{
+		width: 1135px;
+        margin:0 auto;
+        background-color: #fff;
+        padding-bottom:200px;
+	}
+	.add-store-main-title {
+	   height:50px;
+       background-color:#f9f9f9;
+       color:#333;
+       font-size: 14px;
+       text-align: center;
+       line-height: 50px;	    
+	}
+	.title-one{
+	    color:#585858;
+	    background: url(/Public/images/icon-right.png) no-repeat;
+	    background-position: right;
+	}
+	.title-two{
+	    color:#fff;
+	    background-color: #0097d6;
+	}
+	.store-input-left{	
+		display: block;
+		width:300px;
+		margin:0px auto;
+		text-align: left;
+        font-size: 14px;
+        color:#585858;
+        margin-bottom:10px;
+	}
+	.input_inf{
+        width:300px;
+        height:30px;
+        border:1px solid #ccc;
+    }
+	.err-info{
+	    height: 20px;
+	    padding-top: 10px;
+	}
+	.store-input-group{
+	    width: 400px;
+        margin:0 auto;
+        margin-top:40px;
+        text-align: center;  
+	}
+	.info-true{
+	   width: 120px;
+	   height: 36px;
+	   background-color: #00d8ff;
+	   line-height: 36px;
+	   text-align: center;
+	   color: #fff;
+	   margin:0px auto;
+	   margin-top:30px;
+	   cursor: pointer;
+	}
+	.err-info-name-detail,.err-info-addr-detail,.err-info-person-detail,.err-info-phone-detail{
+	    background:url(/Public/images/wrong1.png) no-repeat 0px 2px;
+	    padding-left: 30px;
+	    /*width: 100px;*/
+	    margin-left: 53px;
+	    height: 20px;
+	    display: none;
+	    text-align: left;
+	}
+	.level_sel{
+		width:300px;
+		margin:0px auto;
+		text-align:left;	
+	}
+	.level_sel>span,.level_sel>label{
+		color:#585858;
+		font-size:14px;
+	}
+	input{
+		outline:none;
+	}
+	input:focus{
+		border:1px solid #7febff;
+	}
+
+</style>
+<div class="store_info_main">
+	<div class="add-store-main-title">
+	    店铺信息
+	</div>
+	<div class="store-input-group">
+		<div>
+			<span class="store-input-left">名称</span>
+			<input type="text" id="info_name" class="input_inf">
+		</div>
+		<div class="err-info">
+			<div class="err-info-name-detail"></div>
+		</div>
+		<div>
+			<span class="store-input-left" >联系人</span>
+			<input type="text" id="info_person" class="input_inf">
+		</div>
+		<div class="err-info"><div class="err-info-person-detail"></div></div>
+		<div><span class="store-input-left" >电话</span><input type="text" readonly id="info_phone"
+		class="input_inf"></div>
+		<div class="err-info"><div class="err-info-phone-detail"></div></div>
+		<div > 
+			<span class="store-input-left">地址</span>
+			<textarea name="" id="info_addr" style="display:inline-block;margin:0 auto;width:302px;height:80px;resize: none;"></textarea>
+		</div>
+		<div class="err-info">
+			<div class="err-info-addr-detail"></div>
+		</div>
+		<div class="level_sel">
+			<span>级别：</span>
+			<label for="info_sale" style="margin-right:30px;">
+				<input type="radio" name="level" id="info_sale" checked value="9"
+				>门市
+			</label>
+			<label for="info_other"><input type="radio" name="level" id="info_other" value="10">其他</label>
+		</div>
+	</div>
+	<div class="info-true">确定</div>
+</div>
+<input type="hidden" value="<?=$uid?>" id="uid">
+<input type="hidden" value="<?=$contact_phone?>" id="contact_phone">
+<script>
+	//点击确定按钮 
+	var uid=$("#uid").val();
+	var contact_phone=$("#contact_phone").val();
+	$("#info_phone").val(contact_phone);
+	var level;
+	$(".info-true").click(function() {
+		var name=$("#info_name").val();
+		var addr=$("#info_addr").val();
+		var person=$("#info_person").val();
+		var phone=$("#info_phone").val();
+		level=$("input[type='radio']:checked").val();
+		if (name=='') {
+			show_err('.err-info-name-detail','名称不能为空');
+		}
+		if (addr=='') {
+			show_err('.err-info-addr-detail','地址不能为空');
+		}
+		if (person=='') {
+			show_err('.err-info-person-detail','联系人不能为空');
+		}
+		if (!is_phone(phone)) {
+			show_err('.err-info-phone-detail','手机号格式错误');
+		}
+		if (name!=''&&addr!=''&&person!=''&&is_phone(phone)) {
+			$.ajax({
+				url:'/user/doset_agent_info',//请求地址
+				type:'post',//请求方式
+				data:{'name':name,'address':addr,'contact':person,'contact_phone':phone,'uid':uid,'level':level},//需要传的参数
+				success:function (data) {//成功之后的处理函数
+					console.log(data);
+					window.location.href='/store/manage_store'
+				}
+			})
+		}
+	});
+	function is_phone(phone){
+	    var reg = /^1[3-9][0-9]{9}$/; 
+	    //检测   exec
+	    return reg.test(phone);
+	}
+	// 错误的样式
+	function show_err(e,i) {
+	    $(e).html(i);
+	    $(e).show();
+	}
+	$("#info_name").focus(function () {
+		$(".err-info-name-detail").hide();
+	})
+	$("#info_addr").focus(function () {
+		$(".err-info-addr-detail").hide();
+	})
+	$("#info_person").focus(function () {
+		$(".err-info-person-detail").hide();
+	})
+	$("#info_phone").focus(function () {
+		$(".err-info-phone-detail").hide();
+	})
+
+</script>

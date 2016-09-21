@@ -1,0 +1,476 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+	<link rel="stylesheet" type="text/css" href="/Public/css/aui.css" />
+	<link rel="stylesheet" type="text/css" href="/Public/css/iconfont.css" />
+	<title></title>
+	<style>
+		body{
+			height: auto;
+			font-family: 'Microsoft Yahei';
+		}
+		#pre_mark{
+			display: none;
+		}
+	   	.slider {
+	   		margin-bottom: 0;
+	   	}
+		.slider img {
+			width: 100%;
+			height: 120px;
+			display: inherit;
+		}
+		.aui-grid-sixteen:after {
+			border:none;
+		}
+		.aui-grid-sixteen li:after {
+			border:none;
+		}
+		.aui-grid-sixteen li .aui-iconfont {
+		    color: #ffffff;
+		    width: 38px;
+		    height: 38px;
+		    line-height: 38px;
+		    border-radius: 50%;
+		    font-size: 20px;
+		}
+		p.goods-title {
+			font-size: 1em;
+			color: #333;
+		}
+		p.goods-info {
+			font-size: 12px;
+			color: #999;
+		}
+		.aui-line-x {
+			margin: 5px 0;
+		}
+	    .aui-line-x:after {
+	        border-color: #ddd;
+	    }
+		.goods-price {
+			font-size: 0.875em;
+		}
+	    .goods-price strong {
+	        margin:0 5px;
+	        font-size: 16px;
+	    }
+	       /*顶部开始*/
+	    .aui-bar{
+	    	position: fixed;
+	    	top:0;
+	    }
+	    .aui-grid-sixteen li:after{
+	    	border-left: 1px solid #c8c7cc;
+	    	border-bottom: 1px solid #c8c7cc;
+	    }
+	    .up{
+	    	position:absolute;
+	    	bottom:-1px;
+	    	left:50%;
+	    	z-index:11;
+	    	margin-left: -6px;
+	    	display: none;
+	    }
+	    .c_list,.c_list_t{
+			display: none;
+
+	    }
+	    .country{
+	    	background-color: #e5e5e5;
+	    	overflow: hidden;
+	    	padding:10px 0;
+	    }
+	    .country_t{
+	    	background-color: #e5e5e5;
+	    	overflow: hidden;
+	    	padding:5px 0;
+	    }  
+	    .coun_list{
+	    	width: 25%;
+	    	float: left;
+	    	text-align: center;
+	    	border-right: 1px solid #ccc;
+	    	margin:10px 0;
+	    }
+	    .aui-grid-sixteen li:after {
+	    	display: block;
+	    	content: '';
+	    	position: absolute;
+	    	top: 0;
+	    	right: 0;
+	    	bottom: 0;
+	    	left: 0;
+	    }
+	    .aui-grid-sixteen li {
+    		float: left;
+    		position: relative;
+    		padding: 15px 10px;
+    		border-bottom: 1px solid #ccc;
+    		border-left: 1px solid #ccc;
+		}
+	    .aui-grid-sixteen li:after {
+    		border-left: none;
+    		border-bottom: none;
+    		height: 0;
+    		width: 0
+		}
+	    /*顶部结束*/
+
+	    /*列表*/
+	    .g_t_more{
+	    	text-align: right;
+	    	background-image: url(/Public/images/a.png);
+	    	background-repeat: no-repeat;
+	    	background-position: 92% center;
+	    	padding-right: 30px;
+	    }
+	    .goods-price{
+	    	color: #ff9500;
+	    }
+	    .pro_tit{
+	    	height: 42px;
+	    	color: #585858;
+	    }
+	  	.aui-bar-color,.aui-btn-color{
+	  	    background-color: #00d8ff;
+	  	}
+		#aui-footer{
+			border-top:1px solid #ccc;
+		}
+		.aui-grid-sixteen li {
+		    float: left;
+		    position: relative;
+		    padding: 5px 10px;
+		    border-bottom: 1px solid #ccc;
+		    border-left: 1px solid #ccc;
+		}
+
+	    /**/
+	    /*图标*/
+		.aui-icon-aisa:before {
+		    content: '\e610';
+			color:#585858;
+			font-size:30px;
+		}
+		.aui-icon-europe:before {
+			color:#585858;
+			font-size:30px;
+		    content: '\e615';
+		}
+		.aui-icon-north_america:before {
+			color:#585858;
+			font-size:30px;
+		    content: '\e616';
+		}
+		.aui-icon-oceania:before {
+			color:#585858;
+			font-size:30px;
+			content: '\e617';
+		}
+		.aui-icon-africa:before {
+			color:#585858;
+			font-size:30px;
+			content: '\e611';
+		}
+		.aui-icon-antarctica:before {
+			color:#585858;
+			font-size:30px;
+			content: '\e61b';
+		}
+
+		.aui-icon-sorth_america:before {
+			color:#585858;
+			font-size:30px;
+			content: '\e61a';
+		}
+		.aui-icon-apps:before{
+			color:#585858;
+			font-size:30px;
+			content: '\e604';
+		}
+		/*修改layui加载层样式*/
+		.layui-layer-loading .layui-layer-content {
+		    margin:0 auto;
+		}
+		.hei_bottom{
+			height: 50px;
+		}
+		.layui-layer-loading .layui-layer-content {
+		    width: 60px!important;
+		    height: 35px!important;
+		    background: url(/Public/images/loading2.gif) no-repeat!important;
+		}
+	</style>
+</head>
+<body>
+
+<div id="pre_mark">
+	<header class="aui-bar aui-bar-nav aui-bar-color" id="aui-header">
+	    <a class="aui-btn aui-btn-color aui-pull-left">
+	        <span class="aui-iconfont aui-icon-left"  onclick="window.history.go(-1)"></span>
+	    </a>
+	    <div class="aui-title"></div>
+	</header>
+	<div class="aui-content" style="margin-top:45px;">
+	    <ul class="aui-grid-sixteen">
+	        <li class="z_list aui-col-xs-3 aui-text-center" data="asia">
+	            <span class="aui-iconfont aui-icon-aisa aui-bg-aisa"></span>
+	            <p>亚洲</p>
+	            <img src="/Public/images/up_up.png" alt="" class="up">
+	        </li>
+
+	        <li class="z_list aui-col-xs-3 aui-text-center" data="europe">
+	            <span class="aui-iconfont aui-icon-europe aui-bg-europe"></span>
+	            <p>欧洲</p>
+	            <img src="/Public/images/up_up.png" alt="" class="up">
+	        </li>
+	        <li class="z_list aui-col-xs-3 aui-text-center" data="north_america">
+	            <span class="aui-iconfont aui-icon-north_america aui-bg-north_america"></span>
+	            <p>北美洲 </p>
+	            <img src="/Public/images/up_up.png" alt="" class="up">
+	        </li>
+	        <li class="z_list aui-col-xs-3 aui-text-center" data="oceania">
+	            <span class="aui-iconfont aui-icon-oceania aui-bg-oceania" style="line-height:50px"></span>
+	            <p>大洋洲</p>
+	            <img src="/Public/images/up_up.png" alt="" class="up">
+	        </li>
+	        <li class="aui-col-xs-12 c_list" style="padding:0">
+	        	<div class="country"></div>
+	        </li>
+	        <li class="z_list_t aui-col-xs-3 aui-text-center" data="africa">
+	            <span class="aui-iconfont aui-icon-africa aui-bg-africa"></span>
+	            <p>非洲</p>
+	            <img src="/Public/images/up_up.png" alt="" class="up">
+	        </li>
+	        <li class="no_data aui-col-xs-3 aui-text-center" data="sorth_america">
+	            <span class="aui-iconfont aui-icon-sorth_america aui-bg-sorth_america"></span>
+	            <p>南美洲</p>
+	            <img src="/Public/images/up_up.png" alt="" class="up">
+	        </li>
+	        <li class="no_data aui-col-xs-3 aui-text-center" data="antarctica">
+	            <span class="aui-iconfont aui-icon-antarctica aui-bg-antarctica" style="line-height:50px"></span>
+	            <p>南极洲</p>
+	            <img src="/Public/images/up_up.png" alt="" class="up">
+	        </li>
+	        <li class="search_more aui-col-xs-3 aui-text-center" data="north_america">
+	            <span class="aui-iconfont aui-icon-apps" style="line-height:50px"></span>
+	            <p>更多</p>
+	            <img src="/Public/images/up_up.png" alt="" class="up">
+	        </li>
+	        <li class="aui-col-xs-12 c_list_t" style="padding:0">
+	        	<div class="country_t">	</div>
+	        </li style="padding:0">
+	    </ul>
+	</div>
+	<div class="aui-content">
+		<div class="aui-list-view-cell aui-img aui-col-xs-6 g_t_title" style="background-color:#fff"></div>
+		<div class="g_t_more aui-list-view-cell aui-img aui-col-xs-6" style="background-color:#fff">更多</div>
+	    <ul class="aui-list-view aui-grid-view g_t_list">
+
+	    </ul>
+	    
+	</div>
+	<div class="hei_bottom"></div>
+	 <footer class="aui-nav" id="aui-footer">
+	    <ul class="aui-bar-tab">
+	        <li id="mall"  class="active-danger">
+	           <a href="">
+	           		<span class="aui-iconfont aui-icon-cartfill"></span>
+	           		<p>商城</p>
+	           	</a>
+	           
+	        </li>
+	        <li id="my">
+	        <a href="/webapp_user/mycenter">
+	            <span class="aui-iconfont aui-icon-peoplefill"></span>
+	            <p>我的</p>
+	        </a>    
+	        </li>
+	    </ul>
+	</footer>
+</div>
+	 <input id="data" type="hidden" value='<?=$data;?>'>
+<script src="/Public/js/jquery-1.11.3.js"></script>
+<script src="/Public/js/my_cookie.js"></script>
+<script src="/Public/js/yui-min.js"></script>
+<script src="/Public/js/api.js"></script>
+<script src="/Public/js/layer.js"></script>
+<script src="/Public/js/weixin-1.0.0.js"></script>
+<script src="/Public/js/weixin-share.js"></script>
+<script>
+		$(function () {
+		stopDrop();
+		//禁止下拉回弹
+		function stopDrop() {
+		    var lastY;//最后一次y坐标点
+		    $(document.body).on('touchstart', function(event) {
+		        lastY = event.originalEvent.changedTouches[0].clientY;//点击屏幕时记录最后一次Y度坐标。
+		    });
+		    $(document.body).on('touchmove', function(event) {
+		        var y = event.originalEvent.changedTouches[0].clientY;
+		        var st = $(this).scrollTop(); //滚动条高度  
+		        if (y >= lastY && st <= 10) {//如果滚动条高度小于0，可以理解为到顶了，且是下拉情况下，阻止touchmove事件。
+		            lastY = y;
+		            event.preventDefault();
+		        }
+		        lastY = y;
+		 
+		    });
+		}	
+		
+		// 加载层
+		var index = layer.load(0,{
+			shade: [1,'#ccc']
+		});
+		//cookie 获取店铺名
+		var info = JSON.parse(getCookie('store_name'));
+		 $('title').html(info.name+'的店铺');
+     	 $("#mall a").attr('href','/webapp_product/get_a_product_list?aid='+info.aid);
+
+		// 获取数据
+		var data=JSON.parse($("#data").val());
+		console.log(data)
+		//title名称
+		if (data.act=='z') {
+			$(".aui-title").html("跟团游");
+			$(".g_t_title").html("跟团游");
+		}else{
+			$(".aui-title").html("自助游");
+			$(".g_t_title").html("自助游");
+		}
+		//添加产品列表信息
+		add_group_travel()
+		//country(第一行)点检事件
+		var c;//data 属性值
+		$(".z_list").click(function() {
+			c=$(this).attr("data");
+			$(this).siblings('.z_list').find('.up').hide();
+			$(this).siblings('.z_list_t').find('.up').hide();
+			$(this).find('.up').toggle();
+			if ($(this).find('.up').is(":hidden")) {
+				$(".c_list").hide();
+				$(".c_list_t").hide();
+
+			}else{
+				add_country_list(c);
+				$(".c_list").show();
+				$(".c_list_t").hide();
+
+			}
+		});
+		//country第二行点击事件
+		$(".z_list_t").click(function() {
+			c=$(this).attr("data");
+			$(this).siblings('.z_list_t').find('.up').hide();
+			$(this).siblings('.z_list').find('.up').hide();
+			$(this).find('.up').toggle();
+			if ($(this).find('.up').is(":hidden")) {
+				$(".c_list_t").hide();
+				$(".c_list").hide();
+			}else{
+				add_country_list_t(c);
+				$(".c_list_t").show();
+				$(".c_list").hide();
+			}
+		});
+		//country(第一行)添加模板
+		function add_country_list(c){
+			var len=data.dest[c].length;
+			var str="";
+			if (len>=7) {
+				for (var i =0; i <7; i++) {
+					str+='<a href="/webapp_product/pro_list?act='+data.act+'&continent='+c+'&country='+encodeURI(data.dest[c][i].name)+'"><div class="coun_list"><p>'+data.dest[c][i].name+'</p></div></a>';
+				}
+				$(".country").html(str);
+				$(".country").append('<a href="/webapp_product/pro_country_search?act='+data.act+'&continent='+c+'"><div class="coun_list"><p>更多...</p></div></a>');
+            	$api.css($api.byId("loading"),"display:none");
+			}else{
+				for (var i =0; i <len; i++) {
+					str+='<a href="/webapp_product/pro_list?act='+data.act+'&continent='+c+'&country='+encodeURI(data.dest[c][i].name)+'"><div class="coun_list"><p>'+data.dest[c][i].name+'</p></div></a>';
+				}
+				$(".country").html(str);
+			}
+		}
+		//country(第二行)添加模板
+		function add_country_list_t(c){
+			var len=data.dest[c].length;
+			var str="";
+			if (len>=7) {
+				for (var i =0; i <7; i++) {
+					str+='<a href="/webapp_product/pro_list?act='+data.act+'&continent='+c+'&country='+encodeURI(data.dest[c][i].name)+'"><div class="coun_list"><p>'+data.dest[c][i].name+'</p></div></a>';
+				}
+				$(".country_t").html(str);
+				$(".country_t").append('<a href="/webapp_product/pro_country_search?act='+data.act+'&continent='+c+'"><div class="coun_list"><p>更多...</p></div></a>');
+            	$api.css($api.byId("loading"),"display:none");
+			}else{
+				for (var i =0; i <len; i++) {
+					str+='<a href="/webapp_product/pro_list?act='+data.act+'&continent='+c+'&country='+encodeURI(data.dest[c][i].name)+'"><div class="coun_list"><p>'+data.dest[c][i].name+'</p></div></a>';
+				}
+				$(".country_t").html(str);
+			}
+		}
+		//添加产品模板
+		function add_group_travel() {
+			var str="";
+			var n;
+			if (data.list.length==1) {
+				n=1;
+			}if (data.list.length>=2) {
+				n=2;
+			}
+			for (var i =0; i <n; i++) {
+				str+='<a href="/webapp_product/product_detail?pid='+data.list[i].id+'&aid='+info.aid+'&p_type='+data.list[i].p_type+'">';
+				str+='<li class="aui-list-view-cell aui-img aui-col-xs-6">';
+	            str+='<div><img class="aui-img-object" src="'+data.list[i].face_img+'?imageView2/1/w/480/h/290"></div>';
+	            str+='<div class="aui-img-body aui-text-left">'
+	            str+='<p class="pro_tit aui-ellipsis-2">'+data.list[i].title+'</p>';
+	            str+='<p>';
+	            str+='<span class="goods-price"><img src="/Public/images/icon_cny_02@2x.png" alt="" style="width:12px;height:12px;" /><span style="font-size:16px">'+data.list[i].display_prices.price2+'</span><span style="font-size:12px;color:#585858;margin-left:5px;">起</span></span>';
+	            str+='</p>';
+	            str+='</div>';
+	            str+='</li>';
+	            str+='</a>';
+			}
+			setTimeout(function(){
+			  $("#pre_mark").show();
+			  $(".g_t_list").append(str);
+			  layer.close(index);
+			}, 1000)
+		}
+		//点击列表中的更多
+		$(".g_t_more").click(function() {
+			window.location.href='/webapp_product/pro_list?act='+data.act;
+		});
+		//点击搜索框事件 跳转到搜索页
+		$("#search-input").focus(function() {
+			window.location.href="/webapp_product/pro_country_search?act="+data.act
+		});
+		$('.back_home').click(function() {
+		    window.location.href="/webapp_product/get_a_product_list?aid=4"
+		});
+		$('.no_data').click(function() {
+			layer.msg('数据正在准备中');
+		});
+		$('.search_more').click(function() {
+			window.location.href='/webapp_product/pro_country_search?act='+data.act;
+		});
+		// ready参数
+		  var title='逍品旅行';
+		  var desc="逍品旅行，出境旅游优质供应商分销平台";
+		  var link=window.location.href;
+		  var imgUrl='http://a.qsctrip.com/Public/images/travel.png';
+		  //ajax请求数据 
+		  request_share();
+		  //判断是否为微信内核
+		  var ua = navigator.userAgent.toLowerCase();//获取判断用的对象
+		  if (ua.match(/MicroMessenger/i) == "micromessenger") {
+		      weixin_config(appId,timestamp,nonceStr,signature);
+		      weixin_ready(title,desc,link,imgUrl);
+		  } 
+	})
+</script>
+</body>
+</html>

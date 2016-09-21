@@ -1,0 +1,715 @@
+	<style>
+		.pro-container img{
+			vertical-align: bottom;
+			width:365.6px;
+			height:240px;
+		}
+		.hover{
+			color: #fff;
+			background-color: #7ce8fc;
+		}
+		.main{
+			margin:  0 auto;
+			width: 1135px;
+			padding-bottom: 200px;/*产品商城内容与footer之间的间距*/
+		}
+		.t-header{
+			background-color: #f9f9f9;	
+		}
+		.t-header div{
+			padding: 10px 0;
+			border-bottom: 1px dashed #f5f5f5;
+			overflow: hidden;
+			padding-left: 20px;
+		}
+		.t-header div ul li{
+			font-size: 14px;
+			float: left;
+			/*width:43px;*/
+			height: 27px;
+			line-height: 27px;
+			text-align: center;
+			margin-right: 30px;
+			cursor: pointer;
+			padding:0 5px;
+		}
+		.t-header div ul a{
+			color: #333;
+		}
+		.t-header ul li:hover{
+			color: #fff;
+			background-color: #7ce8fc;
+		}
+		.choice{
+			background-color: #f9f9f9;
+			padding: 0 30px;
+		}
+	   .choiceDetail{
+			padding: 10px 0; 
+			padding-left: 20px;
+			
+			height: 27px;
+			line-height: 27px;
+		}
+		.choice-left,.choice-right{
+			float: left;
+		}
+		.choice-left{
+			margin-right: 30px;
+			padding-left: 4px;
+		}
+		.choice-right{
+			
+			color: #fff;
+		}
+		.choice-list{
+			padding: 0 5px;
+			float: left;
+			background-color: #7ce8fc;
+			margin-right: 30px;
+			border:1px solid transparent;
+
+		}
+		.choice-list:hover{
+			background-color: #f9f9f9;
+			border:1px dotted #00d8ff;
+			color: #00d8ff;
+		}
+		.aim-close{
+			display: inline-block;
+			width: 20px;
+			height: 27px;
+			margin-left: 3px;
+			font-style: normal;
+			text-align: center;
+			cursor: pointer;
+		}
+		/*Ä¿µÄµØ--bigin*/
+		.address{
+			background-color: #fff;
+			padding: 0 30px;
+		}
+		.addrDetail{
+			padding: 20px 0; 
+			padding-left: 20px;
+			border-bottom: 1px dashed #f5f5f5;
+			position: relative;
+			overflow: hidden;
+		}
+		.addr-left,.addr-right{
+			float: left;
+		}
+		.addr-left{
+			background-image: url(/Public/images/dest.png);
+			background-repeat: no-repeat;
+			background-position:0 center;
+			width: 110px;
+			text-align: right;	
+			height: 27px;
+			line-height: 27px;
+		}
+		.addr-right{
+			width:890px;
+			height: 27px;
+			line-height: 27px;
+			position: relative;
+			overflow: hidden;
+		}
+		.addr-name{
+			float: left;
+			width: 100px;
+			cursor: pointer;
+			margin:0 10px;
+			text-align: center;
+		}
+		.addr-name:hover{
+			color: #00d8ff;
+		}
+		.show-more,.hide-more{
+			color: #45b0e8;
+			position: absolute;
+			top:24px;
+			right: 40px;
+			display: block;
+			height:27px;
+			cursor:pointer;
+		}
+		/*Ä¿µÄµØ--end*/
+		.product-class{
+			background-color: #fff;
+			padding: 0 30px;
+		}
+		.proDetail{
+			padding: 20px 0; 
+			padding-left: 20px;
+			height: 27px;
+			overflow: hidden;
+		}
+		.pro-left,.pro-right{
+			float: left;
+		}
+		.pro-left{
+			background-image: url(/Public/images/type.png);
+			background-repeat: no-repeat;
+			background-position:0 center;
+			width: 110px;
+			text-align: right;
+			height: 27px;
+			line-height: 27px;
+		}
+		.pro-right{
+			width:900px;
+			min-height: 27px;
+			line-height: 27px;
+		}
+		.pro-name{
+			float: left;
+			width: 70px;
+			cursor: pointer;
+			text-align: center;
+			margin:0 10px;
+		}
+		.pro-name:hover{
+			color: #00d8ff;
+		}
+		.img-list{
+			background-color:#f5f5f5;
+			margin-top: 30px;
+			overflow: hidden;
+			width: 1165px;
+			margin-left: -5px;
+		}
+		.p-product{
+			width: 365.6px;
+			margin:0 5px 10px 5px;
+			border:3px solid transparent;
+			float: left;
+		}
+		.p-product:hover{
+			border:3px solid #00d8ff;
+		}
+		.name{
+			padding: 15px 5px 15px 10px;
+			height:45px;
+			line-height: 22px;
+			overflow: hidden;
+			background-color: #fff;
+		}
+		.bg-mark{
+			display: none;
+			position: absolute;
+			background-color: rgba(0,0,0,0.75);
+			top: 0 ;
+			left:0;
+			width: 365.6px;
+			height: 240px;	
+		}
+		.bg-mark div{
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			margin:auto;
+			width: 260px;
+			height: 100px;
+			font-size: 16px;
+			color: #fff;
+			line-height: 25px;
+		}
+		.n-state{
+			float: left;
+			width: 200px;
+			font-size: 14px;
+			color: #585858;
+			word-wrap : break-word;
+			word-break :break-all 
+		}
+		.n-price{
+			float: right;
+			overflow: hidden;
+		}
+		.font-des{
+			width: 60px;
+			text-align: right;
+			color: #333;
+			font-size: 14px;
+		}
+		.sale-des{
+			width: 78px;
+			text-align: right;
+			font-size: 12px;
+			color: #999;
+			text-decoration: line-through;
+		}
+		.price{
+			display: inline-block;
+			color: #00d8ff;
+			font-size: 14px;
+		}
+		.sale-price{
+			display: inline-block;
+			font-size: 12px;
+			color: #999;
+			text-decoration: line-through;
+		}
+		.gro-btn{
+			overflow: hidden;
+		}
+		.extend,.sell{
+			float: left;
+			background-color: #262626;
+			width:50%;
+			height: 44px;
+			font-size: 16px;
+			color: #fff;
+			line-height: 44px;
+			text-align: center;
+			box-sizing: border-box;
+		}
+		.extend{
+			border-right: 1px solid #999;
+		}
+		.extend:hover,.sell:hover{
+			cursor: pointer;
+			background-color:#545454;
+			color: #00d8ff; 
+		}
+		.pro-container{
+			position: relative;
+		}
+		.pro-container:hover{
+			cursor: pointer;
+		}
+		.init{
+			color:#00d8ff;
+		}
+		.result{
+			font-size: 16px;
+			color: #333;
+			margin-bottom: 20px;
+			text-align: center;
+			height:30px;
+			line-height:30px;
+			position:relative;
+
+		}
+		.result i{
+			background:url(/Public/images/icon_no.png) no-repeat center 0px ;
+			display:inline-block;
+			width:100%;
+			height:50px;
+			position:absolute;
+			left:-140px;
+
+		}
+		.divider{
+			margin-left: 14px;
+    		margin-right: 23px;
+			height:1px;
+			background: #ccc;
+			margin-bottom: 20px
+		}
+		.pro_group,.pro_free{
+			width: 80px;
+			height: 24px;
+			text-align: center;
+			line-height: 24px;
+			color: #fff;
+			position: absolute;
+			top:10px;
+			left: 0;
+		}
+		.pro_group{
+			background-image: url(/Public/images/tag_1.png);
+			background-repeat: no-repeat;
+		}
+		.pro_free{
+			background-image: url(/Public/images/tag_2.png);
+			background-repeat: no-repeat;
+		}
+	</style>
+
+	<!-- 搜索条件 -->
+	<div class="main">
+		<div class="t-header">
+			<div>
+				<ul>
+					<!-- <a href="/mall/recommend"><li <?=$act=='r'?'class="hover"' : '';?>>推荐</li></a>
+					<a href="/mall/hot"><li <?=$act=='h'?'class="hover"' : '';?>>热门</li></a> -->
+					<a href="/mall/search?act=z"><li <li <?=$act==='z'?'class="hover"' : '';?>>境外跟团游产品</li></a>
+					<a href="/mall/search?act=y"><li <li <?=$act==='y'?'class="hover"' : '';?>>境外自由行产品</li></a>
+					<a href="/mall/search?act=zi"><li <li <?=$act==='zi'?'class="hover"' : '';?>>国内跟团游产品</li></a>
+					<a href="/mall/search?act=yi"><li <li <?=$act==='yi'?'class="hover"' : '';?>>国内自由行产品</li></a>
+				</ul>
+			</div>
+		</div>
+		<?php if($act=='z' || $act=='y'){
+		?>
+
+            <input id="cityName" type="hidden" value="AllCitys">
+            <input id="countryName" type="hidden" value="">
+            <input id="continentName" type="hidden" value="">
+            <input id="themeEname" type="hidden" value="AllThemes">
+            <input id="isFreeSale" type="hidden" value="allIsFreeSale">
+            <input id="labelName" type="hidden" value="">
+            <input id="timeRange" type="hidden" value="allTimeRange">
+            <input id="orderType" type="hidden" value="1">
+            <input type="hidden" id="search_keyword" value="">
+            <input type="hidden" id="search_applicableCrowd" value="">
+            <input type="hidden" id="sort_type" value="">
+            <!-- 筛选项 end -->
+            <!-- 筛选列表 begin -->
+
+		<div class="screen-main">
+			<div class="choice">
+				<div class="choiceDetail">
+					<div class="choice-left"></div>
+					<div class="choice-right">
+					   <?php
+					    if($continent){?>
+						<div class="choice-list" rel="continent" ><span class="aim-name" id="check_continent" rel="<?=$continent;?>"><?=$contin;?></span><i class="aim-close">x</i></div>
+						<?php }
+						if($country){ ?>
+						<div class="choice-list" rel="country"><span class="aim-name" id="check_country"><?=$country;?></span><i class="aim-close">x</i></div>
+						<?php }
+
+						if($tagname){ ?>
+						<div class="choice-list" rel="tag"><span class="aim-name" id="check_tag"><?=$tagname;?></span><i class="aim-close">x</i></div>
+					<?php }
+						?>
+					</div>
+				</div>
+			</div>
+			<div class="address">
+				<div class="addrDetail">
+					<div class="addr-left">目 的 地：</div>
+					<div class="addr-right">
+						<?php 
+						if($country_list){
+							foreach($country_list as $v){
+
+						?>
+							<a class="search_country_click addr-name country_list" rel="<?=$v['name']?>"><?=$v['name']?></a>
+						<?php
+						}
+
+						}else{ ?>
+						<a class="search_continent_click addr-name" rel="asia">亚洲</a>
+						<a class="search_continent_click addr-name" rel="europe">欧洲</a>
+						<a class="search_continent_click addr-name" rel="north_america">北美洲</a>
+						<a class="search_continent_click addr-name" rel="oceania">大洋洲</a>
+						<a class="search_continent_click addr-name" rel="africa">非洲和中东</a>
+						<?php } ?>
+					</div>
+					<?php 
+						$num = count($country_list);
+						if($num>9){
+					?>
+					<span id="ShowMore" class="show-more" >查看更多 ∨</span>
+					<span id="HideMore" class="hide-more" style="display:none">收起 ∧</span>
+						<?php } ?>
+				</div>
+			</div>
+			<?php
+			if(!$tagname){
+			?>
+			<div class="product-class">
+				<div class="proDetail">
+					<div class="pro-left">产品类别：</div>
+					<div class="pro-right">
+						<span class="search_tag_click pro-name" rel="亲子">亲子</span>
+						<span class="search_tag_click pro-name" rel="蜜月">蜜月</span>
+						<span class="search_tag_click pro-name" rel="休闲">休闲</span>
+						<span class="search_tag_click pro-name" rel="摄影">摄影</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<?php  }
+
+				}
+
+
+                 function get_single_price($price_type, $prices) {
+                    if(isset($prices[0]['price2'])) {
+                        switch($price_type) {
+                            case Ptype::PRICE_TYPE_0:
+                                return $prices[0]['price2'];
+                                break;
+                            case Ptype::PRICE_TYPE_1:
+                                return $prices[0]['price1'];
+                                break;
+                            default:
+                                return $prices[0]['price1'];
+                                break;
+                        }
+                    } else {
+                        return $prices[0]['price1'];
+                    }
+                } 
+
+          ?>
+		<div class="img-list">
+			<?php 
+			if(!$result){
+			?>
+			<div class="result"><i></i>搜索无结果，为您推荐以下产品</div>
+			<div class="divider"></div>
+
+			<?php 
+
+			}
+
+			foreach($list as $v){ 
+				
+                //$single_price = get_single_price($v['price_type'], $v['prices']);
+				include_once 'libraries/commen_user.php' ;
+				$same=get_same_price($v['display_prices']);
+				$sale=get_sale_price($v['display_prices']);
+             ?>
+			<div class="p-product">
+				<a href="/product/product_detail?pid=<?=$v['id'];?>&aid=<?=$aid;?>">
+				<div class="pro-container">
+					<img src="<?=$v['face_img'];?>" alt="">
+					<div class="name">
+						<div class="n-state"><?=mb_substr($v['title'],0,27,'utf-8')?> </div>
+						<div class="n-price">
+							<div>
+								<span class="font-des">同行价：</span><span class="price">￥<?=$same;?></span>
+							</div>
+							<div>
+								<span class="sale-des">建议零售价：</span><span class="sale-price">￥<?=$sale;?></span>
+							</div>
+						</div>
+					</div>
+					<?php
+						if($v['p_type'] =='3'){
+					?>
+					<div class="pro_group">组团游</div>
+					<?php
+						}elseif($v['p_type'] =='1' || $v['p_type'] =='2' ){
+					?>
+					<div class="pro_free">自由行</div>
+					<?php } ?>
+					<div class="bg-mark">
+						<div><?=$v['title'];?></div>
+					</div>
+				</div>
+				</a>
+				<div class="gro-btn">
+					<a href="/spread/extend?pid=<?=$v['id']?>"><div class="extend">
+					<?=$v['is_spread']?'再次推广':'立即推广';?>
+					</div></a>
+					<?php 
+	
+					if($v['is_onsale'] === 1){
+
+						?>
+					<div class="sell" rel="<?=$v['is_onsale'];?>" data="<?=$v['id'];?>"  type="<?=$v['p_type'];?>">正在销售</div>
+					<?php
+
+					}else if($v['is_onsale'] === -1){
+						?>
+					<div class="sell" rel="<?=$v['is_onsale'];?>" data="<?=$v['id'];?>"  type="<?=$v['p_type'];?>">放入店铺</div>
+					<?php
+
+					}else{
+					?>
+					<div class="sell init" rel="<?=$v['is_onsale'];?>"  data="<?=$v['id'];?>"  type="<?=$v['p_type'];?>">产品上架</div>
+					<?php } ?>
+				</div>
+			</div>
+			<?php } ?>
+		</div>
+		
+	<?php
+		if($act!=='h' && $act!=='r' && $result ){
+	?>
+	<input type="hidden" value="<?=$total?$total:0;?>" id="total" method="post">
+		<input type="hidden" value="<?=$page?$page:0;?>" id="page">
+		<input type="hidden" value="<?=$rn?$rn:0;?>" id="rn">
+    <ul class="center pagination pagination-lg" id="ul_pages" style="margin-left:15px"></ul>
+	<?php } ?>
+	</div>
+	<script>
+		$(function(){
+		
+			$(".p-product .pro-container").mouseover(function() {
+				$(this).find(".bg-mark").css({
+					display: 'block'
+				});
+			});
+			$(".p-product .pro-container").mouseout(function() {
+				$(this).find(".bg-mark").css({
+					display: 'none'
+				});
+		   	});
+		    $("#ShowMore").click(function() {
+			    $("#ShowMore").hide(),
+			   
+			    $("#HideMore").show();
+			    $(".addr-right").css({
+			    	height: 'auto'
+			    	
+			    });
+			}),
+			$("#HideMore").click(function() {
+			    $("#ShowMore").show(),
+			  
+			    $("#HideMore").hide();
+			    $(".addr-right").css({
+			    	height: '27px'
+			    	
+			    });
+			})
+
+			$(".sell").click(function(){
+				var sell = $(this);
+				if(sell.attr('rel') == 1){
+					var res = confirm('您确定要取消销售该产品么？');
+					if(!res){
+						return false;
+					}
+				}
+
+				var url = "/product/operation";
+				var id = $(this).attr('data');
+				var p_type = $(this).attr('type');
+				var p_status = $(this).attr('rel');
+		        $.get(url, {
+		            id:id,
+		            p_type:p_type,
+		            p_status:p_status
+		        }, function(data) {
+		            if(data['result']['err'] == 0) {
+		            	p_status=data['content']['p_status'];
+		              	sell.attr('rel',p_status);
+		              	if(p_status==="1"){
+		              		sell.removeClass('init');
+		              		sell.html('正在销售');
+		              	}else{
+		              		sell.addClass('init');
+		              		sell.html('产品上架');
+		              	}
+		            } else {
+
+		            }
+		         })   
+			})
+		});
+	var m_total=$('#total').val();
+    var m_current_page=$('#page').val();
+    var m_page_record = $('#rn').val();
+    add_pages(m_total,m_current_page);
+ 	 /**
+     * 添加页码
+     * @param total
+     */
+    function add_pages(total, current) {
+        m_total_page = Math.ceil(total /m_page_record);
+        if (m_total_page==1) {
+        	$("#ul_pages").hide();
+        }else{
+        	$("#ul_pages").show();
+        }
+        var html = "<li" ;
+
+        //首页
+        if(current == 0) {
+            html += " class=\"disabled\"" ;
+            html += "><a>首页<li>";
+        }else{
+            html += "><a class='search_page_click' rel='0'>首页<li>";
+        }
+
+        
+
+        html += "<li" ;
+
+        //上一页
+        if(current == 0) {
+            html += " class=\"disabled\"" ;
+            html += "><a>上一页</a></li>" ;
+        }else{
+        	 html += "><a class='search_page_click' rel="+(current-1)+">上一页</a></li>" ;
+        }
+        
+
+        //中间页
+        if(m_total_page<10){
+            for(var i=0;i<m_total_page;i++) {
+                if(i == current ) {
+                    html += "<li class=\"active\">" ;
+                } else {
+                    html += "<li>";
+                }
+
+                html += "<a class='search_page_click' rel="+i+">" + (i+1) + "</a></li>" ;
+            }
+        }else{
+            var now_half =  m_total_page-9;
+
+            if(current < now_half){
+                for(var i=0;i<4;i++) {
+                    if(current + i== current ) {
+                        html += "<li class=\"active\">" ;
+                    } else {
+                        html += "<li>";
+                    }
+
+                    html += "<a class='search_page_click' rel="+(current+i)+">" + (current+i+1) + "</a></li>" ;
+                }
+                html += "<li><a  class='search_page_click' rel=" + (current+4) + ">" + "..." + "</a></li>";
+                for(var i=4;i>0;i--) {
+                    if(m_total_page-i == current ) {
+                        html += "<li class=\"active\">" ;
+                    } else {
+                        html += "<li>";
+                    }
+
+                    html += "<a class='search_page_click' rel=" + (m_total_page-i)+ ">" + (m_total_page-i+1) + "</a></li>" ;
+                }
+            }else{
+                for(var i= 9;i>0;i--) {
+                    if(m_total_page-i == current ) {
+                        html += "<li class=\"active\">" ;
+                    } else {
+                        html += "<li>";
+                    }
+
+                    html += "<a class='search_page_click' rel=" + (m_total_page-i)+ ">" + (m_total_page-i+1) + "</a></li>" ;
+                }
+            }
+
+        }
+
+        //下一页
+        html += "<li" ;
+        if(current == m_total_page - 1){
+            html += " class=\"disabled\"";
+            html += "><a>下一页</a></li>" ;
+        }else{
+        	html += "><a class='search_page_click' rel="+(current-0+1)+">下一页</a></li>" ;
+        }
+        
+
+        //尾页
+        html += "<li" ;
+        if(current == m_total_page - 1){
+            html += " class=\"disabled\"";
+            html += "><a>尾页</a></li>" ;
+        }else{
+            html += "><a class='search_page_click' rel="+(m_total_page - 1)+" >尾页</a></li>" ;
+        }
+
+        
+
+        $("#ul_pages").html(html) ;
+    }
+		if($('.aim-close').length>0){
+			$('.choice-left').html('您已选择:');
+		}
+
+	</script>
+	<script src="/Public/js/search.js"></script>

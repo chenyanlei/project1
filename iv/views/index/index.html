@@ -1,0 +1,324 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<link rel="icon" href="/Public/images/ico.png">
+	<link rel="stylesheet" href="/Public/css/common.css">
+	<script rel="stylesheet" src="/Public/js/jquery-1.11.3.js"></script>>
+	<title>逍品旅行首页</title>
+	<style>
+		/*重置初始样式--begin*/
+		/**{
+			box-sizing:content-box;
+		}*/
+		body,div,h1,h2,h3,h4,h5,h6,p,ul,li,select,input,a{
+			margin: 0;
+			padding:0;
+		}
+		a:hover, a:visited, a:link, a:active{
+			text-decoration: none;
+		}
+		body,html{
+			font-size: 14px;
+			font-family:"Microsoft YaHei";
+			background-color: #f5f5f5;
+			width: 100%;
+			height: 100%;
+		}
+		.footer-padding{
+			position: relative;
+			width: 100%;
+			min-height: 100%;
+			padding-bottom: 200px; 
+		}
+		/*重置初始样式--end*/
+
+		/*头部样式--begin*/
+		.header{
+			width: 100%;
+			height: 64px;
+			background-color: #fff;
+			border-bottom: 1px solid #ccc;
+			position: fixed;
+			top:0;
+			z-index: 1;
+			overflow: hidden;
+		}
+		.logo{
+			float: left;
+			width: 212px;
+			height: 64px;
+			text-align: center;
+			line-height: 64px;
+			border-right: 1px solid #ccc;
+		}
+		.logo img{
+			vertical-align: middle;
+		}
+		.menu{
+			float: right;
+		}
+		.menu ul li{
+			list-style: none;
+			float: left;
+		}
+		.login a:hover,.register a:hover,.help a:hover{
+			background-color: #f5f5f5;
+		}
+		.login a,.register a{
+			font-size:16px ;
+			color: #585858;
+			display: inline-block;
+			padding: 0 20px;
+			height: 64px;
+			line-height: 64px;
+			border-left: 1px solid #ccc;
+			text-align: center;
+		}
+		.help a{
+			background-image:url(/Public/images/help.png);
+			background-repeat: no-repeat;
+			background-position: 20px center ;
+			font-size:16px ;
+			color: #585858;
+			display: inline-block;
+			height: 64px;
+			border-left: 1px solid #ccc;
+			padding: 0 20px 0 50px;
+			line-height: 64px;
+		}
+		.lang{
+			border-left:1px solid #ccc ;
+			line-height: 64px;
+			padding: 0 30px;
+		}
+		.lang select{
+			width:100px;
+			height:34px;
+			color:#565858;
+			padding-left:20px;
+		}
+		/*头部样式--end*/
+
+		/*主体部分--begin*/
+		.content{
+			max-width: 1200px;
+			margin:0 auto;
+			margin-top: 64px;/*t头部fixed脱离文本流 content会上去*/
+		}
+		.one{
+			text-align: center;
+		}
+		.two{
+			padding: 40px 0;
+			background-color: #fff;
+			border-bottom: 1px solid #ccc;
+		}
+		.img-parent{
+			overflow: hidden;
+			width: 840px;
+			height: 280px;
+			margin: 0 auto;
+		}
+		.img-one,.img-two,.img-three{
+			width: 260px;
+			height: 280px;
+			float: left;
+			position: relative;
+		}
+		.img-one{
+			background-image:url(/Public/images/pic_01.png);
+		}
+		.img-two{
+			background-image:url(/Public/images/pic_02.png);
+		}
+		.img-three{
+			background-image:url(/Public/images/pic_03.png);
+		}
+		.img-two,.img-three{
+			margin-left: 30px;
+		}
+		.shade{
+			width: 214px;
+			height: 230px;
+			color: #fff;
+			font-size: 30px;
+			font-family: "FZDaHei-B02S";
+			text-align: center;
+			line-height: 230px;
+			background-color: rgba(255,255,255,0.3);
+			position: absolute;
+			top:0;
+			left:0;
+			right:0;
+			bottom:0;
+			margin:auto;
+		}
+		.three{
+			height: 360px;/*暂时高度*/
+			background-color: #fff;
+			padding-top: 50px;
+			border-bottom: 1px solid #ccc;
+		}
+		.three-son{
+			text-align: center;
+			font-size: 38px;
+			color: #585858;
+		}
+		.four{
+			background-color: #fff;
+			padding: 50px 0 100px 0;
+		}
+		.four-text{
+			text-align: center;
+			font-size: 38px;
+			color: #585858;
+		}
+		.four-list{
+			width: 630px;
+			margin: 0 auto;
+			margin-top: 80px;
+			overflow: hidden;
+		}
+		.product-one,.product-three,.product-two,.product-four{
+			font-size: 24px;
+			color: #777;
+			height: 150px;
+			line-height: 270px;
+		}
+		.product-one,.product-three{	
+			float: left;
+		}
+		.product-two,.product-four{
+			float: right;
+		}
+		.product-one{
+			background:url(/Public/images/money.png);
+			background-repeat: no-repeat;
+			background-position: center top ;
+		}
+		.product-two{
+			background-image:url(/Public/images/travel.png);
+			background-repeat: no-repeat;
+			background-position: center top ;
+		}
+		.product-three{
+			background-image:url(/Public/images/store.png);
+			background-repeat: no-repeat;
+			background-position: center top ;
+		}
+		.product-four{
+			background-image:url(/Public/images/set.png);
+			background-repeat: no-repeat;
+			background-position: center top ;
+		}
+		/*主体部分--end*/
+	</style>
+</head>
+<body>
+	<div class="footer-padding">
+		<div class="header">
+			<div class="logo">
+				<a href="" >
+					<img style='border-style: none' src="/Public/images/header_logo.png" alt="">
+				</a>
+			</div>
+			<div class="menu">
+				<ul>
+					<li class="login"><a href="javascript:location.href='/user/login';">登录</a></li>
+					<li class="register"><a href="javascript:location.href='/user/register';">注册</a></li>
+					<li class="help"><a href="javascript:;">帮助</a></li>
+				</ul>
+			</div>
+		</div>
+		<div class="content">
+			<div class="one">
+				<img src="/Public/images/bg.jpg" alt="" style="width:1200px;height:500px;">
+			</div>
+			<div class="two">
+				<div class="img-parent">
+					<div class="img-one">
+						<div class="shade"><img src="/Public/images/buy.png" alt=""></div>
+					</div>
+					<div class="img-two">
+						<div class="shade"><img src="/Public/images/food.png" alt=""></div>
+					</div>
+					<div class="img-three">
+						<div class="shade"><img src="/Public/images/hotel.png" alt=""></div>
+					</div>ss
+				</div>
+			</div>
+			<div class="three">
+				<div class="three-son">
+					全球旅游市场资讯
+				</div>
+			</div>
+			<div class="four">
+				<div class="four-text">出境旅游优质服务供应商分销平台</div>
+				<div class="four-list">
+					<div class="product-one">丰厚的佣金收入</div>
+					<div class="product-two">丰富的全球旅游产品</div>
+				</div>
+				<div class="four-list">
+					<div class="product-three">创建旅游产品商店</div>
+					<div class="product-four">实时管理订单、客户</div>
+				</div>
+			</div>
+		</div>
+		<div style="height:200px;"></div>
+		<div class="main-footer">
+		    <div class="footer-cont">
+		      <div class="footer-kefu">
+		        <p class="footer-title">客服</p>
+		        <div class="fo-mar-b"><img src="/Public/images/footer-tel.png" alt="" style="vertical-align:middle"><span class="footer-contact">010-62238287</span></div>
+		        <div class="fo-mar-b"><img src="/Public/images/footer-qq.png" alt="" style="vertical-align:middle"><span class="footer-contact">3481486609</span></div>
+		      </div>
+		      <div class="footer-xinxi">
+		        <p class="footer-title">信息</p>
+		          <a href="" class="fo-mar-b">关于我们</a>
+		          <a href="" class="fo-mar-b">联系我们</a>
+		          <a href="">人才招聘</a>
+		      </div>
+		      <div class="footer-fuwu">
+		        <p class="footer-title">服务</p>
+		         <a href="" class="fo-mar-b">服务协议</a>
+		         <a href="" class="fo-mar-b">使用帮助</a>
+		      </div>
+		      <div class="footer-yuyan">
+		          <div class="footer-lang">
+		            <div class="btn-lang" type="button" id="lang">
+		              <span class="lang-name ">中文(简体)</span>
+		              <span class="caret"></span>
+		            </div>
+		            <div class="lang-menu">
+		              <div><a href="javascript:;" class="lang-active">中文(简体)</a></div>
+		              <div ><a href="javascript:;" style="border:none">English</a></div>
+		            </div>
+		          </div>
+		      </div>
+		    </div>
+		    <div class="travel-name">逍品旅行 版权所有 Copyright&copy;2016-2020</div>
+		    <div class="police-num">北京市公安备案编号：京ICP12035470号-3</div>
+		</div>
+	</div>
+	    <script>
+	         $(".btn-lang").click(function(e) {
+	            e.stopPropagation() ; 
+	           $(".footer-lang").toggleClass('menu-border');
+	           $(".lang-menu").toggle();
+	         });
+	         $(".lang-menu div a").click(function() {
+	           $(".lang-menu div a").removeClass('lang-active');
+	           $(this).addClass('lang-active');
+	           $(".footer-lang").toggleClass('menu-border');
+	           var name = $(this).text();
+	           $(".lang-name").text(name);
+	           $(".lang-menu").toggle();
+	         });
+	         $("body").bind('click',  function() {
+	           $(".lang-menu").hide();
+	           $(".footer-lang").removeClass('menu-border');
+	         });
+	        </script>
+	</body>
+</html>

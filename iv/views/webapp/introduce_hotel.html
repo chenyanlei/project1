@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<meta name="viewport" content="width=device-width,initial-scale=1.0,user-scalable=no" />
+	<link rel="stylesheet" href="/Public/css/aui.css">
+	<link rel="stylesheet" href="/Public/css/aui-slider-full.css">
+	<link rel="stylesheet" href="/Public/css/aui-flex.css">
+	<title>特色酒店</title>
+	<style>
+		.aui-slider-full > .aui-slider-list img {
+		    width: 100%;
+		    height: 100%;
+		}
+	</style>
+</head>
+<body>
+	<div class="aui-slider-full">
+		<div class="aui-slider-list aui-flex-col aui-flex-middle">
+			<img src="/Public/images/hotel_01.jpg" alt=""/>
+		</div>
+		<div class="aui-slider-list aui-flex-col aui-flex-middle">
+			<img src="/Public/images/hotel_02.jpg" alt=""/>
+		</div>
+		<div class="aui-slider-list aui-flex-col aui-flex-middle">
+			<a href="/webapp_global/merchant_list?act=h"><img src="/Public/images/hotel_03.jpg" alt=""/></a>
+		</div>
+	</div>
+
+
+
+	<script src="/Public/js/jquery-1.11.3.js"></script>
+	<script src="/Public/js/api.js"></script>
+	<script src="/Public/js/aui-slider-full.js"></script>
+	<script src="/Public/js/weixin-1.0.0.js"></script>
+	<script src="/Public/js/weixin-share.js"></script>
+	<script type="text/javascript">
+	$(function () {
+		stopDrop();
+		//禁止下拉回弹
+		function stopDrop() {
+		    var lastY;//最后一次y坐标点
+		    $(document.body).on('touchstart', function(event) {
+		        lastY = event.originalEvent.changedTouches[0].clientY;//点击屏幕时记录最后一次Y度坐标。
+		    });
+		    $(document.body).on('touchmove', function(event) {
+		        var y = event.originalEvent.changedTouches[0].clientY;
+		        var st = $(this).scrollTop(); //滚动条高度  
+		        if (y >= lastY && st <= 10) {//如果滚动条高度小于0，可以理解为到顶了，且是下拉情况下，阻止touchmove事件。
+		            lastY = y;
+		            event.preventDefault();
+		        }
+		        lastY = y;
+		 
+		    });
+		}
+		apiready = function(){
+			api.parseTapmode();
+		}
+		var sliderFull = new auiSliderFull({
+			direction:'y'
+		});
+		// $aui.sliderUp($api.byId("sliderNav"));
+		function closeWin(){
+	        api.closeWin({
+	        	name:'slider_full_win',
+	        	animation:{
+	        		type:'push',
+	                subType:'from_top'
+	            }
+	        });
+	    }
+	    // 点击跳转事件
+	    $('.btn_enter').click(function() {
+	    	window.location.href='/webapp_global/merchant_list?act=h';
+	    });
+
+	    // ready参数
+	      var title='逍品旅行';
+	      var desc="逍品旅行，出境旅游优质供应商分销平台";
+	      var link=window.location.href;
+	      var imgUrl='http://a.qsctrip.com/Public/images/travel.png';
+	      //ajax请求数据 
+	      request_share();
+	      //判断是否为微信内核
+	      var ua = navigator.userAgent.toLowerCase();//获取判断用的对象
+	      if (ua.match(/MicroMessenger/i) == "micromessenger") {
+	          weixin_config(appId,timestamp,nonceStr,signature);
+	          weixin_ready(title,desc,link,imgUrl);
+	      } 
+	})
+	</script>
+</body>
+</html>

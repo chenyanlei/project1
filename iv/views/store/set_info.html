@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title></title>
+    <link rel="stylesheet" href="/Public/css/bootstrap.min.css">
+    <script type="text/javascript" src="/Public/js/jquery-1.11.3.js"></script>
+    <script type="text/javascript" src="/Public/js/layer.js"></script>
+</head>
+<body>
+        <form style="padding:50px 100px 200px;">
+            <div class="form-group">
+                <label for="name">门店名称</label>
+                <input type="text" class="form-control" id="name" placeholder="门店名称">
+            </div>
+            <div class="form-group">
+                <label for="contact">联系人</label>
+                <input type="text" class="form-control" id="contact" placeholder="门店名称">
+            </div>
+            <div class="form-group">
+                <label for="address">地址</label>
+                <input type="text" class="form-control" id="address" placeholder="地址">
+            </div>
+            <div class="form-group">
+                <label for="contact_phone">联系方式</label>
+                <input type="text" class="form-control" id="contact_phone" placeholder="联系方式">
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="level" id="level1" value="5" checked>
+                    门店
+                </label>
+            </div>
+            <div class="radio">
+                <label>
+                    <input type="radio" name="level" id="level2" value="6">
+                    其他
+                </label>
+            </div>
+            <div class="btn btn-default">确定</div>
+            <input type="hidden" id="uid" value="<?=$uid?>">
+        </form>
+        <script>
+            $('.btn').click(function(){
+                var level = $("input[type='radio']:checked").val();
+
+                var name =$('#name').val();
+                var address = $('#address').val();
+                var contact = $('#contact').val();
+                var contact_phone = $('#contact_phone').val();
+                var uid = $('#uid').val();
+
+                $.ajax({
+                    url:'/user/doset_agent_info',
+                    data:{name:name,address:address,contact:contact,contact_phone:contact_phone,uid:uid,level:level},
+                    type:'post',
+                    // async:false,//设置同步
+                    success:function(data){
+
+                        //如果用户名不可用
+                        if(data.result.err === 0){
+                            var message = data.result.err + ':' + data.result.msg;
+                            layer.open({
+                                title:false,
+                                content: message,
+                                area: '260px',
+                                closeBtn: false
+                            });
+
+                        }else if(data.result.err === 1001 ){
+                            var message = data.result.err + ':' + data.result.msg;
+                            layer.open({
+                                title:false,
+                                content: message,
+                                area: '260px',
+                                closeBtn: false
+                            });
+
+                        }else{
+                            var message = data.result.err + ':' + data.result.msg;
+                            layer.open({
+                                title:false,
+                                content: message,
+                                area: '260px',
+                                closeBtn: false
+                            });
+                        }
+
+                    }
+                },'json')
+
+                return false;
+
+
+            })
+
+        </script>
+</body>
+</html>

@@ -1,0 +1,485 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>热门</title>
+	<script src="/Public/js/jquery-1.11.3.js"></script>
+	<style>
+		/* 样式重置--begin*/
+		body,div,h1,h2,h3,h4,h5,h6,p,ul,li,select,input,a,img,span{
+			margin: 0;
+			padding:0;
+
+		}
+		img{
+			vertical-align: bottom;
+		}
+		a:hover, a:visited, a:link, a:active{
+			text-decoration: none;
+			color: #000;
+		}
+		ul li{
+			list-style: none;
+		}
+		body{
+			background-color: #f5f5f5;
+			font-family: "Microsoft YaHei";
+			font-size: 14px;
+		}
+		/* 样式重置--end */
+
+		
+		.hover{
+			color: #fff;
+			background-color: #7ce8fc;
+		}
+		.main{
+			margin:  0 auto;
+			width: 1135px;
+		}
+		.t-header{
+			padding:0 30px;
+			background-color: #f9f9f9;	
+		}
+		.t-header div{
+			padding: 20px 0;
+			border-bottom: 1px dashed #f5f5f5;
+			overflow: hidden;
+			padding-left: 20px;
+		}
+		.t-header div ul li{
+			font-size: 14px;
+			float: left;
+			width:43px;
+			height: 27px;
+			line-height: 27px;
+			text-align: center;
+			margin-right: 30px;
+			cursor: pointer;
+		}
+		.t-header ul li:hover{
+			color: #fff;
+			background-color: #7ce8fc;
+		}
+		.screen-main{
+			display: none;
+		}
+		.choice{
+			background-color: #f9f9f9;
+			padding: 0 30px;
+		}
+	   .choiceDetail{
+			padding: 20px 0; 
+			padding-left: 20px;
+			
+			height: 27px;
+			line-height: 27px;
+		}
+		.choice-left,.choice-right{
+			float: left;
+		}
+		.choice-left{
+			margin-right: 30px;
+			padding-left: 4px;
+		}
+		.choice-right{
+			
+			color: #fff;
+		}
+		.choice-list{
+			padding: 0 5px;
+			float: left;
+			background-color: #7ce8fc;
+			margin-right: 30px;
+
+		}
+		/*.aim-name{
+			margin-right:10px;
+		}*/
+		.aim-close{
+			display: inline-block;
+			width: 20px;
+			height: 27px;
+			font-style: normal;
+			text-align: center;
+			cursor: pointer;
+		}
+		/*目的地--bigin*/
+		.address{
+			background-color: #fff;
+			padding: 0 30px;
+		}
+		.addrDetail{
+			padding: 20px 0; 
+			padding-left: 20px;
+			/*min-height: 27px;
+			line-height: 27px;*/
+			border-bottom: 1px dashed #f5f5f5;
+			overflow: hidden;
+		}
+		.addr-left,.addr-right{
+			float: left;
+		}
+		.addr-left{
+			background-image: url(image/位置.png);
+			background-repeat: no-repeat;
+			background-position:0 center;
+			width: 110px;
+			text-align: right;	
+			height: 27px;
+			line-height: 27px;
+
+		}
+		.addr-right{
+			width:900px;
+			min-height: 27px;
+			line-height: 27px;
+			position: relative;
+		}
+		.addr-name{
+			float: left;
+			width: 70px;
+			cursor: pointer;
+			margin:0 10px;
+			text-align: center;
+		}
+		.addr-name:hover{
+			color: #00d8ff;
+		}
+		.show-more,.hide-more{
+			color: #45b0e8;
+			position: absolute;
+			top:0;
+			right: 0;
+			display: block;
+			height:27px;
+			cursor:pointer;
+		}
+		/*目的地--end*/
+		.product-class{
+			background-color: #fff;
+			padding: 0 30px;
+		}
+		.proDetail{
+			padding: 20px 0; 
+			padding-left: 20px;
+			
+			height: 27px;
+		
+			border-bottom: 1px dashed #f5f5f5;
+			overflow: hidden;
+		}
+		.pro-left,.pro-right{
+			float: left;
+		}
+		.pro-left{
+			background-image: url(image/type.png);
+			background-repeat: no-repeat;
+			background-position:0 center;
+			width: 110px;
+			text-align: right;
+			height: 27px;
+			line-height: 27px;
+			
+		}
+		.pro-right{
+			width:900px;
+			min-height: 27px;
+			line-height: 27px;
+		}
+		.pro-name{
+			float: left;
+			width: 70px;
+			cursor: pointer;
+			text-align: center;
+			margin:0 10px;
+		}
+		.pro-name:hover{
+			color: #00d8ff;
+		}
+		.img-list{
+			background-color:#f5f5f5;
+			margin-top: 30px;
+			overflow: hidden;
+			width: 1165px;
+			margin-left: -10px;
+		}
+		.p-product{
+			width: 365px;
+			height: auto;
+			margin:0 10px 30px 10px;
+			border:3px solid transparent;
+			/*border:3px solid #00d8ff;*/
+			float: left;
+			box-sizing: border-box;
+		}
+		.p-product:hover{
+			border:3px solid #00d8ff;
+		}
+		.p-product img{
+			width: 359px;
+			height:236px;
+		}
+		.name{
+			padding: 15px;
+			height:45px;
+			overflow: hidden;
+			background-color: #fff;
+		}
+		.n-state{
+			float: left;
+			width: 200px;
+			font-size: 14px;
+			color: #585858;
+			word-wrap : break-word;
+			word-break :break-all 
+		}
+		.n-price{
+			float: right;
+			overflow: hidden;
+		}
+	
+		.font-des{
+			display: inline-block;
+			width: 60px;
+			text-align: right;
+			color: #333;
+			font-size: 14px;
+		}
+		.price{
+			color: #00d8ff;
+			font-size: 14px;
+		}
+		.sale-des{
+			display: inline-block;
+			width: 60px;
+			text-align: right;
+			font-size: 12px;
+			color: #999;
+			text-decoration: line-through;
+		}
+		.sale-price{
+			font-size: 12px;
+			color: #999;
+			text-decoration: line-through;
+		}
+		.gro-btn{
+			overflow: hidden;
+		}
+		.extend,.sell{
+			width: 50%;
+			float: left;
+			background-color: #262626;
+			height: 44px;
+			font-size: 16px;
+			color: #fff;
+			line-height: 44px;
+			text-align: center;
+		}
+		.extend{
+			border-right: 1px solid #999;
+			width: 178.5px;
+		}
+		.sell{
+
+		}
+		.extend:hover,.sell:hover{
+			cursor: pointer;
+		}
+		.pro-container{
+			position: relative;
+		}
+		.a:hover{
+			cursor: pointer;
+		}
+		.bg-mark{
+			display: none;
+			position: absolute;
+			background-color: rgba(0,0,0,0.75);
+			top: 0 ;
+			left:0;
+			width: 359px;
+			height: 236px;	
+		}
+		.bg-mark div{
+			position: absolute;
+			top: 0;
+			left: 0;
+			right: 0;
+			bottom: 0;
+			margin:auto;
+			width: 260px;
+			height: 100px;
+			font-size: 16px;
+			color: #fff;
+			line-height: 25px;
+		}
+	</style>
+</head>
+<body>
+	<div class="head">
+	<div>
+		<ul>
+			<li><a href="javascript:;">我的店铺</a></li>
+			<li><a href="javascript:;">产品商城</a></li>
+			<li><a href="javascript:;">财务管理</a></li>
+			<li><a href="javascript:;">订单</a></li>
+			<li><a href="javascript:;">客户</a></li>
+			<li><a href="javascript:;">账号</a></li>
+			<li><a href="javascript:;">收件箱</a></li>
+			<li><a href="javascript:;">统计</a></li>
+		</ul>
+	</div>
+	</div>
+	<!-- 搜索条件 -->
+	<div class="main">
+		<div class="t-header">
+			<div>
+				<ul>
+					<li>推荐</li>
+					<li class="hover">热门</li>
+					<li>筛选</li>
+				</ul>
+			</div>
+		</div>
+		<div class="screen-main">
+			<div class="choice">
+				<div class="choiceDetail">
+					<div class="choice-left">您已选择：</div>
+					<div class="choice-right">
+						<div class="choice-list"><span class="aim-name">亚洲</span><i class="aim-close">x</i></div>
+						<div class="choice-list"><span class="aim-name">亚洲</span><i class="aim-close">x</i></div>
+						<div class="choice-list"><span class="aim-name">亚洲</span><i class="aim-close">x</i></div>
+						<div class="choice-list"><span class="aim-name">亚洲</span><i class="aim-close">x</i></div>
+						<div class="choice-list"><span class="aim-name">亚洲</span><i class="aim-close">x</i></div>
+						<div class="choice-list"><span class="aim-name">北美洲</span><i class="aim-close">x</i></div>
+					</div>
+				</div>
+			</div>
+			<div class="address">
+				<div class="addrDetail">
+					<div class="addr-left">目 的 地：</div>
+					<div class="addr-right">
+						<span id="ShowMore" class="show-more">查看更多 ∨</span>
+						<span id="HideMore" class="hide-more" style="display:none">收起 ∧</span>
+						<span class="addr-name">亚洲</span>
+						<span class="addr-name">欧洲</span>
+						<span class="addr-name">北美洲</span>
+						<span class="addr-name">大洋洲</span>
+						<span class="addr-name">南美洲</span>
+						<span class="addr-name">非洲和中东</span>
+						
+
+					</div>
+				</div>
+			</div>
+			<div class="product-class">
+				<div class="proDetail">
+					<div class="pro-left">产品类别：</div>
+					<div class="pro-right">
+						<span class="pro-name">亲子</span>
+						<span class="pro-name">蜜月</span>
+						<span class="pro-name">休闲</span>
+						<span class="pro-name">摄影</span>
+					</div>
+				</div>
+			</div>
+		</div>
+		<?php 
+                 function get_single_price($price_type, $prices) {
+                    if(isset($prices[0]['price2'])) {
+                        switch($price_type) {
+                            case Ptype::PRICE_TYPE_0:
+                                return $prices[0]['price2'];
+                                break;
+                            case Ptype::PRICE_TYPE_1:
+                                return $prices[0]['price1'];
+                                break;
+                            default:
+                                return $prices[0]['price1'];
+                                break;
+                        }
+                    } else {
+                        return $prices[0]['price1'];
+                    }
+                } 
+
+          ?>
+		<div class="img-list">
+			<?php foreach($list as $v){ 
+                    $single_price = get_single_price($v['price_type'], $v['prices']);
+             ?>
+			<div class="p-product">
+				<div class="pro-container">
+					<img src="<?=$v['face_img'];?>" alt="">
+					<div class="name">
+						<div class="n-state"><?=mb_substr($v['title'],0,27,'utf-8')?> </div>
+						<div class="n-price">
+							<div>
+								<span class="font-des">同行价：</span><span class="price">￥<?=$single_price;?></span>
+							</div>
+							<div>
+								<span class="sale-des">销售价：</span><span class="sale-price">￥<?=$single_price;?></span>
+							</div>
+						</div>
+					</div>
+					<div class="bg-mark">
+						<div>游船码头电子码自助换票，省时省力，无需指定使用日期，一年有效方便灵活游船班次多，白天黑夜均能乘坐，立即加入...</div>
+					</div>
+				</div>
+				<div class="gro-btn">
+					<div class="extend">立即推广</div>
+					<div class="sell">正在销售</div>
+				</div>
+			</div>
+			<?php } ?>
+		</div>
+	</div>
+	<script>
+		$(function(){
+			$(".t-header div ul li").click(function() {
+				/* Act on the event */
+				var elm=$(this).text();
+				$(".t-header div ul li").removeClass('hover');
+				$(this).addClass('hover');
+				// console.log($(this).text())
+				if (elm=="筛选") {
+					$(".screen-main").css({
+						display: 'block'
+					});
+				}else{
+					$(".screen-main").css({
+						display: 'none'
+					});
+				}
+			});
+			// $(".p-product .pro-container").mouseover(function() {
+			// 	$(this).find(".bg-mark").css({
+			// 		display: 'block'
+			// 	});
+			// });
+			// $(".p-product .pro-container").mouseout(function() {
+			// 	$(this).find(".bg-mark").css({
+			// 		display: 'none'
+			// 	});
+		 //   	});
+		    $("#ShowMore").click(function() {
+		    	$(this).css({
+		    		display: 'none'
+		    	});
+		    	$("#HideMore").css({
+		    		display: 'block'
+		    	});
+		    });
+		    $("#HideMore").click(function() {
+		    	$(this).css({
+		    		display: 'none'
+		    	});
+		    	$("#ShowMore").css({
+		    		display: 'block'
+		    	});
+		    });
+		})
+	</script>
+</body>
+</html>

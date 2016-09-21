@@ -1,0 +1,74 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="maximum-scale=1.0,minimum-scale=1.0,user-scalable=0,width=device-width,initial-scale=1.0"/>
+    <title>APP</title>
+    <link rel="stylesheet" type="text/css" href="/Public/css/aui.css" />
+    <link rel="stylesheet" type="text/css" href="/Public/css/iconfont.css" />
+
+</head>
+<style>
+html { background: #f7f9f8;}
+.aui-content{
+    padding-top: 10px
+}
+.aui-arrow-left{
+   float:left;
+   width:40%;
+}
+.aui-arrow-right{
+   float:right;
+   height:56px;
+   line-height:56px;
+}
+.aui-arrow-right a{
+    color:#999;
+}
+.aui-img-object{
+    border-radius: 6px;
+}
+.aui-font-set{
+    font-size: 22px;
+    color:#585858;
+    font-weight: bold;
+}
+.aui-ellipsis-1{
+    font-size: 16px;
+    color:#999;
+}
+.aui-arrow-right:after {
+    font-family: "auiicon" !important;
+    right: 15px;
+    content: '';
+}
+.aui-icon-loading{
+    font-size: 16px;
+}
+</style>
+<body>
+
+    <div class="aui-content">
+
+        <ul class="aui-list-view">
+            <?php
+                foreach($agent_list as $v){
+            ?>
+            <li class="aui-list-view-cell aui-img">
+                <img class="aui-img-object aui-pull-left" src="/Public/images/store.png">
+                <div class="aui-img-body aui-arrow-left">
+                    <div class="aui-font-set"><?=$v['name']?></div>
+                    <div class='aui-ellipsis-1'><?=$v['mobile']?></div>
+                </div>
+                <div class="aui-img-body aui-arrow-right">
+                    <a href="/webapp_product/get_a_product_list?aid=<?=$v['id']?>">进入他的店铺</a>
+                    <span class="aui-iconfont aui-icon-loading"></span>
+                </div>
+            </li>
+            <?php
+                  }
+            ?>
+        </ul>
+    </div>
+</body>
+</html>

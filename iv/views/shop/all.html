@@ -1,0 +1,468 @@
+<script src="/Public/js/layer.js"></script>
+	<style>
+		.myStore-main{
+			width: 1135px;
+			margin:0 auto;
+			background-color: #fff;
+			padding-bottom: 200px;
+			min-height: 600px
+		}
+		.myStore-nav{
+			background-color: #f9f9f9;
+			padding: 10px 0 10px 20px;
+			overflow: hidden;
+		} 
+		.myStore-nav ul li{
+			float: left;
+			margin-right: 30px;
+			padding: 5px 10px;
+			cursor: pointer;
+		}
+		.myStore-nav a{
+			color:#333;
+		}
+		.myStore-nav ul li:hover{
+			background-color: #00d8ff;
+			color: #fff;
+		}
+		.myStore-nav-active{
+			background-color: #00d8ff;
+			color: #fff;
+		}
+		.myStore-bg{
+			width: 1135px;
+			background-color: #fff;
+		}
+		.myStore-pro{
+			border-bottom:1px solid #ccc;
+			padding: 20px 0;
+			overflow: hidden;
+			width: 1095px;
+			margin: 0 auto;
+		}
+		.myStore-bg:hover{
+			background-color:#f2fdff; 
+		}
+		.myStore-pro-img,.myStore-pro-des{
+			float: left;
+		}
+		.myStore-pro-des{
+			margin-left: 20px;
+		}
+		.myStore-pro-btn,.myStore-pro-btn1{
+			float: right;
+		}
+		.myStore-pro-img img{
+			width: 220px;
+			height: 150px;
+		}
+		.myStore-btn-extned,.myStore-btn-down,.myStore-btn-up{
+			width: 150px;
+			height: 40px;
+			line-height: 40px;
+			text-align: center;
+			margin-bottom: 30px;
+		}
+		.myStore-btn-extned a{
+			display: block;
+			width: 150px;
+			height: 40px;
+			color:#00d8ff;
+		}
+		.myStore-btn-extned{
+			border: 1px solid #00d8ff;
+			color: #00d8ff;
+			cursor: pointer;
+			font-size: 14px;
+			font-weight: bold;
+		}
+		.myStore-btn-down{
+			border: 1px solid #ccc;
+			background-color: #e5e5e5;
+			cursor: pointer;
+			font-size: 14px;
+			color: #777;
+			font-weight: bold;
+		}
+		.myStore-btn-extned a:hover{
+			background-color: #7ce8fc;
+			color:#fff;
+
+		}
+		.myStore-btn-down:hover{
+			background-color: #ccc;
+		}
+		.myStore-btn-up{
+			border: 1px solid #7ce8fc;
+			background-color: #00d8ff;
+			color: #fff;
+			cursor: pointer;
+			font-size: 14px;
+			font-weight: bold;
+		}
+		.myStore-btn-up:hover{
+			background-color: #7febff;
+		}
+		.myStore-detail-name{
+			font-size: 16px;
+			font-weight: bold;
+			color: #585858;
+		}
+		.myStore-detail-price{
+			margin-top: 45px;
+		}
+		.myStore-realPrice{
+			font-size: 18px;
+			color: #00d8ff;
+			margin-bottom: 15px;
+		}
+		.mystore-salePrice{
+			font-size: 16px;
+			color: #999;
+			text-decoration: line-through;
+		}
+		#ul_pages{
+			margin-left: 15px
+		}
+		/*重置初始样式--end*/
+		.expire{
+			float:right;
+			font-size:14px;
+			color:#777;
+			margin-right: 40px;
+			margin-top: 63px
+		}
+		.layui-layer-content{
+			text-align: center;
+		}
+	</style>
+</head>
+
+	<div class="myStore-main">
+		<?php
+
+			function get_single_price($price_type, $prices) {
+                    if(isset($prices[0]['price2'])) {
+                        switch($price_type) {
+                            case Ptype::PRICE_TYPE_0:
+                                return $prices[0]['price2'];
+                                break;
+                            case Ptype::PRICE_TYPE_1:
+                                return $prices[0]['price1'];
+                                break;
+                            default:
+                                return $prices[0]['price1'];
+                                break;
+                        }
+                    } else {
+                        return $prices[0]['price1'];
+                    }
+                } 
+                require_once 'libraries/commen_user.php' ;
+
+				
+		?>
+		<div class="myStore-nav">
+			<ul>
+				<a href="/shop/all"><li <?=$act=='a'?'class="myStore-nav-active"' : '';?>>全部</li></a>
+				<a href="/shop/onsale"><li <?=$act=='o'?'class="myStore-nav-active"' : '';?>>销售中</li></a>
+				<a href="/shop/offline"><li <?=$act=='off'?'class="myStore-nav-active"' : '';?>>已下架</li></a>
+			<!-- 	<a href="/shop/myshare"><li><img src="/Public/images/share.png" alt="" style="vertical-align:middle;margin-right:5px;">&nbsp;我的分享</li></a> -->
+			</ul>
+		</div>
+		<div class="myStore-proList">
+			<?php 
+			foreach($list as $v){
+				 $same=get_same_price($v['display_prices']);
+				$sale=get_sale_price($v['display_prices']);
+			?>
+			<div class="myStore-bg">
+				<div class="myStore-pro">
+					<a href="/product/product_detail?pid=<?=$v['id'];?>&p_type=1&aid=<?=$aid;?>">
+						<?php if($v['p_status'] === '4'){	?>
+					<div class="myStore-pro-img">
+						<img src="<?=$v['face_img']?>" alt="">
+					</div>
+					<?php	}elseif($v['p_status'] === '5'){ ?>
+						<div class="myStore-pro-img">
+							<img src="<?=$v['face_img']?>" alt="" style="opacity:0.6;-moz-opacity:0.6">
+						</div>
+					<?php } ?>
+						<div class="myStore-pro-des">
+							<?php if($v['p_status'] === '4'){	?>
+								<p class="myStore-detail-name"><?=$v['title']?></p>
+							<?php	}elseif($v['p_status'] === '5'){ ?>
+								<p class="myStore-detail-name" style="color:#999"><?=$v['title']?></p>
+							<?php } ?>
+							<div class="myStore-detail-price">
+								<?php if($v['p_status'] === '4'){	?>
+									<p class="myStore-realPrice"><span>同行价：</span><span class="myStore-realNum"><?=$same;?></span></p>
+								<?php	}elseif($v['p_status'] === '5'){ ?>
+									<p class="myStore-realPrice" style="color:#585858"><span>同行价：</span><span class="myStore-realNum"><?=$same;?></span></p>
+								<?php } ?>
+
+								<p class="mystore-salePrice"><span>建议零售价：</span><span><?=$sale;?></span></p>
+						</div>
+					</div>
+					</a>
+					<?php
+
+
+					if($v['p_status'] === '4'){
+						 if($v['is_onsale']){?>
+						<div class="myStore-pro-btn" rel="1" data="<?=$v['id'];?>" type="<?=$v['p_type'];?>">
+							<div class="myStore-btn-extned"><a href="/spread/extend?pid=<?=$v['id'];?>">推广</a></div>
+							<div class="myStore-btn-down">下架</div>
+						</div>
+						<?php }else{ ?>
+						<div class="myStore-pro-btn"  rel="0" data="<?=$v['id'];?>" type="<?=$v['p_type'];?>">
+							<div class="myStore-btn-up">上架</div>
+						</div>
+						<?php }
+
+					}elseif($v['p_status'] === '5'){
+
+					 ?>
+						<div class="expire">该产品已过期</div>
+					<?php
+						}
+					?>
+				</div>
+			</div>
+			
+			<?php } ?>
+		</div>
+		<input type="hidden" value="<?=$total?$total:0;?>" id="total">
+		<input type="hidden" value="<?=$page?$page:0;?>" id="page">
+		<input type="hidden" value="<?=$rn?$rn:0;?>" id="rn">
+		<input type="hidden" value="<?=$act;?>" id="act">
+    	<ul class="center pagination pagination-lg" id="ul_pages"></ul>
+	</div>
+	
+	<script>
+		$(".myStore-nav ul li").click(function() {
+			$(".myStore-nav ul li").removeClass('myStore-nav-active');
+			$(this).addClass('myStore-nav-active');
+		});
+		$(function(){
+
+			var act = $('#act').val();
+			if(act == 'a'){
+				$('body').delegate('.myStore-btn-up', 'click', function() {
+					
+						var up = $(this);
+						var url = "/product/operation";
+						var id = $(this).parent().attr('data');
+						var p_type = $(this).parent().attr('type');
+						var p_status = $(this).parent().attr('rel');
+				        $.get(url, {
+				            id:id,
+				            p_type:p_type,
+				            p_status:p_status
+				        }, function(data) {
+				            if(data['result']['err'] == 0) {
+				            	p_status=data['content']['p_status'];
+				        		up.parent(".myStore-pro-btn").html('<div class="myStore-btn-extned"><a href="/spread/extend?pid='+id+'">推广</a></div><div class="myStore-btn-down">下架</div>').attr('rel',p_status);
+				            } else {
+
+				            }
+				         })   
+				});
+				$('body').delegate('.myStore-btn-down', 'click', function() {
+					
+						var down = $(this);
+						var url = "/product/operation";
+						var id = $(this).parent().attr('data');
+						var p_type = $(this).parent().attr('type');
+						var p_status = $(this).parent().attr('rel');
+						layer.confirm('确定下架该产品吗？', 
+							{btn: ['确定']},
+							 function(){
+								  layer.msg('产品已下架', {icon: 1});
+								  $.get(url, {
+								      id:id,
+								      p_type:p_type,
+								      p_status:p_status
+								  }, function(data) {
+								      if(data['result']['err'] == 0) {
+								      	p_status=data['content']['p_status'];
+								  		down.parent(".myStore-pro-btn").html('<div class="myStore-btn-up">上架</div>').attr('rel',p_status);
+								      } else {
+
+								      }
+								   }) 
+				    
+						});
+
+				});
+			}else{
+					$('body').delegate('.myStore-btn-up', 'click', function() {
+							if($('.myStore-pro').length ==1){
+					      		 window.location.href  = '';
+					      	}
+							var up = $(this);
+							var url = "/product/operation";
+							var id = $(this).parent().attr('data');
+							var p_type = $(this).parent().attr('type');
+							var p_status = $(this).parent().attr('rel');
+					        $.get(url, {
+					            id:id,
+					            p_type:p_type,
+					            p_status:p_status
+					        }, function(data) {
+					            if(data['result']['err'] == 0) {
+					        		up.parents(".myStore-pro").remove();
+					            } else {
+
+					            }
+					         })   
+					});
+					$('body').delegate('.myStore-btn-down', 'click', function() {
+							var down = $(this);
+							var url = "/product/operation";
+							var id = $(this).parent().attr('data');
+							var p_type = $(this).parent().attr('type');
+							var p_status = $(this).parent().attr('rel');
+							layer.confirm('确定下架该产品吗？',
+								{btn:['确定']},
+								function(){
+									layer.msg('产品已下架',{icon:1});
+							        $.get(url, {
+							            id:id,
+							            p_type:p_type,
+							            p_status:p_status
+							        }, function(data) {
+							            if(data['result']['err'] == 0) {
+							      			down.parents(".myStore-pro").remove();
+							      			console.log($('.myStore-pro').length ==1)
+							      			if(!$('.myStore-pro').length ==1){
+					      						 window.location.href  = '';
+					      					}
+							      			
+							            } else {
+
+							            }
+							         })   
+								})
+					});
+			}
+		})
+	//分页	
+	var m_total=$('#total').val();
+    var m_current_page=$('#page').val();
+    var m_page_record = $('#rn').val();
+    add_pages(m_total,m_current_page);
+ 	 /**
+     * 添加页码
+     * @param total
+     */
+    function add_pages(total, current) {
+        m_total_page = Math.ceil(total /m_page_record);
+        if (m_total_page==1) {
+        	$("#ul_pages").hide();
+        }else{
+        	$("#ul_pages").show();
+        }
+        var html = "<li" ;
+
+        //首页
+        if(current == 0) {
+            html += " class=\"disabled\"" ;
+            html += "><a>首页<li>";
+        }else{
+            html += "><a class='page_click' rel='0'>首页<li>";
+        }
+
+        
+
+        html += "<li" ;
+
+        //上一页
+        if(current == 0) {
+            html += " class=\"disabled\"" ;
+            html += "><a>上一页</a></li>" ;
+        }else{
+        	 html += "><a class='page_click' rel="+(current-1)+">上一页</a></li>" ;
+        }
+        
+
+        //中间页
+        if(m_total_page<10){
+            for(var i=0;i<m_total_page;i++) {
+                if(i == current ) {
+                    html += "<li class=\"active\">" ;
+                } else {
+                    html += "<li>";
+                }
+
+                html += "<a class='page_click' rel="+i+">" + (i+1) + "</a></li>" ;
+            }
+        }else{
+            var now_half =  m_total_page-9;
+
+            if(current < now_half){
+                for(var i=0;i<4;i++) {
+                    if(current + i== current ) {
+                        html += "<li class=\"active\">" ;
+                    } else {
+                        html += "<li>";
+                    }
+
+                    html += "<a class='page_click' rel="+(current+i)+">" + (current+i+1) + "</a></li>" ;
+                }
+                html += "<li><a  class='page_click' rel=" + (current+4) + ">" + "..." + "</a></li>";
+                for(var i=4;i>0;i--) {
+                    if(m_total_page-i == current ) {
+                        html += "<li class=\"active\">" ;
+                    } else {
+                        html += "<li>";
+                    }
+
+                    html += "<a class='page_click' rel=" + (m_total_page-i)+ ">" + (m_total_page-i+1) + "</a></li>" ;
+                }
+            }else{
+                for(var i= 9;i>0;i--) {
+                    if(m_total_page-i == current ) {
+                        html += "<li class=\"active\">" ;
+                    } else {
+                        html += "<li>";
+                    }
+
+                    html += "<a class='page_click' rel=" + (m_total_page-i)+ ">" + (m_total_page-i+1) + "</a></li>" ;
+                }
+            }
+
+        }
+
+        //下一页
+        html += "<li" ;
+        if(current == m_total_page - 1){
+            html += " class=\"disabled\"";
+            html += "><a>下一页</a></li>" ;
+        }else{
+        	html += "><a class='page_click' rel="+(current-0+1)+">下一页</a></li>" ;
+        }
+        
+
+        //尾页
+        html += "<li" ;
+        if(current == m_total_page - 1){
+            html += " class=\"disabled\"";
+            html += "><a>尾页</a></li>" ;
+        }else{
+            html += "><a class='page_click' rel="+(m_total_page - 1)+" >尾页</a></li>" ;
+        }
+
+        
+
+        $("#ul_pages").html(html) ;
+    }
+
+    $('body').delegate('.page_click', 'click', function() {
+    	var p = $(this).attr('rel');
+    	var s =window.location.pathname+'?';
+    	'' != p  && (s += "page=" + p);
+    
+    	window.location.href = s
+    });
+	</script>

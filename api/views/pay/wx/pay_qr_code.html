@@ -1,0 +1,281 @@
+<html>
+<head>
+    <meta http-equiv="content-type" content="text/html;charset=utf-8"/>
+	<meta content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=0" name="viewport" />
+	<script src="/public/js/jquery-1.9.0.min.js"></script>
+    <title>微信支付</title><style>
+		body{
+			background-color: #fff;
+			font-family: 'Microsoft Yahei';
+			text-align: center;
+			margin: 0 auto;
+		}
+
+		.area_input {
+			margin: 0 auto;
+			position: fixed;
+			width: 100%;
+			bottom: 0px;
+		}
+
+		td{
+			width: 80px;
+			height: 50px;
+			line-height: 50px;
+			color: #000;
+			font-size: 18px;
+		}
+
+		td:active{
+			background:#ccc;
+		}
+
+		.del div{
+			height: 50px;
+			line-height: 50px;
+		}
+
+		.area_t {
+			width: 100%;
+			margin: 0 auto;
+			text-align: center;
+		}
+
+		.area_display {
+			height: 50px;
+			line-height: 50px;
+			width: 100%;
+			text-align: right;
+			font-size: 18px;
+
+		}
+		.area_inputed{
+			border: solid 1px #ccc;
+			margin: 10px;
+			padding: 0px 10px 0px 10px;
+		}
+
+		.border-table {
+			border-collapse: collapse;
+			border: none;
+		}
+		.border-table td {
+			border: solid #ccc 1px;
+		}
+
+		*{
+			-webkit-touch-callout:none;
+			-webkit-user-select:none;
+			-khtml-user-select:none;
+			-moz-user-select:none;
+			-ms-user-select:none;
+			user-select:none;
+			-o-user-select:none;
+		}
+</style>
+</head>
+<body>
+	<div class="area_display">
+		<div class="area_inputed">
+		</div>
+	</div>
+	<div style="clear: both"></div>
+
+	<div id="div_test"></div>
+
+	<div class="area_input">
+		<table class="area_t border-table" border="1">
+			<tr>
+				<td data="1">1</td>
+				<td data="2">2</td>
+				<td data="3">3</td>
+				<td data="del"><div><img src="/public/images/input_del.png"></div></td>
+			</tr>
+			<tr>
+				<td data="4">4</td>
+				<td data="5">5</td>
+				<td data="6">6</td>
+				<td data="confirm" rowspan="3">确定</td>
+			</tr>
+			<tr>
+				<td data="7">7</td>
+				<td data="8">8</td>
+				<td data="9">9</td>
+			</tr>
+			<tr>
+				<td data="0" colspan="2">0</td>
+				<td data=".">.</td>
+			</tr>
+		</table>
+	</div>
+</body>
+</html>
+
+<script>
+	var m_jsApiParam ;
+	var m_input_data = '' ;
+	var m_openid = "<?php echo $openid;?>" ;
+	$(function(){
+		document.set
+
+		area_display() ;
+
+		$(".area_t")
+				.delegate(
+				"td",
+				"ontouchstart",
+				function(e) {
+					return false ;
+				}
+		);
+
+		$(".area_t")
+			.delegate(
+			"td",
+			"ontouchend",
+			function(e) {
+				$(this).className="end_touch";
+				console.log("ontouchend") ;
+			}
+		);
+
+		$(".area_t")
+			.delegate(
+			"td",
+			"click",
+			function(e) {
+				var data = $(this).attr('data') ;
+				console.log("click:" + data) ;
+				if(data == 'confirm') {
+					input_confirm() ;
+				} else if(data == 'del') {
+					input_del() ;
+				} else if(data == '.') {
+					input_dot() ;
+				} else {
+					input_data(data) ;
+				}
+
+				area_display() ;
+			}) ;
+	}) ;
+
+	function area_display() {
+		if(m_input_data.length == 0) {
+			$(".area_inputed").text(0) ;
+		} else {
+			$(".area_inputed").text(m_input_data) ;
+		}
+	}
+
+	function input_dot() {
+		if(m_input_data.indexOf('.') == -1) { //not exist
+			m_input_data += ".";
+		} else if(m_input_data.length == 0) {
+			m_input_data += ".";
+		}
+	}
+
+	function input_data(val) {
+		if(m_input_data.length == 0) {
+			if(val == 0) {
+//				m_input_data = 0 ;
+			} else {
+				m_input_data = val;
+			}
+		} else {
+			var dotIndex = m_input_data.indexOf(".") ;
+			if(dotIndex == -1) {
+				if(m_input_data.length >= 4) {
+					return ;
+				}
+			} else {
+				var floatValue = m_input_data.substr(dotIndex, m_input_data.length) ;
+				if(floatValue.length > 2) {
+					return ;
+				}
+			}
+
+			m_input_data = m_input_data + val;
+		}
+	}
+
+	function input_del() {
+		if(m_input_data.length > 0) {
+			m_input_data = m_input_data.substr(0,m_input_data.length-1) ;
+		}
+		if(m_input_data.length == 0) {
+			m_input_data = '' ;
+		}
+	}
+
+	var layer_index ;
+	function input_confirm(){
+		if(m_input_data.length == 0) {
+			alert("请输入支付金额") ;
+			return ;
+		}
+		layer_index = layer.load(1,{shade: [0.4, '#393D49']});
+
+//		var total_fee = m_input_data ;
+//		alert(m_input_data) ;
+		var out_trade_no = new Date().getTime();
+
+		$.post(
+			"/wx_pay/get_pay_params",
+			{
+				openid:m_openid,
+				subject:"测试商品-test",
+				attach:"attach",
+				total_fee:m_input_data,//"0.01",
+				out_trade_no: out_trade_no + "" ,//"2016082700004",
+			}, function(data) {
+				layer.close(layer_index);
+				m_jsApiParam = JSON.parse(data) ;
+				callpay() ;
+			}
+		) ;
+	}
+
+	//调用微信JS api 支付
+	function jsApiCall()
+	{
+		WeixinJSBridge.invoke(
+			'getBrandWCPayRequest',
+			{
+				"appId":m_jsApiParam['appId'],
+				"nonceStr":m_jsApiParam['nonceStr'],
+				"package":m_jsApiParam['package'],
+				"signType":m_jsApiParam['signType'],
+				"timeStamp":m_jsApiParam['timeStamp'],
+				"paySign":m_jsApiParam['paySign']
+			},
+			function(res){
+				if(res.err_msg=="get_brand_wcpay_request:ok"){
+					location.href = success_url;
+				}else if(res.err_msg=="get_brand_wcpay_request:cancel"){
+
+				}else{
+					alert(res.err_msg+"支付失败,请联系客服人员");
+				}
+			}
+		);
+	}
+
+	function callpay()
+	{
+		if (typeof WeixinJSBridge == "undefined"){
+			if( document.addEventListener ){
+				document.addEventListener('WeixinJSBridgeReady', jsApiCall, false);
+			}else if (document.attachEvent){
+				document.attachEvent('WeixinJSBridgeReady', jsApiCall);
+				document.attachEvent('onWeixinJSBridgeReady', jsApiCall);
+			}
+		}else{
+			jsApiCall();
+		}
+	}
+
+</script>
+<script src="/public/js/layer/layer.js"></script>
+

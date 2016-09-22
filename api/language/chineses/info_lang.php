@@ -1,0 +1,23 @@
+<?php
+$lang['lang']="中文/英文";
+$lang['commit']="提交产品";
+$lang['login']="登录";
+$lang['register']="注册";
+$lang['txt_commit_title']="提交产品";
+$lang['txt_username']="用户名/username";
+$lang['txt_password']="密  码/password";
+$lang['txt_login_title']="登录";
+$lang['txt_register_title']="注册";
+$lang['txt_mainpage_title']="首页";
+$lang['txt_commit_title']="提交产品";
+$lang['order_mng']="订单管理";
+$lang['user_mng']="用户管理";
+$lang['product_mng']="产品管理";
+$lang['input_username']="请输入用户名";
+$lang['product_detail']="产品详情";
+$lang['commit_title_tradation']="产品提交-经典路线";
+$lang['commit_title_oneday']="产品提交-一日游-拼团";
+$lang['commit_title_oneday_ex']="产品提交-一日游-单团委托";
+$lang['commit_title_rent_car']="产品提交-租车";
+$lang['commit_title_customer_travel']="产品提交-需求定制";
+$lang['login_username']="请输入注册邮箱";
